@@ -1,5 +1,3 @@
-import p5 from "p5";
-
 // A simple Particle class
 // Könnte auch in einer separaten Datei definiert werden
 export default class Particle {
@@ -15,10 +13,10 @@ export default class Particle {
     this.count = 0;
     this.gravity = 0.01;
     this.resistance = 0.99;
-    this.initSpeed = p5.random(5, 9);
+    this.initSpeed = this.sk.random(5, 9);
 
-    this.moveX = p5.random(-this.initSpeed, this.initSpeed); //Bewegungsrichtung für diese Instanz festlegen
-    this.moveY = p5.random(-this.initSpeed, this.initSpeed);
+    this.moveX = this.sk.random(-this.initSpeed, this.initSpeed); //Bewegungsrichtung für diese Instanz festlegen
+    this.moveY = this.sk.random(-this.initSpeed, this.initSpeed);
     this.x = x + this.moveX; //am Anfang ist das Particle fast unter der Maus
     this.y = y + this.moveY;
   }
@@ -39,7 +37,7 @@ export default class Particle {
 
     //Abstossung von der Maus
     if (
-      p5.dist(x, y, this.x, this.y) < this.radius * 2 &&
+      this.sk.dist(x, y, this.x, this.y) < this.radius * 2 &&
       this.count > 6
     ) {
       this.moveX = (this.x - x) / 3;
