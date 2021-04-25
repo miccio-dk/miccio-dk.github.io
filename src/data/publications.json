@@ -1,0 +1,47 @@
+[
+  {
+    "authors": "R. Miccini, S. Spagnol",
+    "title": "A hybrid approach to structural modeling of individualized HRTFs",
+    "period": "March 2021",
+    "publisher": "2021 IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)",
+    "doi": null,
+    "url": "https://itsadive.create.aau.dk/wp-content/uploads/2021/03/SIVE_2021.pdf",
+    "code": "https://github.com/miccio-dk/itsadive_hybrid_structural_model/"
+  },
+  {
+    "authors": "S. Spagnol, R. Miccini, R. Unnthórsson",
+    "title": "The Viking HRTF Dataset v2",
+    "period": "October 2020",
+    "publisher": null,
+    "doi": "10.5281/zenodo.4160401",
+    "url": "https://doi.org/10.5281/zenodo.4160401",
+    "code": null
+  },
+  {
+    "authors": "M. G. Onofrei, R. Miccini, R. Unnthórsson, S. Serafin, S. Spagnol",
+    "title": "3D ear shape as an estimator of HRTF notch frequency",
+    "period": "June 2020",
+    "publisher": "17th Sound and Music Computing Conference",
+    "doi": "10.5281/zenodo.3898720",
+    "url": "https://itsadive.create.aau.dk/wp-content/uploads/2020/07/SMC_2020.pdf",
+    "code": null
+  },
+  {
+    "authors": "R. Miccini, S. Spagnol",
+    "title": "HRTF individualization using deep learning",
+    "period": "March 2020",
+    "publisher": "2020 IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)",
+    "doi": "10.1109/VRW50115.2020.00084",
+    "url": "https://itsadive.create.aau.dk/wp-content/uploads/2020/03/SIVE_2020.pdf",
+    "code": "https://github.com/miccio-dk/hrtf_individualize_dl"
+  },
+  {
+    "authors": "R. Miccini, S. Spagnol",
+    "title": "Estimation of pinna notch frequency from anthropometry: An improved linear model based on principal component analysis and feature selection",
+    "period": "November 2019",
+    "publisher": "Nordic Sound and Music Computing Conference 2019 and the Interactive Sonification Workshop 2019",
+    "doi": "10.5281/zenodo.3743447",
+    "url": "https://itsadive.create.aau.dk/wp-content/uploads/2019/11/NSMC_2019.pdf",
+    "code": null
+  }
+]

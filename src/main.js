@@ -1,10 +1,22 @@
 import Vue from "vue";
 import App from "./App.vue";
-import router from "./router";
+import "@/assets/css/tailwind.css";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faLink,
+  faCode,
+  faQuoteRight,
+  faFileAlt,
+  faDownload,
+  faPhotoVideo,
+} from "@fortawesome/free-solid-svg-icons";
 
+library.add(faLink, faCode, faQuoteRight, faFileAlt, faDownload, faPhotoVideo);
+
+Vue.component("FontAwesomeIcon", FontAwesomeIcon);
 Vue.config.productionTip = false;
 
 new Vue({
-  router,
   render: (h) => h(App),
 }).$mount("#app");
