@@ -9,7 +9,7 @@
     <p class="flex-auto text-base font-normal text-light">{{ data.descr }}</p>
     <ul v-if="mediaNotEmpty" class="flex-none space-x-4 mt-4">
       <li
-        class="inline bg-light py-2 px-2 rounded-md"
+        class="inline bg-light py-1 px-2 rounded-md"
         v-for="(v, k) in data.media"
         :key="k"
       >

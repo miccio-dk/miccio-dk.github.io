@@ -2,7 +2,7 @@
   <div class="flex">
     <ul class="flex-auto flex flex-wrap justify-center mb-6 text-light">
       <li
-        class="inline-block rounded-md m-1 p-2 cursor-pointer border-2 select-none"
+        class="inline-block rounded-md m-1 px-2 py-1 cursor-pointer border-2 select-none"
         :class="[isSelected(tag) ? selectClass : unselectClass]"
         v-for="(tag, i) in tagList"
         :key="i"
@@ -15,14 +15,14 @@
       class="flex-shrink flex flex-wrap flex-start content-start justify-end items-start mb-6 text-light"
     >
       <li
-        class="inline-block rounded-md m-1 ml-4 p-2 cursor-pointer border-2 select-none"
+        class="inline-block rounded-md m-1 ml-4 px-2 py-1 cursor-pointer border-2 select-none"
         :class="unselectClass"
         @click="selectAll"
       >
         all
       </li>
       <li
-        class="inline-block rounded-md m-1 p-2 cursor-pointer border-2 select-none"
+        class="inline-block rounded-md m-1 px-2 py-1 cursor-pointer border-2 select-none"
         :class="unselectClass"
         @click="selectNone"
       >
@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       content: this.value,
-      selectClass: ["bg-dark", "text-light", "border-light"],
+      selectClass: ["bg-dark", "text-light", "border-dark"],
       unselectClass: ["bg-light", "text-dark", "border-dark"],
     };
   },

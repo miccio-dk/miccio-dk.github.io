@@ -13,7 +13,7 @@
         <p class="leading-8">
           Select a
           <span
-            class="inline rounded-md p-2 border-2 border-dark bg-light text-dark hover:border-light hover:bg-dark hover:text-light"
+            class="inline rounded-md p-2 border-2 border-dark bg-light text-dark hover:bg-dark hover:text-light"
             >tag</span
           >
           to see related projects.
