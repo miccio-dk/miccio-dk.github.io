@@ -4,55 +4,63 @@
     "to": "12/2020",
     "role": "Data Scientist",
     "company": "SoundFlow",
-    "location": "Copenhagen, Denmark"
+    "location": "Copenhagen, Denmark",
+    "descr": ""
   },
   {
     "from": "08/2019",
     "to": "12/2020",
     "role": "Research assistant",
     "company": "Aalborg University",
-    "location": "Copenhagen, Denmark"
+    "location": "Copenhagen, Denmark",
+    "descr": ""
   },
   {
     "from": "08/2019",
     "to": "09/2019",
     "role": "Student assistant",
     "company": "Aalborg University",
-    "location": "Copenhagen, Denmark"
+    "location": "Copenhagen, Denmark",
+    "descr": ""
   },
   {
     "from": "10/2018",
     "to": "09/2019",
     "role": "Embedded software developer",
     "company": "JABii",
-    "location": "Copenhagen, Denmark"
+    "location": "Copenhagen, Denmark",
+    "descr": ""
   },
   {
     "from": "09/2016",
     "to": "02/2017",
     "role": "Teaching assistant",
     "company": "Technical University of Denmark",
-    "location": "Kgs. Lyngby, Denmark"
+    "location": "Kgs. Lyngby, Denmark",
+    "descr": ""
   },
   {
     "from": "06/2015",
     "to": "08/2018",
     "role": "Embedded software developer",
     "company": "Danish Aviation Systems",
-    "location": "Brøndby, Denmark"
+    "location": "Brøndby, Denmark",
+    "descr": ""
   },
   {
     "from": "04/2014",
     "to": "04/2015",
     "role": "Web developer",
     "company": "Copenhagen Business School",
-    "location": "Frederiksberg, Denmark"
+    "location": "Frederiksberg, Denmark",
+    "descr": ""
   },
   {
     "from": "02/2014",
     "to": "04/2014",
     "role": "Internee",
     "company": "Cekura A/S",
-    "location": "Copenhagen, Denmark"
+    "location": "Copenhagen, Denmark",
+    "descr": ""
   }
 ]

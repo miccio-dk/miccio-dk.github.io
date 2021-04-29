@@ -49,8 +49,20 @@
       </ul>
     </nav>
     <div class="flex-none w-16 xl:w-24 text-light items-center text-center">
-      <FontAwesomeIcon class="cursor-pointer" v-if="animationOn" @click="toggleAnimation" icon="toggle-on" size="lg"/>
-      <FontAwesomeIcon class="cursor-pointer" v-else @click="toggleAnimation" icon="toggle-off" size="lg"/>
+      <FontAwesomeIcon
+        class="cursor-pointer"
+        v-if="animationOn"
+        @click="toggleAnimation"
+        icon="toggle-on"
+        size="lg"
+      />
+      <FontAwesomeIcon
+        class="cursor-pointer"
+        v-else
+        @click="toggleAnimation"
+        icon="toggle-off"
+        size="lg"
+      />
     </div>
   </header>
 </template>
@@ -71,9 +83,7 @@ export default {
         "hover:tracking-widest",
         "hover:text-dark",
       ],
-      othersClass: [
-        "hover:text-light"
-      ],
+      othersClass: ["hover:text-light"],
     };
   },
   computed: {
@@ -82,16 +92,16 @@ export default {
     },
   },
   mounted() {
-    this.$root.$on('animation', animationState => {
-        this.animationOn = animationState;
+    this.$root.$on("animation", (animationState) => {
+      this.animationOn = animationState;
     });
   },
   methods: {
     toggleAnimation() {
       this.animationOn = !this.animationOn;
       this.$root.$emit("animation", this.animationOn);
-    }
-  }
+    },
+  },
 };
 </script>
 

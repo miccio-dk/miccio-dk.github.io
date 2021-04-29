@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <div id="app" class="font-mono" >
-      <AnimatedBackground class="z-0 fixed"/>
-      <Navbar :currentHash="currentHash" />
-      <About class="section relative z-10" id="about" />
-      <Projects class="section relative z-10" id="projects" :projects="projects" />
-      <Publications
-        class="section relative z-10"
-        id="pubs"
-        :publications="publications"
-      />
-      <Experience class="section relative z-10" id="exp" :experiences="experiences" />
-      <Contact class="section relative z-10" id="contact" />
-    </div>
+  <div id="app" class="font-mono">
+    <AnimatedBackground class="z-0 fixed" :nParticles="32" :bpm="120" />
+    <Navbar :currentHash="currentHash" />
+    <About class="section relative" id="about" />
+    <Projects class="section relative" id="projects" :projects="projects" />
+    <Publications
+      class="section relative"
+      id="pubs"
+      :publications="publications"
+    />
+    <Experience class="section relative" id="exp" :experiences="experiences" />
+    <Contact class="section relative" id="contact" />
   </div>
 </template>
 

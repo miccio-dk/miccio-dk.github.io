@@ -22,7 +22,14 @@
           I aspire to work with assistive audio technologies using data science
           and machine learning tools, while keeping a foot in academia.
         </p>
-        <p><button class="inline-block rounded-md py-1 px-2 border-2 border-dark bg-light text-dark hover:bg-dark hover:text-light" @click="enableAnimation">Add some color</button></p>
+        <p>
+          <button
+            class="inline-block rounded-md py-1 px-2 border-2 border-dark bg-light text-dark hover:bg-dark hover:text-light"
+            @click="enableAnimation"
+          >
+            Add some color
+          </button>
+        </p>
       </div>
     </div>
   </div>
@@ -36,7 +43,7 @@ export default {
       this.$root.$emit("animation", true);
     },
   },
-}
+};
 </script>
 
 <style scoped lang="scss"></style>

@@ -11,10 +11,19 @@ import {
   faDownload,
   faPhotoVideo,
   faToggleOn,
-  faToggleOff
+  faToggleOff,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faLink, faCode, faQuoteRight, faFileAlt, faDownload, faPhotoVideo, faToggleOn, faToggleOff);
+library.add(
+  faLink,
+  faCode,
+  faQuoteRight,
+  faFileAlt,
+  faDownload,
+  faPhotoVideo,
+  faToggleOn,
+  faToggleOff
+);
 
 Vue.component("FontAwesomeIcon", FontAwesomeIcon);
 Vue.config.productionTip = false;
