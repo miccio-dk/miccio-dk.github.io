@@ -27,7 +27,7 @@
             class="inline-block rounded-md py-1 px-2 border-2 border-dark bg-light text-dark hover:bg-dark hover:text-light"
             @click="enableAnimation"
           >
-            Add some color
+            I want sounds and colors
           </button>
         </p>
       </div>

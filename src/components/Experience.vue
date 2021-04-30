@@ -25,7 +25,7 @@
           <p>
             <span class="italic">{{ currentExp.location }}</span>
           </p>
-          <p class="mt-4" v-html="mdToHtml(currentExp.descr)"></p>
+          <div class="markdown" v-html="mdToHtml(currentExp.descr)"></div>
         </div>
       </div>
     </div>
@@ -33,8 +33,7 @@
 </template>
 
 <script>
-import _sortBy from "lodash/sortBy";
-import _reverse from "lodash/reverse";
+import _orderBy from "lodash/orderBy";
 //import ExperienceBlock from "./ExperienceBlock.vue";
 import marked from "marked";
 
@@ -52,12 +51,16 @@ export default {
   },
   computed: {
     sortedExperiences() {
-      return _reverse(_sortBy(this.experiences, (exp) => new Date(exp.from)));
+      return _orderBy(
+        this.experiences,
+        (exp) => new Date("01/" + exp.to),
+        "desc"
+      );
     },
   },
   methods: {
     setCurrent(i) {
-      this.currentExp = this.experiences[i];
+      this.currentExp = this.sortedExperiences[i];
     },
     mdToHtml(mdData) {
       return marked(mdData, {});
@@ -66,4 +69,12 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+.markdown p {
+  @apply mt-4;
+}
+
+.markdown ul {
+  @apply list-disc pl-8;
+}
+</style>
