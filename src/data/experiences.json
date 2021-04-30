@@ -5,7 +5,7 @@
     "role": "Data Scientist",
     "company": "SoundFlow",
     "location": "Copenhagen, Denmark",
-    "descr": ""
+    "descr": "Algorithms aiding sound editing professionals:\n- Deep learning models for sound categorization (Keras)\n- DSP algorithms for channel selection and phase offset removal"
   },
   {
     "from": "08/2019",
@@ -13,7 +13,7 @@
     "role": "Research assistant",
     "company": "Aalborg University",
     "location": "Copenhagen, Denmark",
-    "descr": ""
+    "descr": "Research on HRTF individualization:\n-   Deep learning models for pinna images and HRTF autoencoding (Keras, Pytorch)\n-   Acquisition and processing of the HRTF dataset (MATLAB)\n-   Written and collaborated on 4 conference papers and a journal article"
   },
   {
     "from": "08/2019",
@@ -21,7 +21,7 @@
     "role": "Student assistant",
     "company": "Aalborg University",
     "location": "Copenhagen, Denmark",
-    "descr": ""
+    "descr": "System administrator for machine learning workstation"
   },
   {
     "from": "10/2018",
@@ -29,7 +29,7 @@
     "role": "Embedded software developer",
     "company": "JABii",
     "location": "Copenhagen, Denmark",
-    "descr": ""
+    "descr": "Mixed-reality boxing game:\n-   Audio reproduction firmware features on ARM Cortex-M\n-   Time-series data analysis for gesture recognition"
   },
   {
     "from": "09/2016",
@@ -37,15 +37,15 @@
     "role": "Teaching assistant",
     "company": "Technical University of Denmark",
     "location": "Kgs. Lyngby, Denmark",
-    "descr": ""
+    "descr": "Lab assistant for C++ course:\n-   Assisted class of 100+ students during lab hours and online"
   },
   {
     "from": "06/2015",
     "to": "08/2018",
-    "role": "Embedded software developer",
+    "role": "Software developer",
     "company": "Danish Aviation Systems",
     "location": "Brøndby, Denmark",
-    "descr": ""
+    "descr": "IoT platform for data logging and analysis:\n-   Configured and deployed custom ARM and x86 SBCs (Linaro, Docker, Balena)\n-   Daemons for collection of sensor data and diagnostics\n-   Designed storage backend and frontend (PHP, InfluxDB, MySQL, RabbitMQ, Vue.js)\n\nMilitary-grade motorized searchlight with stabilization and remote tracking:\n-   Hardware abstraction layers for external sensors and actuators\n-   Evaluated multiple data fusion algorithms and IMUs\n-   Control loop for BLDC motors with sub-degree accuracy\n"
   },
   {
     "from": "04/2014",
@@ -61,6 +61,31 @@
     "role": "Internee",
     "company": "Cekura A/S",
     "location": "Copenhagen, Denmark",
+    "descr": ""
+  },
+  
+  {
+    "from": "09/2018",
+    "to": "02/2021",
+    "role": "M.Sc. Sound and Music Computing",
+    "company": "Aalborg University",
+    "location": "Copenhagen, Denmark",
+    "descr": "Final grade: 12/12 · Project: *A hybrid approach to structural modeling of individualized HRTFs*\n-   Synthesis of head-related transfer functions from ear images\n-   Developed solution based on deep learning and DSP\n-   Achieved 2° and 5° improvement in vertical and horizontal localization\n\n2<sup>nd</sup> semester project: *Deep learning for speech enhancement*\n-   Implemented and evaluated models (LSTM, TCN) for speech denoising\n\n1<sup>st</sup> semester project: *Sound Morphing with Variational Autoencoders*\n-   Trained generative models (VAE) for sound synthesis"
+  },
+  {
+    "from": "02/2013",
+    "to": "02/2017",
+    "role": "B.Eng. Electronics Engineering",
+    "company": "Technical University of Denmark",
+    "location": "Ballerup, Denmark",
+    "descr": "Final grade: 10/12 · Project: *UAVCAN-enabled indoor positioning system for unmanned vehicles*\n-   Implemented ToF-based triangulation on Cortex-M\n\nFurther projects:\n-   GPS and environmental data collection and visualization (Java, R Shiny, C++)\n-   Designed and programmed a line-following robot\n-   Integrated solution for unmanned shop (Java, MySQL, C)"
+  },
+  {
+    "from": "11/2019",
+    "to": "12/2019",
+    "role": "Internship",
+    "company": "Háskóli Íslands",
+    "location": "Reykjavik, Iceland",
     "descr": ""
   }
 ]

@@ -4,6 +4,10 @@
 
 <script>
 import VueP5 from "vue-p5";
+import Particle from "../particle";
+import * as Tone from "tone";
+import _sample from "lodash/sample";
+import _throttle from "lodash/throttle";
 
 export default {
   name: "AnimatedBackground",
@@ -35,18 +39,17 @@ export default {
       gradients: [],
       gidx: 0,
       beat: 0,
-      fMax: 0,
+      fadeMax: 0,
       fiParticles: 0,
       fiGradient: 0,
       foParticles: 0,
-      audioContext: null,
-      playing: true,
+      chordSynth: null,
+      leadSynth: null,
+      leadFx: null,
+      tMin: 0,
     };
   },
   mounted() {
-    if (!window.AudioContext) {
-      this.playing = false;
-    }
     this.$root.$on("animation", (animationState) => {
       this.setupAnimation(animationState);
     });
@@ -61,63 +64,60 @@ export default {
       sk.colorMode(sk.HSB);
       sk.background(255);
       this.beat = 60000 / this.bpm;
-      this.fMax = (this.beat * this.fadeDuration) / this.fps / 2;
+      this.fadeMax = (this.beat * this.fadeDuration) / this.fps / 2;
       //this.setupAnimation(true);
     },
     draw(sk) {
       sk.background(255);
-      // render gradient
+      // handle gradient
       if (this.gradients.length > 0) {
         var { c1, c2 } = this.gradients[this.gidx];
         var c1curr = sk.color(...c1);
         var c2curr = sk.color(...c2);
-        if (this.fiGradient < this.fMax) {
+        // handle fade
+        if (this.fiGradient < this.fadeMax) {
           var gidx2 = (this.gidx + 1) % 2;
           var gOld = this.gradients[gidx2] || { c1: [255], c2: [255] };
           var c1old = sk.color(...gOld.c1);
           var c2old = sk.color(...gOld.c2);
-          var interp = this.sigmoid(this.fiGradient / this.fMax, 10);
+          var interp = this.sigmoid(this.fiGradient / this.fadeMax, 10);
           c1curr = sk.lerpColor(c1old, c1curr, interp);
           c2curr = sk.lerpColor(c2old, c2curr, interp);
         }
+        // render
         this.drawGradient(sk, 0, 0, sk.width, sk.height, c1curr, c2curr, "x");
       }
 
-      // render particles
-      for (let i = 0; i < this.particles.length; i++) {
-        var { x, y, r, c, vel, damp } = this.particles[i];
-        var cc = sk.color(...c);
-        if (this.fiParticles < this.fMax) {
-          cc.setAlpha((sk.alpha(cc) * this.fiParticles) / this.fMax);
-        } else if (this.foParticles < this.fMax) {
-          cc.setAlpha(sk.alpha(cc) * (1 - this.foParticles / this.fMax));
+      // handle each particle
+      this.particles.forEach((particle) => {
+        var opacity = 1;
+        // handle fade in/out
+        if (this.fiParticles < this.fadeMax) {
+          opacity = this.fiParticles / this.fadeMax;
+        } else if (this.foParticles < this.fadeMax) {
+          opacity = 1 - this.foParticles / this.fadeMax;
         } else if (this.foParticles < this.fiParticles) {
-          continue;
+          opacity = 0;
         }
-        sk.fill(cc);
-        sk.noStroke();
-        sk.ellipse(x * sk.width, y * sk.height, r, r);
-        sk.noFill();
-        for (let j = 0; j < 5; j++) {
-          cc.setAlpha(sk.alpha(cc) * 0.6);
-          r += 20;
-          sk.stroke(cc);
-          sk.ellipse(x * sk.width, y * sk.height, r, r);
+        // currently selected particle
+        if (particle.isSelected(sk)) {
+          opacity *= 5;
+          this.playParticleThrottled();
         }
-
-        this.particles[i].x += vel[0];
-        this.particles[i].y += vel[1];
-        vel[0] *= 1 - damp;
-        vel[1] *= 1 - damp;
-      }
+        // render and move
+        particle.render(sk, opacity);
+        particle.move();
+      });
+      // advance fade vars
       this.fiGradient++;
       this.fiParticles++;
       this.foParticles++;
 
+      // var scaling = (this.fadeMax * sk.width) / 2;
       // sk.fill(0);
-      // sk.rect(0, sk.height / 2, this.fiGradient / this.fMax * sk.width / 2, 10);
-      // sk.rect(0, sk.height / 2 + 20, this.fiParticles / this.fMax * sk.width / 2, 10);
-      // sk.rect(0, sk.height / 2 + 40, this.foParticles / this.fMax * sk.width / 2, 10);
+      // sk.rect(0, sk.height / 2, this.fiGradient / scaling, 10);
+      // sk.rect(0, sk.height / 2 + 20, this.fiParticles / scaling, 10);
+      // sk.rect(0, sk.height / 2 + 40, this.foParticles / scaling, 10);
     },
     setupAnimation(animationOn) {
       if (animationOn) {
@@ -135,26 +135,22 @@ export default {
         var fadeOutParticlesInt = setInterval(() => {
           setTimeout(this.fadeOutParticles, this.beat * 7);
         }, interval);
-        var playGradientInt = setInterval(() => {
-          setTimeout(this.playGradient, this.beat * 0);
+        var playChordInt = setInterval(() => {
+          setTimeout(this.playChord, this.beat * 0);
         }, interval);
-        // var playParticlesInt = setInterval(() => {
-        //   setTimeout(this.playParticles, this.beat);
-        // }, interval);
         this.intervals = [
           fadeGradientInt,
           fadeInParticlesInt,
           fadeOutParticlesInt,
-          playGradientInt,
+          playChordInt,
         ];
         // manually launch first iterations
         setTimeout(this.fadeGradient, this.beat * 0);
         setTimeout(this.fadeInParticles, this.beat * 1);
         setTimeout(this.fadeOutParticles, this.beat * 7);
-        setTimeout(this.playGradient, this.beat * 0);
-        // create audio context obj
-        this.audioContext = new (window.AudioContext ||
-          window.webkitAudioContext)();
+        setTimeout(this.playChord, this.beat * 0);
+        // setup sounds
+        this.setupSound();
       } else {
         // TODO remove all scheduled functions
         this.fadeOutParticles();
@@ -163,6 +159,54 @@ export default {
         });
         this.intervals = [];
       }
+    },
+    async setupSound() {
+      await Tone.start();
+      this.leadFx = new Tone.PingPongDelay("8t", 0.6).toDestination();
+      this.leadSynth = new Tone.PolySynth(Tone.MonoSynth).connect(this.leadFx);
+      this.leadSynth.set({
+        oscillator: {
+          type: "sawtooth",
+        },
+        filter: {
+          type: "lowpass",
+          rolloff: -24,
+          frequency: 5000,
+          Q: 10,
+        },
+        envelope: {
+          release: "2n",
+          releaseCurve: "linear",
+        },
+        filterEnvelope: {
+          attack: "8n",
+          release: "2n",
+          releaseCurve: "exponential",
+        },
+        volume: -40,
+      });
+      this.chordSynth = new Tone.PolySynth(Tone.FMSynth).toDestination();
+      this.chordSynth.set({
+        envelope: {
+          attack: "2n",
+          release: "1n",
+          releaseCurve: "linear",
+        },
+        modulationEnvelope: {
+          attack: "2n",
+          sustain: 1,
+          release: "1n",
+          releaseCurve: "linear",
+        },
+        modulationIndex: 0.2,
+        volume: -30,
+      });
+      // setup timing
+      Tone.Transport.bpm.value = this.bpm;
+      this.tMin = Tone.Time("4n").toSeconds() * 1000;
+      this.playParticleThrottled = _throttle(this.playParticle, this.tMin, {
+        trailing: false,
+      });
     },
     fadeGradient() {
       // populate gradient
@@ -179,14 +223,17 @@ export default {
       // populate particles
       this.particles = [];
       for (let i = 0; i < this.nParticles; i++) {
-        var particle = {
+        var particle = new Particle({
           x: Math.random(),
           y: Math.random(),
-          r: 1 + Math.random() * 250,
-          c: [0, 0, 100, 0.1 + Math.random() * 0.8],
-          vel: [(Math.random() - 0.5) * 0.01, (Math.random() - 0.5) * 0.01],
-          damp: Math.random() * 0.1,
-        };
+          radius: 1 + Math.random() * 50,
+          color: [0, 0, 100, 0.1 + Math.random() * 0.4],
+          velocity: [
+            (Math.random() - 0.5) * 0.01,
+            (Math.random() - 0.5) * 0.01,
+          ],
+          dampening: Math.random() * 0.1,
+        });
         this.particles.push(particle);
       }
       // trigger particle rendering
@@ -195,36 +242,20 @@ export default {
     fadeOutParticles() {
       this.foParticles = 0;
     },
-    playGradient() {
-      const startTime = this.audioContext.currentTime;
-      const decay = (this.beat * 8) / 1000;
-      const freq = 220;
-      let osc = this.audioContext.createOscillator();
-      let oscVol = this.audioContext.createGain();
-      let osc2 = this.audioContext.createOscillator();
-      let osc2Vol = this.audioContext.createGain();
-
-      osc.frequency.setValueAtTime(freq, startTime);
-      osc.start(startTime);
-      osc.stop(startTime + decay);
-      osc.connect(oscVol);
-
-      osc2.frequency.setValueAtTime(freq * 4, startTime);
-      osc2.start(startTime);
-      osc2.stop(startTime + decay);
-      osc2.connect(osc2Vol);
-
-      osc2Vol.gain.linearRampToValueAtTime(1000, startTime + 0.25);
-      osc2Vol.gain.linearRampToValueAtTime(0.0001, startTime + decay);
-      osc2Vol.connect(osc.detune);
-
-      oscVol.gain.setValueAtTime(0.5, startTime);
-      oscVol.gain.linearRampToValueAtTime(0.5, startTime + 0.25);
-      oscVol.gain.linearRampToValueAtTime(0.0001, startTime + decay);
-      oscVol.connect(this.audioContext.destination);
+    playChord() {
+      var chord1 = ["E3", "G3", "B3", "D4"];
+      var chord2 = ["C3", "E3", "G3", "B3"];
+      var chord3 = ["D3", "G3", "B3", "D4"];
+      //var chord4 = ["E3", "Gb3", "B3", "Db4"];
+      var chord = _sample([chord1, chord2, chord3]);
+      this.chordSynth.triggerAttackRelease(chord, "1m");
     },
-    playParticles() {
-      //
+    playParticle() {
+      var pitch = _sample(["C", "E", "G", "B"]);
+      var octave = _sample(["2", "3", "4", "5", "6"]);
+      var note = pitch + octave;
+      console.log(note);
+      this.leadSynth.triggerAttackRelease(note, "4n");
     },
     makeSound() {
       console.log("bbb");

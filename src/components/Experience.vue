@@ -25,6 +25,7 @@
           <p>
             <span class="italic">{{ currentExp.location }}</span>
           </p>
+          <p class="mt-4" v-html="mdToHtml(currentExp.descr)"></p>
         </div>
       </div>
     </div>
@@ -35,6 +36,7 @@
 import _sortBy from "lodash/sortBy";
 import _reverse from "lodash/reverse";
 //import ExperienceBlock from "./ExperienceBlock.vue";
+import marked from "marked";
 
 export default {
   components: {
@@ -56,6 +58,9 @@ export default {
   methods: {
     setCurrent(i) {
       this.currentExp = this.experiences[i];
+    },
+    mdToHtml(mdData) {
+      return marked(mdData, {});
     },
   },
 };
