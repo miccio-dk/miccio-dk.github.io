@@ -2,7 +2,7 @@
   <div class="flex">
     <ul class="flex-auto flex flex-wrap justify-center mb-6 text-light">
       <li
-        class="inline-block rounded-md m-1 px-2 py-1 cursor-pointer border-2 select-none"
+        class="inline-block rounded-md m-1 px-2 py-1 cursor-pointer border-2 border-dark select-none"
         :class="[isSelected(tag) ? selectClass : unselectClass]"
         v-for="(tag, i) in tagList"
         :key="i"
@@ -42,8 +42,9 @@ export default {
   data() {
     return {
       content: this.value,
-      selectClass: ["bg-dark", "text-light", "border-dark"],
-      unselectClass: ["bg-light", "text-dark", "border-dark"],
+      selectClass: ["bg-dark", "text-light"],
+      unselectClass: ["bg-light", "text-dark"],
+      firstClick: true,
     };
   },
   methods: {
@@ -51,6 +52,10 @@ export default {
       return this.content.includes(tag);
     },
     handleInput(tag) {
+      if (this.firstClick) {
+        this.content = [this.tag];
+        this.firstClick = false;
+      }
       if (this.content.includes(tag))
         this.content = this.content.filter((t) => t !== tag);
       else this.content.push(tag);

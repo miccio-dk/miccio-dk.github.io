@@ -100,7 +100,7 @@ export default {
           opacity = 0;
         }
         // currently selected particle
-        if (particle.isSelected(sk)) {
+        if (particle.isSelected(sk) && opacity > 0) {
           opacity *= 5;
           this.playParticleThrottled();
         }
@@ -162,7 +162,7 @@ export default {
     },
     async setupSound() {
       await Tone.start();
-      this.leadFx = new Tone.PingPongDelay("8t", 0.6).toDestination();
+      this.leadFx = new Tone.PingPongDelay("8t", 0.4).toDestination();
       this.leadSynth = new Tone.PolySynth(Tone.MonoSynth).connect(this.leadFx);
       this.leadSynth.set({
         oscillator: {
@@ -172,7 +172,7 @@ export default {
           type: "lowpass",
           rolloff: -24,
           frequency: 5000,
-          Q: 10,
+          Q: 8,
         },
         envelope: {
           release: "2n",
@@ -183,7 +183,7 @@ export default {
           release: "2n",
           releaseCurve: "exponential",
         },
-        volume: -40,
+        volume: -45,
       });
       this.chordSynth = new Tone.PolySynth(Tone.FMSynth).toDestination();
       this.chordSynth.set({
@@ -193,13 +193,13 @@ export default {
           releaseCurve: "linear",
         },
         modulationEnvelope: {
-          attack: "2n",
+          attack: "1m",
           sustain: 1,
           release: "1n",
           releaseCurve: "linear",
         },
-        modulationIndex: 0.2,
-        volume: -30,
+        modulationIndex: 10,
+        volume: -40,
       });
       // setup timing
       Tone.Transport.bpm.value = this.bpm;
@@ -248,7 +248,7 @@ export default {
       var chord3 = ["D3", "G3", "B3", "D4"];
       //var chord4 = ["E3", "Gb3", "B3", "Db4"];
       var chord = _sample([chord1, chord2, chord3]);
-      this.chordSynth.triggerAttackRelease(chord, "1m");
+      this.chordSynth.triggerAttackRelease(chord, "1:2:0");
     },
     playParticle() {
       var pitch = _sample(["C", "E", "G", "B"]);

@@ -2,11 +2,6 @@
   <div class="w-full p-16 xl:p-24 text-dark">
     <ProjectsMenu :tagList="tagList" v-model="currentTags" />
     <div class="grid grid-flow-row auto-rows-fr gap-4 xl:gap-6 grid-cols-w16">
-      <ProjectCard
-        v-for="(proj, i) in filteredProjects"
-        :key="i"
-        :data="proj"
-      />
       <div
         class="flex items-center bg-light p-4 shadow-md rounded-md border-2 border-dark"
       >
@@ -19,6 +14,11 @@
           to see related projects.
         </p>
       </div>
+      <ProjectCard
+        v-for="(proj, i) in filteredProjects"
+        :key="i"
+        :data="proj"
+      />
     </div>
   </div>
 </template>

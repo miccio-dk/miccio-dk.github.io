@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="font-mono">
-    <AnimatedBackground class="z-0 fixed" :nParticles="32" :bpm="80" />
+    <AnimatedBackground class="z-0 fixed" :nParticles="32" :bpm="60" />
     <Navbar :currentHash="currentHash" />
     <About class="section relative" id="about" />
     <Projects class="section relative" id="projects" :projects="projects" />
