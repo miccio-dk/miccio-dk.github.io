@@ -1,33 +1,55 @@
 <template>
-  <div
-    class="border-dark even:border-t-4 odd:border-b-4 even:pl-16 odd:pl-8 h-32"
-  >
-    <div
-      class="flex flex-col group border-dark border-l-8 px-2 min-h-full"
-      :class="row % 2 === 0 ? 'pb-4' : 'pt-4'"
-    >
-      <p class="flex-none">
-        <span>{{ data.from }} - {{ data.to }}</span>
-      </p>
-      <p
-        class="flex-grow text-sm opacity-0 group-hover:opacity-100 transition-all duration-200"
+  <div v-if="exp" class="flex flex-col h-full">
+    <p>
+      <span class="font-bold">{{ exp.role }}</span> @
+      <span>{{ exp.company }}</span>
+    </p>
+    <p>
+      <span class="italic">{{ exp.location }}</span>
+    </p>
+    <div class="markdown flex-auto" v-html="mdToHtml(exp.descr)"></div>
+    <ul class="flex flex-wrap mt-4 text-light text-base">
+      <li
+        class="inline-block rounded-md m-1 px-2 py-1 border-2 border-dark text-dark"
+        v-for="(skill, i) in exp.skills"
+        :key="i"
       >
-        <span class="font-bold">{{ data.role }}</span> @
-        <span>{{ data.company }}</span>
-        <span class="italic text-xs">{{ data.location }}</span>
-      </p>
-    </div>
+        {{ skill }}
+      </li>
+    </ul>
+  </div>
+  <div v-else>
+    <p>Hover the date ranges to know more.</p>
   </div>
 </template>
 
 <script>
+import marked from "marked";
+
 export default {
   name: "ExperienceBlock",
   props: {
-    data: Object,
-    row: Number,
+    exp: Object,
+  },
+  data: function () {
+    return {
+      selectClass: ["bg-dark", "text-light", "border-dark"],
+    };
+  },
+  methods: {
+    mdToHtml(mdData) {
+      return marked(mdData, {});
+    },
   },
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+.markdown p {
+  @apply mt-4;
+}
+
+.markdown ul {
+  @apply list-disc pl-8;
+}
+</style>
