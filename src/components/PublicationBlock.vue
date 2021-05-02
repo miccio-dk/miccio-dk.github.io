@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full flex-col flex items-start">
     <p class="text-dark">
       <span class="">{{ data.authors }}</span>
       <span v-if="data.title">, </span>
@@ -13,7 +13,7 @@
         DOI: <span class="font-mono">{{ data.doi }}</span>
       </template>
     </p>
-    <div class="space-x-2">
+    <div class="space-x-3 bg-light border-2 py-1 px-2 rounded-md">
       <a @click="copyCitation" href="javascript:;">
         <FontAwesomeIcon class="text-dark" icon="quote-right" />
       </a>

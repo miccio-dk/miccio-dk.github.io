@@ -17,8 +17,8 @@
         </li>
       </ul>
       <div class="flex-shrink" id="timeline"></div>
-      <div class="flex-1 py-4">
-        <div v-if="currentExp" class="text-xl">
+      <div class="flex-1 py-4 text-xl">
+        <div v-if="currentExp" class="flex flex-col h-full">
           <p>
             <span class="font-bold">{{ currentExp.role }}</span> @
             <span>{{ currentExp.company }}</span>
@@ -26,9 +26,18 @@
           <p>
             <span class="italic">{{ currentExp.location }}</span>
           </p>
-          <div class="markdown" v-html="mdToHtml(currentExp.descr)"></div>
+          <div class="markdown flex-auto" v-html="mdToHtml(currentExp.descr)"></div>
+          <ul class="flex flex-wrap mt-4 text-light text-base">
+            <li
+              class="inline-block rounded-md m-1 px-2 py-1 border-2 border-dark text-dark"
+              v-for="(skill, i) in currentExp.skills"
+              :key="i"
+            >
+              {{ skill }}
+            </li>
+          </ul>
         </div>
-        <div v-else class="text-xl">
+        <div v-else>
           <p>Hover the date ranges to know more.</p>
         </div>
       </div>
@@ -141,9 +150,10 @@ export default {
       });
     },
     updateHighlight(from_str, to_str) {
+      // TODO function to convert dates to pixels
       var froms = from_str.split("/").map((c) => parseInt(c));
       var tos = to_str.split("/").map((c) => parseInt(c));
-      var from_hl = froms[1] + froms[0] / 12;
+      var from_hl = froms[1] + (froms[0] - 1) / 12;
       var to_hl = tos[1] + tos[0] / 12;
       var from_hl_px = this.height - (this.margin + (from_hl - this.from) * this.tick_dist);
       var to_hl_px = this.height - (this.margin + (to_hl - this.from) * this.tick_dist);
