@@ -213,7 +213,9 @@ export default {
         },
         volume: -35,
       });
-      this.chordFx = new Tone.AutoFilter("4n", 1500, 0.4).toDestination().start();
+      this.chordFx = new Tone.AutoFilter("4n", 1500, 0.4)
+        .toDestination()
+        .start();
       this.chordSynth = new Tone.PolySynth(Tone.FMSynth).connect(this.chordFx);
       this.chordSynth.set({
         envelope: {
@@ -288,8 +290,13 @@ export default {
       var octaves = ["1", "2", "3", "4", "5", "6"];
       var pitches = ["C", "E", "G", "B"];
       var { radius, velocity, color } = particle;
-      var velocity_mag = Math.sqrt(Math.pow(velocity[0], 2), Math.pow(velocity[1], 2));
-      var octave_idx = Math.floor((1 - radius / this.maxRadius) * octaves.length);
+      var velocity_mag = Math.sqrt(
+        Math.pow(velocity[0], 2),
+        Math.pow(velocity[1], 2)
+      );
+      var octave_idx = Math.floor(
+        (1 - radius / this.maxRadius) * octaves.length
+      );
       var pitch_idx = Math.floor((velocity_mag / 0.0001) * pitches.length);
       var octave = octaves[octave_idx];
       var pitch = pitches[pitch_idx % pitches.length];

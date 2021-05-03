@@ -57,7 +57,7 @@ export default {
         "#pubs": "Publications",
         "#exp": "Experience",
         "#contact": "Contact",
-      }
+      },
     };
   },
   computed: {

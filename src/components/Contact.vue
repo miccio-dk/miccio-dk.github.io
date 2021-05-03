@@ -40,33 +40,43 @@
         <ul class="flex justify-center space-x-4">
           <li class="w-8 h-8">
             <a href="https://www.linkedin.com/in/rimiccini/" target="_blank"
-              ><LinkedInIcon size="32" class="fill-current text-light transition-all transform hover:scale-125"
+              ><LinkedInIcon
+                size="32"
+                class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
           <li class="w-8 h-8">
             <a href="https://www.github.com/miccio-dk/" target="_blank"
-              ><GitHubIcon size="32" class="fill-current text-light transition-all transform hover:scale-125"
+              ><GitHubIcon
+                size="32"
+                class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
           <li class="w-8 h-8">
             <a
               href="https://www.researchgate.net/profile/Riccardo-Miccini"
               target="_blank"
-              ><ResearchGateIcon size="32" class="fill-current text-light transition-all transform hover:scale-125"
+              ><ResearchGateIcon
+                size="32"
+                class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
           <li class="w-8 h-8">
             <a
               href="https://scholar.google.com/citations?user=0l0b5ngAAAAJ"
               target="_blank"
-              ><GoogleScholarIcon size="32" class="fill-current text-light transition-all transform hover:scale-125"
+              ><GoogleScholarIcon
+                size="32"
+                class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
           <li class="w-8 h-8">
             <a
               href="https://www.soundcloud.com/riccardo-miccini"
               target="_blank"
-              ><SoundCloudIcon size="32" class="fill-current text-light transition-all transform hover:scale-125"
+              ><SoundCloudIcon
+                size="32"
+                class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
           <!-- <li class="w-8 h-8">
@@ -80,7 +90,15 @@
       </div>
     </div>
     <p class="text-center text-light text-sm tracking-widest pb-2">
-      Riccardo Miccini &copy; 2021 | Made with <a class="hover:underline" href="https://vuejs.org/" target="_blank">Vue.js</a> and <a class="hover:underline" href="https://tailwindcss.com/">Tailwind CSS</a> | CC BY-SA 4.0
+      Riccardo Miccini &copy; 2021 | Made with
+      <a class="hover:underline" href="https://vuejs.org/" target="_blank"
+        >Vue.js</a
+      >
+      and
+      <a class="hover:underline" href="https://tailwindcss.com/"
+        >Tailwind CSS</a
+      >
+      | CC BY-SA 4.0
     </p>
   </div>
 </template>
