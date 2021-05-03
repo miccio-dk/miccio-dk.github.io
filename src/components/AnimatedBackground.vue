@@ -1,5 +1,9 @@
 <template>
-  <VueP5 v-on:setup="setup" v-on:draw="draw" @click="makeSound" />
+  <VueP5
+    v-on:setup="setup"
+    v-on:draw="draw"
+    v-on:windowresized="windowresized"
+  />
 </template>
 
 <script>
@@ -30,6 +34,10 @@ export default {
     fadeDuration: {
       type: Number,
       default: 1,
+    },
+    maxRadius: {
+      type: Number,
+      default: 80,
     },
   },
   data() {
@@ -102,7 +110,7 @@ export default {
         // currently selected particle
         if (particle.isSelected(sk) && opacity > 0) {
           opacity *= 5;
-          this.playParticleThrottled();
+          this.playParticleThrottled(particle);
         }
         // render and move
         particle.render(sk, opacity);
@@ -118,6 +126,9 @@ export default {
       // sk.rect(0, sk.height / 2, this.fiGradient / scaling, 10);
       // sk.rect(0, sk.height / 2 + 20, this.fiParticles / scaling, 10);
       // sk.rect(0, sk.height / 2 + 40, this.foParticles / scaling, 10);
+    },
+    windowresized(sketch) {
+      sketch.resizeCanvas(sketch.windowWidth, sketch.windowHeight);
     },
     setupAnimation(animationOn) {
       if (animationOn) {
@@ -204,8 +215,11 @@ export default {
       // setup timing
       Tone.Transport.bpm.value = this.bpm;
       this.tMin = Tone.Time("4n").toSeconds() * 1000;
-      this.playParticleThrottled = _throttle(this.playParticle, this.tMin, {
-        trailing: false,
+      this.playParticleThrottled = _throttle(
+        (particle) => this.playParticle(particle),
+        this.tMin,
+        {
+          trailing: false,
       });
     },
     fadeGradient() {
@@ -226,7 +240,7 @@ export default {
         var particle = new Particle({
           x: Math.random(),
           y: Math.random(),
-          radius: 1 + Math.random() * 50,
+          radius: 1 + Math.random() * this.maxRadius,
           color: [0, 0, 100, 0.1 + Math.random() * 0.4],
           velocity: [
             (Math.random() - 0.5) * 0.01,
@@ -250,22 +264,18 @@ export default {
       var chord = _sample([chord1, chord2, chord3]);
       this.chordSynth.triggerAttackRelease(chord, "1:2:0");
     },
-    playParticle() {
-      var pitch = _sample(["C", "E", "G", "B"]);
-      var octave = _sample(["2", "3", "4", "5", "6"]);
+    playParticle(particle) {
+      var octaves = ["2", "3", "4", "5", "6"];
+      var pitches = ["C", "E", "G", "B"];
+      var { radius, velocity } = particle;
+      var octave_idx = Math.floor((1 - radius / this.maxRadius) * octaves.length);
+      var pitch_idx = Math.floor(Math.abs(velocity[0]) / 0.01 * pitches.length);
+      console.log(particle, octave_idx, pitch_idx);
+      var octave = octaves[octave_idx];
+      var pitch = pitches[pitch_idx];
       var note = pitch + octave;
       console.log(note);
       this.leadSynth.triggerAttackRelease(note, "4n");
-    },
-    makeSound() {
-      console.log("bbb");
-      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      // create Oscillator node
-      const oscillator = audioCtx.createOscillator();
-      oscillator.type = "sine";
-      oscillator.frequency.setValueAtTime(220, audioCtx.currentTime); // value in hertz
-      oscillator.connect(audioCtx.destination);
-      oscillator.start();
     },
     drawGradient(sk, x, y, w, h, c1, c2, axis) {
       sk.noFill();
