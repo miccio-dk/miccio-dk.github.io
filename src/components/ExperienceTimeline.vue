@@ -62,13 +62,19 @@ export default {
   },
   watch: {
     exp() {
-      this.updateHighlight(this.exp.from, this.exp.to);
+      this.begin.y = this.dateToPixels(this.exp.from, true);
+      this.end.y = this.dateToPixels(this.exp.to);
     },
   },
   methods: {
     drawTimeline() {
       // draw line
-      var tline = this.two.makeLine(this.width / 2, 0, this.width / 2, this.height);
+      var tline = this.two.makeLine(
+        this.width / 2,
+        0,
+        this.width / 2,
+        this.height
+      );
       tline.stroke = "#000000";
       tline.linewidth = this.thickness;
       tline.dashes[0] = this.tick_dist / 36;
@@ -93,20 +99,20 @@ export default {
       this.end = this.line.vertices[1].clone();
       // highlight event binding
       this.two.bind("update", () => {
-        this.line.vertices[0].y += (this.begin.y - this.line.vertices[0].y) * this.easing;
-        this.line.vertices[1].y += (this.end.y - this.line.vertices[1].y) * this.easing;
+        var begin_old = this.line.vertices[0].y;
+        var end_old = this.line.vertices[1].y;
+        this.line.vertices[0].y += (this.begin.y - begin_old) * this.easing;
+        this.line.vertices[1].y += (this.end.y - end_old) * this.easing;
       });
     },
-    updateHighlight(from_str, to_str) {
-      // TODO function to convert dates to pixels
-      var froms = from_str.split("/").map((c) => parseInt(c));
-      var tos = to_str.split("/").map((c) => parseInt(c));
-      var from_hl = froms[1] + (froms[0] - 1) / 12;
-      var to_hl = tos[1] + tos[0] / 12;
-      var from_hl_px = this.height - (this.margin + (from_hl - this.from) * this.tick_dist);
-      var to_hl_px = this.height - (this.margin + (to_hl - this.from) * this.tick_dist);
-      this.begin.y = from_hl_px;
-      this.end.y = to_hl_px;
+    dateToPixels(date_str, is_from = false) {
+      var [month, year] = date_str.split("/").map((c) => parseInt(c));
+      if (is_from) {
+        month -= 1;
+      }
+      var date_float = year + month / 12;
+      var date_px = this.margin + (date_float - this.from) * this.tick_dist;
+      return this.height - date_px;
     },
   },
 };
