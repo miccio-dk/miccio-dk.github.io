@@ -12,6 +12,7 @@ import Particle from "../particle";
 import * as Tone from "tone";
 import _sample from "lodash/sample";
 import _throttle from "lodash/throttle";
+import _isEmpty from "lodash/isEmpty";
 
 export default {
   name: "AnimatedBackground",
@@ -42,7 +43,7 @@ export default {
   },
   data() {
     return {
-      intervals: [],
+      timeouts: {},
       particles: [],
       gradients: [],
       gidx: 0,
@@ -55,6 +56,7 @@ export default {
       leadSynth: null,
       leadFx: null,
       tMin: 0,
+      currChord: [],
     };
   },
   mounted() {
@@ -121,54 +123,68 @@ export default {
       this.fiParticles++;
       this.foParticles++;
 
-      // var scaling = (this.fadeMax * sk.width) / 2;
+      // var scaling = (sk.width / this.fadeMax) * 2;
       // sk.fill(0);
-      // sk.rect(0, sk.height / 2, this.fiGradient / scaling, 10);
-      // sk.rect(0, sk.height / 2 + 20, this.fiParticles / scaling, 10);
-      // sk.rect(0, sk.height / 2 + 40, this.foParticles / scaling, 10);
+      // sk.rect(0, sk.height / 2, this.fiGradient * scaling, 10);
+      // sk.rect(0, sk.height / 2 + 20, this.fiParticles * scaling, 10);
+      // sk.rect(0, sk.height / 2 + 40, this.foParticles * scaling, 10);
     },
     windowresized(sketch) {
       sketch.resizeCanvas(sketch.windowWidth, sketch.windowHeight);
     },
     setupAnimation(animationOn) {
       if (animationOn) {
-        if (this.intervals.length > 0) {
+        if (!_isEmpty(this.timeouts)) {
           return;
         }
         // sequence animations
         var interval = this.beat * 8;
-        var fadeGradientInt = setInterval(() => {
-          setTimeout(this.fadeGradient, this.beat * 0);
-        }, interval);
-        var fadeInParticlesInt = setInterval(() => {
-          setTimeout(this.fadeInParticles, this.beat * 1);
-        }, interval);
-        var fadeOutParticlesInt = setInterval(() => {
-          setTimeout(this.fadeOutParticles, this.beat * 7);
-        }, interval);
-        var playChordInt = setInterval(() => {
-          setTimeout(this.playChord, this.beat * 0);
-        }, interval);
-        this.intervals = [
-          fadeGradientInt,
-          fadeInParticlesInt,
-          fadeOutParticlesInt,
-          playChordInt,
-        ];
-        // manually launch first iterations
-        setTimeout(this.fadeGradient, this.beat * 0);
-        setTimeout(this.fadeInParticles, this.beat * 1);
-        setTimeout(this.fadeOutParticles, this.beat * 7);
-        setTimeout(this.playChord, this.beat * 0);
+        this.timeouts.fadeGradient = setTimeout(
+          function fadeGradientCb(that) {
+            that.fadeGradient();
+            that.playChord();
+            that.timeouts.fadeGradient = setTimeout(
+              fadeGradientCb,
+              interval,
+              that
+            );
+          },
+          this.beat * 0,
+          this
+        );
+        this.timeouts.fadeInParticles = setTimeout(
+          function fadeInParticlesCb(that) {
+            that.fadeInParticles();
+            that.timeouts.fadeInParticles = setTimeout(
+              fadeInParticlesCb,
+              interval,
+              that
+            );
+          },
+          this.beat * 1,
+          this
+        );
+        this.timeouts.fadeOutParticles = setTimeout(
+          function fadeOutParticlesCb(that) {
+            that.fadeOutParticles();
+            that.timeouts.fadeOutParticles = setTimeout(
+              fadeOutParticlesCb,
+              interval,
+              that
+            );
+          },
+          this.beat * 7,
+          this
+        );
         // setup sounds
         this.setupSound();
       } else {
-        // TODO remove all scheduled functions
+        window.clearTimeout(this.timeouts.fadeGradient);
+        window.clearTimeout(this.timeouts.fadeInParticles);
+        window.clearTimeout(this.timeouts.fadeOutParticles);
+        this.timeouts = {};
         this.fadeOutParticles();
-        this.intervals.forEach((i) => {
-          window.clearInterval(i);
-        });
-        this.intervals = [];
+        this.chordSynth.triggerRelease(this.currChord);
       }
     },
     async setupSound() {
@@ -220,7 +236,8 @@ export default {
         this.tMin,
         {
           trailing: false,
-      });
+        }
+      );
     },
     fadeGradient() {
       // populate gradient
@@ -261,8 +278,8 @@ export default {
       var chord2 = ["C3", "E3", "G3", "B3"];
       var chord3 = ["D3", "G3", "B3", "D4"];
       //var chord4 = ["E3", "Gb3", "B3", "Db4"];
-      var chord = _sample([chord1, chord2, chord3]);
-      this.chordSynth.triggerAttackRelease(chord, "1:2:0");
+      this.currChord = _sample([chord1, chord2, chord3]);
+      this.chordSynth.triggerAttackRelease(this.currChord, "1:2:0");
     },
     playParticle(particle) {
       var octaves = ["2", "3", "4", "5", "6"];
@@ -270,11 +287,9 @@ export default {
       var { radius, velocity } = particle;
       var octave_idx = Math.floor((1 - radius / this.maxRadius) * octaves.length);
       var pitch_idx = Math.floor(Math.abs(velocity[0]) / 0.01 * pitches.length);
-      console.log(particle, octave_idx, pitch_idx);
       var octave = octaves[octave_idx];
       var pitch = pitches[pitch_idx];
       var note = pitch + octave;
-      console.log(note);
       this.leadSynth.triggerAttackRelease(note, "4n");
     },
     drawGradient(sk, x, y, w, h, c1, c2, axis) {
