@@ -38,7 +38,7 @@ export default {
       default: 0.25,
     },
   },
-  data: function () {
+  data() {
     return {
       two: null,
       line: null,

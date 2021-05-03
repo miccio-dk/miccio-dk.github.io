@@ -18,15 +18,6 @@ module.exports = {
         DEFAULT: "#F1F1E6",
       },
     },
-    scale: {
-      105: "1.05",
-      115: "1.15",
-    },
-    letterSpacing: {
-      normal: "0em",
-      wider: ".075em",
-      widest: ".15em",
-    },
     extend: {
       gridTemplateColumns: {
         w8: "repeat(auto-fill, minmax(8rem, 1fr))",
@@ -37,8 +28,8 @@ module.exports = {
   },
   variants: {
     extend: {
-      borderWidth: ["even", "odd"],
-      padding: ["even", "odd"],
+      borderWidth: ["hover", "focus"],
+      borderRadius: ["hover", "focus"],
       opacity: ["hover", "group-hover"],
       letterSpacing: ["hover"],
     },

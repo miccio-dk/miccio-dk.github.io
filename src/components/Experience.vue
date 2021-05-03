@@ -40,7 +40,7 @@ export default {
   props: {
     experiences: Array,
   },
-  data: function () {
+  data() {
     return {
       selectClass: ["bg-dark", "text-light", "border-dark"],
       currentExpIndex: false,

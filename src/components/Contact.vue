@@ -4,32 +4,32 @@
       class="flex flex-col md:flex-row p-16 xl:p-24 space-y-4 md:space-x-12 md:space-y-0 items-center"
     >
       <form
-        class="block w-full flex-auto space-y-4 ring ring-light p-4 shadow-md rounded-md text-light"
+        class="block w-full flex-auto space-y-4 bg-light p-8 rounded-md border-2 border-light"
         action=""
       >
         <input
-          class="block w-full rounded-md p-1 focus:outline-none focus:ring-2"
+          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:underline"
           type="email"
           name="_email"
           placeholder="Your email"
           required
         />
         <input
-          class="block w-full rounded-md p-1 focus:outline-none focus:ring-2"
+          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:underline"
           type="text"
           name="_subject"
           placeholder="Subject"
           required
         />
         <textarea
-          class="block w-full rounded-md p-1 focus:outline-none focus:ring-2"
+          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:underline"
           name="_message"
           placeholder="Type your message..."
           cols="30"
           rows="5"
         ></textarea>
         <button
-          class="block rounded-md p-1 px-8 float-right bg-light text-dark shadow-sm font-medium"
+          class="block rounded-md p-1 px-8 float-right bg-light text-dark border-dark shadow-md font-medium border-2 hover:bg-dark hover:text-light focus:outline-none focus:underline"
           type="submit"
         >
           Send
@@ -40,33 +40,33 @@
         <ul class="flex justify-center space-x-4">
           <li class="w-8 h-8">
             <a href="https://www.linkedin.com/in/rimiccini/" target="_blank"
-              ><LinkedInIcon size="32" class="fill-current text-light"
+              ><LinkedInIcon size="32" class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
           <li class="w-8 h-8">
             <a href="https://www.github.com/miccio-dk/" target="_blank"
-              ><GitHubIcon size="32" class="fill-current text-light"
+              ><GitHubIcon size="32" class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
           <li class="w-8 h-8">
             <a
               href="https://www.researchgate.net/profile/Riccardo-Miccini"
               target="_blank"
-              ><ResearchGateIcon size="32" class="fill-current text-light"
+              ><ResearchGateIcon size="32" class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
           <li class="w-8 h-8">
             <a
               href="https://scholar.google.com/citations?user=0l0b5ngAAAAJ"
               target="_blank"
-              ><GoogleScholarIcon size="32" class="fill-current text-light"
+              ><GoogleScholarIcon size="32" class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
           <li class="w-8 h-8">
             <a
               href="https://www.soundcloud.com/riccardo-miccini"
               target="_blank"
-              ><SoundCloudIcon size="32" class="fill-current text-light"
+              ><SoundCloudIcon size="32" class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
           <!-- <li class="w-8 h-8">
@@ -79,8 +79,8 @@
         </ul>
       </div>
     </div>
-    <p class="text-center text-light pb-2">
-      Riccardo Miccini &copy; 2021 | CC BY-SA 4.0
+    <p class="text-center text-light text-sm tracking-widest pb-2">
+      Riccardo Miccini &copy; 2021 | Made with <a class="hover:underline" href="https://vuejs.org/" target="_blank">Vue.js</a> and <a class="hover:underline" href="https://tailwindcss.com/">Tailwind CSS</a> | CC BY-SA 4.0
     </p>
   </div>
 </template>

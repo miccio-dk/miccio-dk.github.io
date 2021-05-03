@@ -55,8 +55,8 @@ export default {
       chordSynth: null,
       leadSynth: null,
       leadFx: null,
+      chordFx: null,
       tMin: 0,
-      currChord: [],
     };
   },
   mounted() {
@@ -111,7 +111,7 @@ export default {
         }
         // currently selected particle
         if (particle.isSelected(sk) && opacity > 0) {
-          opacity *= 5;
+          opacity *= 3;
           this.playParticleThrottled(particle);
         }
         // render and move
@@ -184,7 +184,8 @@ export default {
         window.clearTimeout(this.timeouts.fadeOutParticles);
         this.timeouts = {};
         this.fadeOutParticles();
-        this.chordSynth.triggerRelease(this.currChord);
+        this.chordSynth.releaseAll();
+        this.leadSynth.releaseAll();
       }
     },
     async setupSound() {
@@ -199,7 +200,7 @@ export default {
           type: "lowpass",
           rolloff: -24,
           frequency: 5000,
-          Q: 8,
+          Q: 10,
         },
         envelope: {
           release: "2n",
@@ -210,9 +211,10 @@ export default {
           release: "2n",
           releaseCurve: "exponential",
         },
-        volume: -45,
+        volume: -35,
       });
-      this.chordSynth = new Tone.PolySynth(Tone.FMSynth).toDestination();
+      this.chordFx = new Tone.AutoFilter("4n", 1500, 0.4).toDestination().start();
+      this.chordSynth = new Tone.PolySynth(Tone.FMSynth).connect(this.chordFx);
       this.chordSynth.set({
         envelope: {
           attack: "2n",
@@ -226,7 +228,7 @@ export default {
           releaseCurve: "linear",
         },
         modulationIndex: 10,
-        volume: -40,
+        volume: -35,
       });
       // setup timing
       Tone.Transport.bpm.value = this.bpm;
@@ -258,12 +260,12 @@ export default {
           x: Math.random(),
           y: Math.random(),
           radius: 1 + Math.random() * this.maxRadius,
-          color: [0, 0, 100, 0.1 + Math.random() * 0.4],
+          color: [0, 0, 100, 0.01 + Math.random() * 0.6],
           velocity: [
             (Math.random() - 0.5) * 0.01,
             (Math.random() - 0.5) * 0.01,
           ],
-          dampening: Math.random() * 0.1,
+          dampening: Math.random() * 0.05,
         });
         this.particles.push(particle);
       }
@@ -272,25 +274,28 @@ export default {
     },
     fadeOutParticles() {
       this.foParticles = 0;
+      this.leadSynth.releaseAll();
     },
     playChord() {
       var chord1 = ["E3", "G3", "B3", "D4"];
       var chord2 = ["C3", "E3", "G3", "B3"];
       var chord3 = ["D3", "G3", "B3", "D4"];
       //var chord4 = ["E3", "Gb3", "B3", "Db4"];
-      this.currChord = _sample([chord1, chord2, chord3]);
-      this.chordSynth.triggerAttackRelease(this.currChord, "1:2:0");
+      var chord = _sample([chord1, chord2, chord3]);
+      this.chordSynth.triggerAttackRelease(chord, "1:2:0");
     },
     playParticle(particle) {
-      var octaves = ["2", "3", "4", "5", "6"];
+      var octaves = ["1", "2", "3", "4", "5", "6"];
       var pitches = ["C", "E", "G", "B"];
-      var { radius, velocity } = particle;
+      var { radius, velocity, color } = particle;
+      var velocity_mag = Math.sqrt(Math.pow(velocity[0], 2), Math.pow(velocity[1], 2));
       var octave_idx = Math.floor((1 - radius / this.maxRadius) * octaves.length);
-      var pitch_idx = Math.floor(Math.abs(velocity[0]) / 0.01 * pitches.length);
+      var pitch_idx = Math.floor((velocity_mag / 0.0001) * pitches.length);
       var octave = octaves[octave_idx];
-      var pitch = pitches[pitch_idx];
+      var pitch = pitches[pitch_idx % pitches.length];
       var note = pitch + octave;
-      this.leadSynth.triggerAttackRelease(note, "4n");
+      var note_velocity = color[3] * 3;
+      this.leadSynth.triggerAttackRelease(note, "4n", "+0", note_velocity);
     },
     drawGradient(sk, x, y, w, h, c1, c2, axis) {
       sk.noFill();

@@ -66,8 +66,8 @@ export default {
       }
       // create new observer
       const options = {
-        rootMargin: "0px",
-        threshold: 0.5,
+        rootMargin: "-39% 0px -60%",
+        threshold: 0,
       };
       this.sectionObserver = new IntersectionObserver(
         this.sectionObserverHandler,

@@ -13,7 +13,7 @@
         DOI: <span class="font-mono">{{ data.doi }}</span>
       </template>
     </p>
-    <div class="space-x-3 bg-light border-2 py-1 px-2 rounded-md">
+    <div class="space-x-3 bg-light border-2 py-1 px-2 rounded-md text-sm">
       <a @click="copyCitation" href="javascript:;">
         <FontAwesomeIcon class="text-dark" icon="quote-right" />
       </a>

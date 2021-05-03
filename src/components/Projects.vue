@@ -18,27 +18,36 @@
         v-for="(proj, i) in filteredProjects"
         :key="i"
         :data="proj"
+        @click="selectedProj = proj"
       />
     </div>
+    <ProjectModal
+      v-if="selectedProj"
+      :data="selectedProj"
+      @close="selectedProj = null"
+    />
   </div>
 </template>
 
 <script>
 import _union from "lodash/union";
-import ProjectCard from "./ProjectCard.vue";
 import ProjectsMenu from "./ProjectsMenu.vue";
+import ProjectCard from "./ProjectCard.vue";
+import ProjectModal from "./ProjectModal.vue";
 
 export default {
   components: {
-    ProjectCard,
     ProjectsMenu,
+    ProjectCard,
+    ProjectModal,
   },
   props: {
     projects: Array,
   },
-  data: function () {
+  data() {
     return {
       currentTags: [],
+      selectedProj: null,
     };
   },
   computed: {
