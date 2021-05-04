@@ -9,7 +9,7 @@
     </p>
     <ul
       v-if="mediaNotEmpty"
-      class="flex-none space-x-3 mt-4 bg-light py-1 px-2 rounded-md"
+      class="flex-none space-x-3 bg-light py-1 px-2 rounded-md"
     >
       <li class="inline" v-for="(v, k) in data.media" :key="k">
         <a class="" :href="v" target="_blank">

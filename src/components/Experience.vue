@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full p-16 xl:p-24 text-dark">
-    <div class="flex flex-col md:flex-row gap-16">
+  <div class="w-full p-8 sm:p-16 xl:p-24 text-dark">
+    <div class="flex flex-col md:flex-row gap-4 lg-gap-8 xl:gap-16">
       <ul class="py-4 space-y-4">
         <li
           v-for="(exp, i) in sortedExperiences"

@@ -1,7 +1,7 @@
 <template>
   <div class="bg-dark w-full">
     <div
-      class="flex flex-col md:flex-row p-16 xl:p-24 space-y-4 md:space-x-12 md:space-y-0 items-center"
+      class="flex flex-col md:flex-row p-8 sm:p-16 xl:p-24 space-y-4 md:space-x-12 md:space-y-0 items-center"
     >
       <form
         class="block w-full flex-auto space-y-4 bg-light p-8 rounded-md border-2 border-light"
@@ -89,7 +89,7 @@
         </ul>
       </div>
     </div>
-    <p class="text-center text-light text-sm tracking-widest pb-2">
+    <p class="text-center text-light text-sm tracking-widest pb-2 px-8">
       Riccardo Miccini &copy; 2021 | Made with
       <a class="hover:underline" href="https://vuejs.org/" target="_blank"
         >Vue.js</a

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-16 xl:p-24 text-dark">
+  <div class="w-full p-8 sm:p-16 xl:p-24 text-dark">
     <div
       class="flex flex-col lg:flex-row items-center lg:items-start space-y-8 xl:space-x-16 lg:space-x-8 lg:space-y-0"
     >
@@ -10,7 +10,7 @@
       />
 
       <div class="w-full flex-auto text-left space-y-2">
-        <h5 class="text-5xl">Riccardo Miccini</h5>
+        <h5 class="text-3xl sm:text-5xl">Riccardo Miccini</h5>
         <p>
           I'm a Sound and Music Computing graduate with a versatile skillset
           ranging from embedded and web development to signal processing, data

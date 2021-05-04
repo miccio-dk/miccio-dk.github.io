@@ -1,8 +1,8 @@
 [
   {
     "title": "Sound morphing with VAEs",
-    "period": "December 2018, March 2021",
-    "descr": "",
+    "period": "December 2018",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {
         "code": "https://github.com/miccio-dk/sound_morph"
       },
@@ -14,7 +14,7 @@
   {
     "title": "Speech enhancement with deep learning",
     "period": "June 2019",
-    "descr": "",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {
         "code": "https://github.com/Christie22/SingleChannelDenoising",
         "doc": "https://www.smc.aau.dk/digitalAssets/919/919967_project_report.pdf",
@@ -27,8 +27,8 @@
   },
   {
     "title": "HRTF individualization using deep learning",
-    "period": "September 2019 - December 2020",
-    "descr": "",
+    "period": "February 2021",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {
         "url": "https://itsadive.create.aau.dk/",
         "video": "https://youtu.be/IvVfty2XFpM?t=7123",
@@ -43,7 +43,7 @@
   {
     "title": "HRTF dataset collection",
     "period": "December 2019",
-    "descr": "",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {
         "url": "https://zenodo.org/record/4160401",
         "doc": "http://sofacoustics.org/data/database/viking/documentation.pdf",
@@ -57,7 +57,7 @@
   {
     "title": "Genetic mass springs",
     "period": "April 2019",
-    "descr": "",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {
         "code": "https://github.com/miccio-dk/genetic_mass_spring"
       },
@@ -69,7 +69,7 @@
   {
     "title": "Leslie speaker VST",
     "period": "January 2019",
-    "descr": "",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {
         "code": "https://github.com/miccio-dk/LeslieSim",
         "doc": "https://github.com/miccio-dk/LeslieSim/raw/master/report/Leslie_Simulation.pdf"
@@ -81,7 +81,7 @@
   {
     "title": "Arduino TFT plotting library",
     "period": "July 2020",
-    "descr": "",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {
         "code": "https://github.com/miccio-dk/TFT_Plotting_Library"
       },
@@ -93,7 +93,7 @@
   {
     "title": "Frame shuffler",
     "period": "March 2020",
-    "descr": "",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {
         "code": "https://github.com/miccio-dk/frame_mangler"
       },
@@ -106,7 +106,7 @@
   {
     "title": "STEMS website",
     "period": "March 2021",
-    "descr": "",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {
         "url": "http://stems.320colab.space/",
         "code": "https://github.com/320colab/stems-website"
@@ -118,7 +118,7 @@
   {
     "title": "Slavetosociety music video",
     "period": "December 2020",
-    "descr": "",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {},
     "tags": [
       "artsy",
@@ -128,7 +128,7 @@
   {
     "title": "Depersonify",
     "period": "October 2020",
-    "descr": "",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {
         "video": "https://youtu.be/pe2W8WaEaMs",
         "doc": "https://riccardo-miccini.medium.com/f73696849f0e"
@@ -143,7 +143,7 @@
   {
     "title": "Light installation",
     "period": "November 2018",
-    "descr": "",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {},
     "tags": [
       "hobby",

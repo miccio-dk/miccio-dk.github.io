@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-16 xl:p-24 text-dark">
+  <div class="w-full p-8 sm:p-16 xl:p-24 text-dark">
     <div class="space-y-4">
       <PublicationBlock
         v-for="(publ, i) in publications"
