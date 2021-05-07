@@ -6,20 +6,33 @@
         v-for="(publ, i) in publications"
         :key="i"
         :data="publ"
+        @show-publ="selectedPubl = publ"
       />
     </div>
+    <PublicationModal
+      v-if="selectedPubl"
+      :data="selectedPubl"
+      @close="selectedPubl = null"
+    />
   </div>
 </template>
 
 <script>
 import PublicationBlock from "./PublicationBlock.vue";
+import PublicationModal from './PublicationModal.vue';
 
 export default {
   components: {
     PublicationBlock,
+    PublicationModal,
   },
   props: {
     publications: Array,
+  },
+  data() {
+    return {
+      selectedPubl: null,
+    };
   },
 };
 </script>

@@ -85,7 +85,9 @@
             <a 
               href="https://www.youtube.com/channel/UCTbIQ6GMxm9l6daN6rIp79g" 
               target="_blank"
-              ><YouTubeIcon size="32" class="fill-current text-light"
+              ><YouTubeIcon 
+                size="32" 
+                class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li> -->
         </ul>
@@ -97,7 +99,7 @@
         >Vue.js</a
       >
       and
-      <a class="hover:underline" href="https://tailwindcss.com/"
+      <a class="hover:underline" href="https://tailwindcss.com/" target="_blank"
         >Tailwind CSS</a
       >
       | CC BY-SA 4.0

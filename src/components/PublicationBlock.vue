@@ -14,7 +14,7 @@
       </template>
     </p>
     <div class="space-x-3 bg-light border-2 py-1 px-2 rounded-md text-sm">
-      <a @click="copyCitation" href="javascript:;">
+      <a @click="$emit('show-publ')" href="javascript:;">
         <FontAwesomeIcon class="text-dark" icon="quote-right" />
       </a>
       <a v-if="data.url" :href="data.url" target="_blank">
@@ -36,11 +36,6 @@ export default {
   filters: {
     quotes: function (value) {
       return '"' + value + '"';
-    },
-  },
-  methods: {
-    copyCitation: function () {
-      console.log(this.data.title);
     },
   },
 };
