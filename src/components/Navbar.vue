@@ -10,7 +10,7 @@
 
     <nav class="flex-grow">
       <ul
-        class="flex items-center justify-center flex-wrap md:justify-end uppercase space-x-0 xl:space-x-2 my-2 sm:my-4"
+        class="flex items-center justify-center flex-wrap md:flex-nowrap md:justify-end uppercase space-x-0 xl:space-x-2 my-2 sm:my-4"
       >
         <li
           v-for="(name, hash) in links"

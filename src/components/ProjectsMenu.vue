@@ -16,14 +16,14 @@
     >
       <li
         class="inline-block rounded-md m-1 ml-4 px-2 py-1 cursor-pointer border-2 select-none hover:underline"
-        :class="unselectClass"
+        :class="[isAllSelected ? selectClass : unselectClass]"
         @click="selectAll"
       >
         all
       </li>
       <li
         class="inline-block rounded-md m-1 px-2 py-1 cursor-pointer border-2 select-none hover:underline"
-        :class="unselectClass"
+        :class="[isNoneSelected ? selectClass : unselectClass]"
         @click="selectNone"
       >
         none
@@ -41,11 +41,19 @@ export default {
   },
   data() {
     return {
-      content: this.value,
       selectClass: ["bg-dark", "text-light"],
       unselectClass: ["bg-light", "text-dark"],
+      content: this.value,
       firstClick: true,
     };
+  },
+  computed: {
+    isAllSelected() {
+      return this.content.length === this.tagList.length;
+    },
+    isNoneSelected() {
+      return this.content.length === 0;
+    },
   },
   methods: {
     isSelected(tag) {

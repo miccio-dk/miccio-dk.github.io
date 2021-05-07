@@ -1,6 +1,7 @@
 <template>
   <div class="w-full p-8 sm:p-16 xl:p-24 text-dark">
-    <div class="flex flex-col md:flex-row gap-4 lg-gap-8 xl:gap-16">
+    <h1 class="md:hidden text-4xl mb-4">Experience</h1>
+    <div class="hidden md:flex flex-row gap-4 lg-gap-8 xl:gap-16">
       <ul class="py-4 space-y-4">
         <li
           v-for="(exp, i) in sortedExperiences"
@@ -20,20 +21,33 @@
         <ExperienceTimeline :exp="currentExp" />
       </div>
       <div class="flex-1 py-4 text-xl">
-        <ExperienceBlock :exp="currentExp" />
+        <ExperienceDetails :exp="currentExp" />
       </div>
+    </div>
+    <div class="block md:hidden">
+      <ul class="space-y-4">
+        <li v-for="(exp, i) in sortedExperiences" :key="i">
+          <ExperienceBlock
+            :exp="exp"
+            :open="i === currentExpIndex"
+            @click="toggleCurrent(i)"
+          />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import _orderBy from "lodash/orderBy";
+import ExperienceDetails from "./ExperienceDetails.vue";
 import ExperienceBlock from "./ExperienceBlock.vue";
 import ExperienceTimeline from "./ExperienceTimeline.vue";
+import _orderBy from "lodash/orderBy";
 import marked from "marked";
 
 export default {
   components: {
+    ExperienceDetails,
     ExperienceBlock,
     ExperienceTimeline,
   },
@@ -64,6 +78,9 @@ export default {
     },
     isCurrent(i) {
       return this.currentExpIndex === i;
+    },
+    toggleCurrent(i) {
+      this.setCurrent(this.isCurrent(i) ? null : i);
     },
     mdToHtml(mdData) {
       return marked(mdData, {});

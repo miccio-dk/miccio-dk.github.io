@@ -3,27 +3,29 @@
     <div
       class="flex flex-col md:flex-row p-8 sm:p-16 xl:p-24 space-y-4 md:space-x-12 md:space-y-0 items-center"
     >
+      <h1 class="md:hidden text-4xl text-light w-full">Contact me</h1>
       <form
         class="block w-full flex-auto space-y-4 bg-light p-8 rounded-md border-2 border-light"
-        action=""
+        action="https://formspree.io/f/xwkavzle"
+        method="POST"
       >
         <input
-          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:underline"
+          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:border-b-4"
           type="email"
-          name="_email"
+          name="_replyto"
           placeholder="Your email"
           required
         />
         <input
-          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:underline"
+          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:border-b-4"
           type="text"
           name="_subject"
           placeholder="Subject"
           required
         />
         <textarea
-          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:underline"
-          name="_message"
+          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:border-b-4"
+          name="message"
           placeholder="Type your message..."
           cols="30"
           rows="5"

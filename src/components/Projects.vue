@@ -1,5 +1,6 @@
 <template>
   <div class="w-full p-8 sm:p-16 xl:p-24 text-dark">
+    <h1 class="md:hidden text-4xl mb-4">Projects</h1>
     <ProjectsMenu :tagList="tagList" v-model="currentTags" />
     <div class="grid grid-flow-row lg:auto-rows-fr gap-4 xl:gap-6 grid-cols-w16">
       <div
@@ -30,10 +31,11 @@
 </template>
 
 <script>
-import _union from "lodash/union";
 import ProjectsMenu from "./ProjectsMenu.vue";
 import ProjectCard from "./ProjectCard.vue";
 import ProjectModal from "./ProjectModal.vue";
+import _orderBy from "lodash/orderBy";
+import _union from "lodash/union";
 
 export default {
   components: {
@@ -52,9 +54,15 @@ export default {
   },
   computed: {
     filteredProjects() {
-      return this.projects.filter((proj) => {
+      var filteredProjects = this.projects.filter((proj) => {
         return this.currentTags.some((tag) => proj.tags.includes(tag));
       });
+      var sortedProjects = _orderBy(
+        filteredProjects,
+        (proj) => new Date(proj.period),
+        "desc"
+      );
+      return sortedProjects;
     },
     tagList() {
       return _union(...this.projects.map((proj) => proj.tags)).sort();

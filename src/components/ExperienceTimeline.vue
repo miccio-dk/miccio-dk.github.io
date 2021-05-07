@@ -62,8 +62,13 @@ export default {
   },
   watch: {
     exp() {
-      this.begin.y = this.dateToPixels(this.exp.from, true);
-      this.end.y = this.dateToPixels(this.exp.to);
+      if (this.exp) {
+        this.begin.y = this.dateToPixels(this.exp.from, true);
+        this.end.y = this.dateToPixels(this.exp.to);
+      } else {
+        this.begin.y = 0;
+        this.end.y = 0;
+      }
     },
   },
   methods: {
