@@ -1,5 +1,16 @@
 [
   {
+    "from": "09/2021",
+    "to": "09/2023",
+    "role": "Global Engineering Graduate",
+    "company": "GN Store Nord",
+    "location": "Ballerup, Denmark",
+    "descr": "Ongoing graduate program in Audio Engineering, focusing on Deep Learning projects in the sound domain",
+    "skills": [
+      "pytorch", "tensorflow", "python", "matlab", "dsp"
+    ]
+  },
+  {
     "from": "01/2020",
     "to": "12/2020",
     "role": "Data Scientist",
