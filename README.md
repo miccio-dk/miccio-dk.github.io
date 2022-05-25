@@ -1,4 +1,4 @@
-# [Personal website](miccio-dk.github.io)
+# [Personal website](https://miccio-dk.github.io/)
 
 ## Project setup
 ```
