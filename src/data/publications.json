@@ -1,5 +1,32 @@
 [
   {
+    "authors": "R. Miccini, A. Zniber, C. Laroche, T. Piechowiak, M. Schoeberl, L. Pezzarossa, O. Karrakchou, J. Sparsø, M.Ghogho",
+    "title": "Dynamic nsNET2: Efficient Deep Noise Suppression with Early Exiting",
+    "period": "September 2023",
+    "publisher": "2023 IEEE 33rd International Workshop on Machine Learning for Signal Processing (MLSP)",
+    "doi": "10.1109/MLSP55844.2023.10285925",
+    "url": "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10285925",
+    "code": null
+  },
+  {
+    "authors": "J. S. Andersen, R. Miccini, S. Serafin, S. Spagnol",
+    "title": "Evaluation of Individualized HRTFs in a 3D Shooter Game",
+    "period": "September 2021",
+    "publisher": "2021 Immersive and 3D Audio: from Architecture to Automotive (I3DA)",
+    "doi": "10.1109/I3DA48870.2021.9610934",
+    "url": "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9610934",
+    "code": null
+  },
+  {
+    "authors": "S. Spagnol, R. Miccini, M. George Onofrei, R. Unnthorsson, S. Serafin",
+    "title": "Estimation of Spectral Notches From Pinna Meshes: Insights From a Simple Computational Model",
+    "period": "August 2021",
+    "publisher": "IEEE/ACM Transactions on Audio, Speech, and Language Processing",
+    "doi": "10.1109/TASLP.2021.3101928",
+    "url": "https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9507273",
+    "code": null
+  },
+  {
     "authors": "R. Miccini, S. Spagnol",
     "title": "A hybrid approach to structural modeling of individualized HRTFs",
     "period": "March 2021",
