@@ -119,7 +119,9 @@
     "title": "Slavetosociety music video",
     "period": "December 2020",
     "descr": "A more comprehensive description is on its way. Thanks for the patience!",
-    "media": {},
+    "media": {
+        "video": "https://www.youtube.com/watch?v=ZpOl8vCdERg"
+    },
     "tags": [
       "artsy",
       "processing"
@@ -144,7 +146,9 @@
     "title": "Light installation",
     "period": "November 2018",
     "descr": "A more comprehensive description is on its way. Thanks for the patience!",
-    "media": {},
+    "media": {
+        "url": "https://www.igorhalicki.com/pleasure-control",
+    },
     "tags": [
       "hobby",
       "artsy",
