@@ -17,7 +17,7 @@
           </span>
         </li>
       </ul>
-      <div class="flex-shrink">
+      <div class="flex-shrink py-4">
         <ExperienceTimeline :exp="currentExp" />
       </div>
       <div class="flex-1 py-4 text-xl">
