@@ -74,9 +74,36 @@
           </li>
           <li class="w-8 h-8">
             <a
+              href="https://orcid.org/0000-0002-0421-6170"
+              target="_blank"
+              ><OrcidIcon
+                size="32"
+                class="fill-current text-light transition-all transform hover:scale-125"
+            /></a>
+          </li>
+          <li class="w-8 h-8">
+            <a
               href="https://www.soundcloud.com/riccardo-miccini"
               target="_blank"
               ><SoundCloudIcon
+                size="32"
+                class="fill-current text-light transition-all transform hover:scale-125"
+            /></a>
+          </li>
+          <li class="w-8 h-8">
+            <a
+              href="https://www.goodreads.com/user/show/84689053-riccardo-miccini"
+              target="_blank"
+              ><GoodreadsIcon
+                size="32"
+                class="fill-current text-light transition-all transform hover:scale-125"
+            /></a>
+          </li>
+          <li class="w-8 h-8">
+            <a
+              href="https://www.instagram.com/miccio_or_smth/"
+              target="_blank"
+              ><InstagramIcon
                 size="32"
                 class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
@@ -113,7 +140,10 @@ import {
   GitHubIcon,
   ResearchGateIcon,
   GoogleScholarIcon,
+  OrcidIcon,
   SoundCloudIcon,
+  GoodreadsIcon,
+  InstagramIcon,
   // YouTubeIcon,
 } from "vue-simple-icons";
 
@@ -123,7 +153,10 @@ export default {
     GitHubIcon,
     ResearchGateIcon,
     GoogleScholarIcon,
+    OrcidIcon,
     SoundCloudIcon,
+    GoodreadsIcon,
+    InstagramIcon,
     // YouTubeIcon,
   },
 };
