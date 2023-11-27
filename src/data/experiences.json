@@ -3,8 +3,8 @@
     "from": "02/2023",
     "to": "02/2026",
     "role": "Industrial PhD",
-    "company": "GN Audio/Jabra",
-    "location": "Ballerup, Denmark",
+    "company": "Technical University of Denmark | GN Audio/Jabra",
+    "location": "Kgs. Lyngby, Denmark | Ballerup, Denmark",
     "descr": "Doing research on efficient noise suppression using Deep Learning; part of CONVOLVE, an EU Horizon research project for the seamless design of smart edge processors",
     "skills": [
       "pytorch", "tensorflow", "python", "dsp"
