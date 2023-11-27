@@ -1,11 +1,33 @@
 [
   {
+    "from": "02/2023",
+    "to": "02/2026",
+    "role": "Industrial PhD",
+    "company": "GN Audio/Jabra",
+    "location": "Ballerup, Denmark",
+    "descr": "Doing research on efficient noise suppression using Deep Learning; part of CONVOLVE, an EU Horizon research project for the seamless design of smart edge processors",
+    "skills": [
+      "pytorch", "tensorflow", "python", "dsp"
+    ]
+  },
+  {
+    "from": "06/2022",
+    "to": "12/2022",
+    "role": "Global Engineering Graduate",
+    "company": "GN Audio/Jabra",
+    "location": "Cupertino, CA, United States",
+    "descr": "External rotation within the graduate program; project on efficient Speaker Identification and Verification using Deep Learning",
+    "skills": [
+      "pytorch", "tensorflow", "python", "vue"
+    ]
+  },
+  {
     "from": "09/2021",
-    "to": "09/2023",
+    "to": "02/2023",
     "role": "Global Engineering Graduate",
     "company": "GN Store Nord",
     "location": "Ballerup, Denmark",
-    "descr": "Ongoing graduate program in Audio Engineering, focusing on Deep Learning projects in the sound domain",
+    "descr": "Graduate program in Audio Engineering, focusing on Deep Learning projects in the sound domain",
     "skills": [
       "pytorch", "tensorflow", "python", "matlab", "dsp"
     ]
