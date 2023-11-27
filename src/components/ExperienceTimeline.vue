@@ -15,7 +15,7 @@ export default {
     },
     height: {
       type: Number,
-      default: 500,
+      default: 600,
     },
     from: {
       type: Number,
@@ -23,7 +23,7 @@ export default {
     },
     to: {
       type: Number,
-      default: 2021,
+      default: 2024,
     },
     margin: {
       type: Number,
