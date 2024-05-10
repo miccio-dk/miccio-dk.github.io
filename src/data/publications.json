@@ -1,5 +1,14 @@
 [
   {
+    "authors": "R. Miccini, A. Cerioli, C. Laroche, T. Piechowiak, J. Sparsø, L. Pezzarossa",
+    "title": "Towards a tailored mixed-precision sub-8-bit quantization scheme for Gated Recurrent Units using Genetic Algorithms",
+    "period": "April 2023",
+    "publisher": "TinyML Research Symposium 2024",
+    "doi": "10.48550/arXiv.2402.12263",
+    "url": "https://arxiv.org/abs/2402.12263",
+    "code": null
+  },
+  {
     "authors": "R. Miccini, A. Zniber, C. Laroche, T. Piechowiak, M. Schoeberl, L. Pezzarossa, O. Karrakchou, J. Sparsø, M.Ghogho",
     "title": "Dynamic nsNET2: Efficient Deep Noise Suppression with Early Exiting",
     "period": "September 2023",
