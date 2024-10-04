@@ -12,17 +12,18 @@
       <div class="w-full flex-auto text-left space-y-2">
         <h5 class="text-3xl sm:text-5xl">Riccardo Miccini</h5>
         <p>
-          I'm a Sound and Music Computing graduate with a versatile skillset
+          I'm an Industrial PhD Student at the Technical University of Denmark and GN Audio/Jabra,
+          researching model compression and dynamic neural networks for audio applications. 
+          During my M.Sc. in Sound and Music Computing at Aalborg University, my research focused
+          on HRTF individualization using deep learning.
+        </p>
+        <p>
+          Throughout my education and career, I aquired a versatile skillset
           ranging from embedded and web development to signal processing, data
-          analysis, and machine learning. I'm insatiably curious about all
-          things technology.
+          analysis, and machine learning.
         </p>
         <p>
-          I aspire to work with assistive audio technologies using data science
-          and machine learning tools, while keeping a foot in academia.
-        </p>
-        <p>
-          I'd be happy to contribute to your artistic and creative projects with
+          I'm happy to contribute to artistic and creative projects with
           my technical skills.
           <a class="underline" href="#contact">Get in touch</a> and let's take
           it from there.
