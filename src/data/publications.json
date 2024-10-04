@@ -1,8 +1,17 @@
 [
   {
+    "authors": "M. Nilsson, R. Miccini, C. Laroche, T. Piechowiak, F. Zenke",
+    "title": "Resource-Efficient Speech Quality Prediction through Quantization Aware Training and Binary Activation Maps",
+    "period": "September 2024",
+    "publisher": "Interspeech 2024",
+    "doi": "10.48550/arXiv.2407.04578",
+    "url": "https://arxiv.org/abs/2407.04578",
+    "code": "https://github.com/fmi-basel/binary-activation-maps-sqp"
+  },
+  {
     "authors": "R. Miccini, A. Cerioli, C. Laroche, T. Piechowiak, J. Sparsø, L. Pezzarossa",
     "title": "Towards a tailored mixed-precision sub-8-bit quantization scheme for Gated Recurrent Units using Genetic Algorithms",
-    "period": "April 2023",
+    "period": "April 2024",
     "publisher": "TinyML Research Symposium 2024",
     "doi": "10.48550/arXiv.2402.12263",
     "url": "https://arxiv.org/abs/2402.12263",
