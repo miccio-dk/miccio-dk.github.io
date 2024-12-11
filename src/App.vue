@@ -3,13 +3,13 @@
     <AnimatedBackground class="z-0 fixed" :nParticles="32" :bpm="60" />
     <Navbar :currentHash="currentHash" />
     <About class="section relative" id="about" />
-    <Projects class="section relative" id="projects" :projects="projects" />
     <Publications
       class="section relative"
       id="pubs"
       :publications="publications"
     />
     <Experience class="section relative" id="exp" :experiences="experiences" />
+    <Projects class="section relative" id="projects" :projects="projects" />
     <Contact class="section relative" id="contact" />
   </div>
 </template>
