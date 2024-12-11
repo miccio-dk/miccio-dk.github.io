@@ -54,9 +54,9 @@ export default {
       othersClass: ["hover:text-light"],
       links: {
         "#about": "About",
-        "#projects": "Projects",
         "#pubs": "Publications",
         "#exp": "Experience",
+        "#projects": "Projects",
         "#contact": "Contact",
       },
     };
