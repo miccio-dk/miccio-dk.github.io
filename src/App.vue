@@ -18,9 +18,9 @@
 import AnimatedBackground from "./components/AnimatedBackground.vue";
 import Navbar from "./components/Navbar.vue";
 import About from "./components/About.vue";
-import Projects from "./components/Projects.vue";
 import Publications from "./components/Publications.vue";
 import Experience from "./components/Experience.vue";
+import Projects from "./components/Projects.vue";
 import Contact from "./components/Contact.vue";
 
 import projects from "./data/projects.json";
@@ -32,17 +32,17 @@ export default {
     AnimatedBackground,
     Navbar,
     About,
-    Projects,
     Publications,
     Experience,
+    Projects,
     Contact,
   },
   data() {
     return {
       sectionObserver: null,
-      projects: projects,
       publications: publications,
       experiences: experiences,
+      projects: projects,
       currentHash: "#about",
     };
   },
