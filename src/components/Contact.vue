@@ -121,7 +121,7 @@
       </div>
     </div>
     <p class="text-center text-light text-sm tracking-widest pb-2 px-8">
-      Riccardo Miccini &copy; 2021 | 
+      Riccardo Miccini &copy; 2024 | 
       <a class="hover:underline" href="https://github.com/miccio-dk/miccio-dk.github.io" target="_blank"
         >Made</a
       >
