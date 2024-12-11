@@ -121,7 +121,11 @@
       </div>
     </div>
     <p class="text-center text-light text-sm tracking-widest pb-2 px-8">
-      Riccardo Miccini &copy; 2021 | Made with
+      Riccardo Miccini &copy; 2021 | 
+      <a class="hover:underline" href="https://github.com/miccio-dk/miccio-dk.github.io" target="_blank"
+        >Made</a
+      >
+      with
       <a class="hover:underline" href="https://vuejs.org/" target="_blank"
         >Vue.js</a
       >
