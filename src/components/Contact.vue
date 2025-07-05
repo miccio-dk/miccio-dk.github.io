@@ -74,6 +74,15 @@
           </li>
           <li class="w-8 h-8">
             <a
+              href="https://www.semanticscholar.org/author/Riccardo-Miccini/2284685694"
+              target="_blank"
+              ><SemanticScholarIcon
+                size="32"
+                class="fill-current text-light transition-all transform hover:scale-125"
+            /></a>
+          </li>
+          <li class="w-8 h-8">
+            <a
               href="https://orcid.org/0000-0002-0421-6170"
               target="_blank"
               ><OrcidIcon
@@ -144,6 +153,7 @@ import {
   GitHubIcon,
   ResearchGateIcon,
   GoogleScholarIcon,
+  SemanticScholarIcon,
   OrcidIcon,
   SoundCloudIcon,
   GoodreadsIcon,
@@ -157,6 +167,7 @@ export default {
     GitHubIcon,
     ResearchGateIcon,
     GoogleScholarIcon,
+    SemanticScholarIcon,
     OrcidIcon,
     SoundCloudIcon,
     GoodreadsIcon,
