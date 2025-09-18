@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { inject, watch } from "vue";
 import P5Canvas from "./P5Canvas.vue";
 import Particle from "../particle";
 import * as Tone from "tone";
@@ -42,6 +43,19 @@ export default {
       default: 80,
     },
   },
+  setup() {
+    const animationState = inject('animationState');
+    
+    // Watch for animation state changes
+    watch(animationState, (newState) => {
+      // We'll call setupAnimation from the component instance
+      // This will be handled in the mounted hook
+    });
+    
+    return {
+      animationState,
+    };
+  },
   data() {
     return {
       timeouts: {},
@@ -53,17 +67,29 @@ export default {
       fiParticles: 0,
       fiGradient: 0,
       foParticles: 0,
-      chordSynth: null,
-      leadSynth: null,
-      leadFx: null,
-      chordFx: null,
       tMin: 0,
     };
   },
   mounted() {
-    this.$root.$on("animation", (animationState) => {
-      this.setupAnimation(animationState);
-    });
+    // Initialize all variables (not reactive)
+    this.chordSynth = null,
+    this.leadSynth = null;
+    this.leadFx = null;
+    this.chordFx = null;
+    this.playParticleThrottled = null;
+    // Watch for animation state changes
+    this.$watch('animationState', (newState) => {
+      if (newState) {
+        try {
+          console.log('Starting sound with user gesture');
+          this.setupSound();
+        } catch (error) {
+          console.warn('Audio context could not be started:', error);
+        }
+      }
+      console.log('Setting up animation', newState);
+      this.setupAnimation(newState);
+    }, { immediate: true });
   },
   unmounted() {
     this.setupAnimation(false);
@@ -74,9 +100,14 @@ export default {
       sk.frameRate(this.fps);
       sk.colorMode(sk.HSB);
       sk.background(255);
-      this.beat = 60000 / this.bpm;
-      this.fadeMax = (this.beat * this.fadeDuration) / this.fps / 2;
-      //this.setupAnimation(true);
+      
+      // Extract reactive values to avoid proxy issues
+      const bpm = this.bpm;
+      const fps = this.fps;
+      const fadeDuration = this.fadeDuration;
+      
+      this.beat = 60000 / bpm;
+      this.fadeMax = (this.beat * fadeDuration) / fps / 2;
     },
     draw(sk) {
       sk.background(255);
@@ -113,7 +144,9 @@ export default {
         // currently selected particle
         if (particle.isSelected(sk) && opacity > 0) {
           opacity *= 3;
-          this.playParticleThrottled(particle);
+          if (this.playParticleThrottled) {
+            this.playParticleThrottled(particle);
+          }
         }
         // render and move
         particle.render(sk, opacity);
@@ -177,72 +210,82 @@ export default {
           this.beat * 7,
           this
         );
-        // setup sounds
-        this.setupSound();
       } else {
         window.clearTimeout(this.timeouts.fadeGradient);
         window.clearTimeout(this.timeouts.fadeInParticles);
         window.clearTimeout(this.timeouts.fadeOutParticles);
         this.timeouts = {};
         this.fadeOutParticles();
-        this.chordSynth.releaseAll();
-        this.leadSynth.releaseAll();
+        if (this.chordSynth) {
+          this.chordSynth.releaseAll();
+        }
+        if (this.leadSynth) {
+          this.leadSynth.releaseAll();
+        }
       }
     },
     async setupSound() {
-      await Tone.start();
-      this.leadFx = new Tone.PingPongDelay("8t", 0.4).toDestination();
-      this.leadSynth = new Tone.PolySynth(Tone.MonoSynth).connect(this.leadFx);
-      this.leadSynth.set({
-        oscillator: {
-          type: "sawtooth",
-        },
-        filter: {
-          type: "lowpass",
-          rolloff: -24,
-          frequency: 5000,
-          Q: 10,
-        },
-        envelope: {
-          release: "2n",
-          releaseCurve: "linear",
-        },
-        filterEnvelope: {
-          attack: "8n",
-          release: "2n",
-          releaseCurve: "exponential",
-        },
-        volume: -35,
-      });
-      this.chordFx = new Tone.AutoFilter("4n", 1500, 0.4)
-        .toDestination()
-        .start();
-      this.chordSynth = new Tone.PolySynth(Tone.FMSynth).connect(this.chordFx);
-      this.chordSynth.set({
-        envelope: {
-          attack: "2n",
-          release: "1n",
-          releaseCurve: "linear",
-        },
-        modulationEnvelope: {
-          attack: "1m",
-          sustain: 1,
-          release: "1n",
-          releaseCurve: "linear",
-        },
-        modulationIndex: 10,
-        volume: -35,
-      });
-      // setup timing
-      Tone.Transport.bpm.value = this.bpm;
-      this.tMin = Tone.Time("4n").toSeconds() * 1000;
-      this.playParticleThrottled = _throttle(
-        (particle) => this.playParticle(particle),
-        this.tMin,
-        {
-          trailing: false,
-        }
-      );
+      try {
+        await Tone.start();
+
+        this.leadFx = new Tone.PingPongDelay("8t", 0.4).toDestination();
+        this.leadSynth = new Tone.PolySynth(Tone.MonoSynth).connect(this.leadFx);
+        this.leadSynth.set({
+          oscillator: {
+            type: "sawtooth",
+          },
+          filter: {
+            type: "lowpass",
+            rolloff: -24,
+            frequency: 5000,
+            Q: 10,
+          },
+          envelope: {
+            release: "2n",
+            releaseCurve: "linear",
+          },
+          filterEnvelope: {
+            attack: "8n",
+            release: "2n",
+            releaseCurve: "exponential",
+          },
+          volume: -35,
+        });
+        this.chordFx = new Tone.AutoFilter("4n", 1500, 0.4).toDestination().start();
+        this.chordSynth = new Tone.PolySynth(Tone.FMSynth).connect(this.chordFx);
+        this.chordSynth.set({
+          envelope: {
+            attack: "2n",
+            release: "1n",
+            releaseCurve: "linear",
+          },
+          modulationEnvelope: {
+            attack: "1m",
+            sustain: 1,
+            release: "1n",
+            releaseCurve: "linear",
+          },
+          modulationIndex: 10,
+          volume: -35,
+        });
+
+        // setup timing
+        console.log('Setting up timing');
+        Tone.Transport.bpm.value = this.bpm;
+        this.tMin = Tone.Time("4n").toSeconds() * 1000;
+        console.log(this.tMin, this.bpm);
+
+        console.log('Setting up throttled particle function');
+        this.playParticleThrottled = _throttle(
+          (particle) => this.playParticle(particle),
+          this.tMin,
+          {
+            trailing: false,
+          }
+        );
+      } catch (error) {
+        console.warn('Error setting up sound:', error);
+      }
     },
     fadeGradient() {
       // populate gradient
@@ -277,9 +320,12 @@ export default {
     },
     fadeOutParticles() {
       this.foParticles = 0;
-      this.leadSynth.releaseAll();
+      if (this.leadSynth) {
+        this.leadSynth.releaseAll();
+      }
     },
     playChord() {
+      if (!this.chordSynth) return;
       var chord1 = ["E3", "G3", "B3", "D4"];
       var chord2 = ["C3", "E3", "G3", "B3"];
       var chord3 = ["D3", "G3", "B3", "D4"];
@@ -288,6 +334,7 @@ export default {
       this.chordSynth.triggerAttackRelease(chord, "1:2:0");
     },
     playParticle(particle) {
+      if (!this.leadSynth) return;
       var octaves = ["1", "2", "3", "4", "5", "6"];
       var pitches = ["C", "E", "G", "B"];
       var { radius, velocity, color } = particle;

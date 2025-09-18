@@ -31,7 +31,7 @@
         <p>
           <button
             class="inline-block rounded-md py-1 px-2 border-2 border-dark bg-light text-dark hover:bg-dark hover:text-light"
-            @click="enableAnimation"
+            @click="toggleAnimation"
           >
             {{ callToAction }}
           </button>
@@ -42,8 +42,19 @@
 </template>
 
 <script>
+import { inject } from "vue";
+
 export default {
   name: "About",
+  setup() {
+    const animationState = inject('animationState');
+    const toggleAnimationFn = inject('toggleAnimation');
+    
+    return {
+      animationState,
+      toggleAnimationFn,
+    };
+  },
   data() {
     return {
       callToActionPerformed: false,
@@ -51,14 +62,16 @@ export default {
   },
   computed: {
     callToAction() {
-      return this.callToActionPerformed
-        ? "Now go and chase the particles"
-        : "Sounds and colors";
+      if (!this.callToActionPerformed) {
+        return "Sounds and colors";
+      }
+      return this.animationState ? "Now go and chase the particles" : "Start all over again";
     },
   },
   methods: {
-    enableAnimation() {
-      // this.$root.$emit("animation", true);
+    toggleAnimation() {
+      this.toggleAnimationFn(!this.animationState);
+
       this.callToActionPerformed = true;
     },
   },

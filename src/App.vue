@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="font-mono">
-    <!-- <AnimatedBackground class="z-0 fixed" :nParticles="32" :bpm="60" /> -->
+    <AnimatedBackground class="z-0 fixed" :nParticles="32" :bpm="60" />
     <Navbar :currentHash="currentHash" />
     <About class="section relative" id="about" />
     <Publications
@@ -15,7 +15,8 @@
 </template>
 
 <script>
-// import AnimatedBackground from "./components/AnimatedBackground.vue";
+import { ref, provide } from "vue";
+import AnimatedBackground from "./components/AnimatedBackground.vue";
 import Navbar from "./components/Navbar.vue";
 import About from "./components/About.vue";
 import Publications from "./components/Publications.vue";
@@ -29,13 +30,29 @@ import experiences from "./data/experiences.json";
 
 export default {
   components: {
-    // AnimatedBackground,
+    AnimatedBackground,
     Navbar,
     About,
     Publications,
     Experience,
     Projects,
     Contact,
+  },
+  setup() {
+    // Animation state management
+    const animationState = ref(false);
+    const toggleAnimation = (state) => {
+      animationState.value = state;
+    };
+
+    // Provide animation state to child components
+    provide('animationState', animationState);
+    provide('toggleAnimation', toggleAnimation);
+
+    return {
+      animationState,
+      toggleAnimation,
+    };
   },
   data() {
     return {

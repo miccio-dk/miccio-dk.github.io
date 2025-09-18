@@ -42,14 +42,24 @@
 </template>
 
 <script>
+import { inject } from "vue";
+
 export default {
   name: "Navbar",
   props: {
     currentHash: String,
   },
+  setup() {
+    const animationState = inject('animationState');
+    const toggleAnimationFn = inject('toggleAnimation');
+    
+    return {
+      animationState,
+      toggleAnimationFn,
+    };
+  },
   data() {
     return {
-      animationOn: false,
       currentClass: ["bg-light", "text-dark", "hover:text-dark"],
       othersClass: ["hover:text-light"],
       links: {
@@ -65,16 +75,13 @@ export default {
     scrolledAway() {
       return this.currentHash !== "#about";
     },
-  },
-  mounted() {
-    // this.$root.$on("animation", (animationState) => {
-    //   this.animationOn = animationState;
-    // });
+    animationOn() {
+      return this.animationState;
+    },
   },
   methods: {
     toggleAnimation() {
-      this.animationOn = !this.animationOn;
-      // this.$root.$emit("animation", this.animationOn);
+      this.toggleAnimationFn(!this.animationState);
     },
   },
 };
