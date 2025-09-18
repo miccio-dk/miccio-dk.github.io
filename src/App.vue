@@ -9,7 +9,7 @@
       :publications="publications"
     />
     <Experience class="section relative" id="exp" :experiences="experiences" />
-    <!-- <Projects class="section relative" id="projects" :projects="projects" /> -->
+    <Projects class="section relative" id="projects" :projects="projects" />
     <Contact class="section relative" id="contact" />
   </div>
 </template>
@@ -20,7 +20,7 @@ import Navbar from "./components/Navbar.vue";
 import About from "./components/About.vue";
 import Publications from "./components/Publications.vue";
 import Experience from "./components/Experience.vue";
-// import Projects from "./components/Projects.vue";
+import Projects from "./components/Projects.vue";
 import Contact from "./components/Contact.vue";
 
 import projects from "./data/projects.json";
@@ -34,7 +34,7 @@ export default {
     About,
     Publications,
     Experience,
-    // Projects,
+    Projects,
     Contact,
   },
   data() {

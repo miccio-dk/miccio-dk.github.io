@@ -36,7 +36,7 @@
 export default {
   name: "ProjectsMenu",
   props: {
-    value: Array,
+    modelValue: Array,
     tagList: Array,
   },
   data() {
@@ -67,15 +67,15 @@ export default {
       if (this.content.includes(tag))
         this.content = this.content.filter((t) => t !== tag);
       else this.content.push(tag);
-      this.$emit("input", this.content);
+      this.$emit("update:modelValue", this.content);
     },
     selectAll() {
       this.content = this.tagList;
-      this.$emit("input", this.content);
+      this.$emit("update:modelValue", this.content);
     },
     selectNone() {
       this.content = [];
-      this.$emit("input", this.content);
+      this.$emit("update:modelValue", this.content);
     },
   },
 };

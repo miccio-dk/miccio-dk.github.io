@@ -1,5 +1,17 @@
 [
   {
+    "title": "Live visuals for Unidentified Network",
+    "period": "December 2023",
+    "descr": "A more comprehensive description is on its way. Thanks for the patience!",
+    "media": {
+        "url": "https://molt.berlin/54-01-12-2023-unidentified-network"
+      },
+      "tags": [
+        "artsy",
+        "processing"
+      ]
+  },
+  {
     "title": "Sound morphing with VAEs",
     "period": "December 2018",
     "descr": "A more comprehensive description is on its way. Thanks for the patience!",
@@ -143,7 +155,7 @@
     ]
   },
   {
-    "title": "Light installation",
+    "title": "Light installation for Pleasure Control",
     "period": "November 2018",
     "descr": "A more comprehensive description is on its way. Thanks for the patience!",
     "media": {
