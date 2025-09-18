@@ -12,7 +12,7 @@
       </li>
     </ul>
     <ul
-      class="flex-shrink flex flex-wrap flex-start content-start justify-end items-start mb-6 text-light"
+      class="shrink flex flex-wrap flex-start content-start justify-end items-start mb-6 text-light"
     >
       <li
         class="inline-block rounded-md m-1 ml-4 px-2 py-1 cursor-pointer border-2 select-none hover:underline"

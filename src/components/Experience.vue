@@ -17,7 +17,7 @@
           </span>
         </li>
       </ul>
-      <div class="flex-shrink py-4">
+      <div class="shrink py-4">
         <ExperienceTimeline :exp="currentExp" />
       </div>
       <div class="flex-1 py-4 text-xl">
@@ -90,6 +90,8 @@ export default {
 </script>
 
 <style lang="scss">
+@reference "../assets/css/tailwind.css";
+
 .markdown p {
   @apply mt-4;
 }

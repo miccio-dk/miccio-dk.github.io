@@ -125,6 +125,8 @@ export default {
 </script>
 
 <style lang="scss">
+@reference "../assets/css/tailwind.css";
+
 .markdown p {
   @apply mt-4;
 }

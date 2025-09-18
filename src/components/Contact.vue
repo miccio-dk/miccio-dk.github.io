@@ -10,28 +10,28 @@
         method="POST"
       >
         <input
-          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:border-b-4"
+          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-hidden shadow-inner focus:border-b-4"
           type="email"
           name="_replyto"
           placeholder="Your email"
           required
         />
         <input
-          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:border-b-4"
+          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-hidden shadow-inner focus:border-b-4"
           type="text"
           name="_subject"
           placeholder="Subject"
           required
         />
         <textarea
-          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-none shadow-inner focus:border-b-4"
+          class="block w-full rounded-md border-2 border-dark px-2 py-1 focus:outline-hidden shadow-inner focus:border-b-4"
           name="message"
           placeholder="Type your message..."
           cols="30"
           rows="5"
         ></textarea>
         <button
-          class="block rounded-md p-1 px-8 float-right bg-light text-dark border-dark shadow-md font-medium border-2 hover:bg-dark hover:text-light focus:outline-none focus:underline"
+          class="block rounded-md p-1 px-8 float-right bg-light text-dark border-dark shadow-md font-medium border-2 hover:bg-dark hover:text-light focus:outline-hidden focus:underline"
           type="submit"
         >
           Send

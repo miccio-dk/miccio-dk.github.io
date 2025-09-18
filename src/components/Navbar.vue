@@ -8,7 +8,7 @@
       <span class="inline-block">{{ links[currentHash] }}</span>
     </span>
 
-    <nav class="flex-grow">
+    <nav class="grow">
       <ul
         class="flex items-center justify-center flex-wrap md:flex-nowrap md:justify-end uppercase space-x-0 xl:space-x-2 my-2 sm:my-4"
       >
