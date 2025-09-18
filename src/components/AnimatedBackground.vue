@@ -1,13 +1,14 @@
 <template>
-  <VueP5
-    v-on:setup="setup"
-    v-on:draw="draw"
-    v-on:windowresized="windowresized"
+  <P5Canvas
+    :setup="setup"
+    :draw="draw"
+    :windowResized="windowresized"
+    :fps="fps"
   />
 </template>
 
 <script>
-import VueP5 from "vue-p5";
+import P5Canvas from "./P5Canvas.vue";
 import Particle from "../particle";
 import * as Tone from "tone";
 import _sample from "lodash/sample";
@@ -17,7 +18,7 @@ import _isEmpty from "lodash/isEmpty";
 export default {
   name: "AnimatedBackground",
   components: {
-    VueP5,
+    P5Canvas,
   },
   props: {
     fps: {
@@ -64,7 +65,7 @@ export default {
       this.setupAnimation(animationState);
     });
   },
-  destroyed() {
+  unmounted() {
     this.setupAnimation(false);
   },
   methods: {

@@ -43,7 +43,7 @@ export default {
     return {
       selectClass: ["bg-dark", "text-light"],
       unselectClass: ["bg-light", "text-dark"],
-      content: this.value,
+      content: this.modelValue,
       firstClick: true,
     };
   },

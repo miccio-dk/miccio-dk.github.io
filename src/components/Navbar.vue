@@ -67,14 +67,14 @@ export default {
     },
   },
   mounted() {
-    this.$root.$on("animation", (animationState) => {
-      this.animationOn = animationState;
-    });
+    // this.$root.$on("animation", (animationState) => {
+    //   this.animationOn = animationState;
+    // });
   },
   methods: {
     toggleAnimation() {
       this.animationOn = !this.animationOn;
-      this.$root.$emit("animation", this.animationOn);
+      // this.$root.$emit("animation", this.animationOn);
     },
   },
 };

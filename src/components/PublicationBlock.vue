@@ -3,7 +3,7 @@
     <p class="text-dark">
       <span class="">{{ data.authors }}</span>
       <span v-if="data.title">, </span>
-      <span class="">{{ data.title | quotes }}</span>
+      <span class="">{{ quotedTitle }}</span>
       <span v-if="data.publisher">, </span>
       <span class="italic">{{ data.publisher }}</span>
       <span v-if="data.period">, </span>
@@ -33,9 +33,9 @@ export default {
   props: {
     data: Object,
   },
-  filters: {
-    quotes: function (value) {
-      return '"' + value + '"';
+  computed: {
+    quotedTitle() {
+      return this.data.title ? '"' + this.data.title + '"' : '';
     },
   },
 };

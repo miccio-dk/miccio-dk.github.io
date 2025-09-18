@@ -4,6 +4,7 @@
 
 <script>
 import Two from "two.js";
+import { markRaw } from "vue";
 
 export default {
   name: "ExperienceTimeline",
@@ -53,11 +54,11 @@ export default {
     this.tick_dist = (this.height - this.margin * 2) / (this.range - 1);
     // create two.js instance
     var elem = document.getElementById("timeline");
-    this.two = new Two({
+    this.two = markRaw(new Two({
       width: this.width,
       height: this.height,
       autostart: true,
-    }).appendTo(elem);
+    }).appendTo(elem));
     this.drawTimeline();
   },
   watch: {

@@ -1,0 +1,6 @@
+---
+description: Example rule
+alwaysApply: false
+---
+- this is an example rule
+- feel free to ignore it

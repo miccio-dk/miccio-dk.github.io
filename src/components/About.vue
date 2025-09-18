@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     enableAnimation() {
-      this.$root.$emit("animation", true);
+      // this.$root.$emit("animation", true);
       this.callToActionPerformed = true;
     },
   },

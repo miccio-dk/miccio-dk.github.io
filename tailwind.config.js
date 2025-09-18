@@ -1,6 +1,10 @@
-module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
+  ],
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
     colors: {
       transparent: "transparent",
@@ -24,14 +28,6 @@ module.exports = {
         w12: "repeat(auto-fill, minmax(12rem, 1fr))",
         w16: "repeat(auto-fill, minmax(16rem, 1fr))",
       },
-    },
-  },
-  variants: {
-    extend: {
-      borderWidth: ["hover", "focus"],
-      borderRadius: ["hover", "focus"],
-      opacity: ["hover", "group-hover"],
-      letterSpacing: ["hover"],
     },
   },
   plugins: [],

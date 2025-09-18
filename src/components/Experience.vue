@@ -43,7 +43,7 @@ import ExperienceDetails from "./ExperienceDetails.vue";
 import ExperienceBlock from "./ExperienceBlock.vue";
 import ExperienceTimeline from "./ExperienceTimeline.vue";
 import _orderBy from "lodash/orderBy";
-import marked from "marked";
+import { marked } from "marked";
 
 export default {
   components: {

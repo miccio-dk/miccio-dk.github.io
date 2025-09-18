@@ -43,14 +43,14 @@
           <li class="w-8 h-8">
             <a href="https://www.linkedin.com/in/rimiccini/" target="_blank"
               ><LinkedInIcon
-                size="32"
+                :size="iconSize"
                 class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
           <li class="w-8 h-8">
             <a href="https://www.github.com/miccio-dk/" target="_blank"
               ><GitHubIcon
-                size="32"
+                :size="iconSize"
                 class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
@@ -59,7 +59,7 @@
               href="https://www.researchgate.net/profile/Riccardo-Miccini"
               target="_blank"
               ><ResearchGateIcon
-                size="32"
+                :size="iconSize"
                 class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
@@ -68,7 +68,7 @@
               href="https://scholar.google.com/citations?user=0l0b5ngAAAAJ"
               target="_blank"
               ><GoogleScholarIcon
-                size="32"
+                :size="iconSize"
                 class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
@@ -77,7 +77,7 @@
               href="https://www.semanticscholar.org/author/Riccardo-Miccini/2284685694"
               target="_blank"
               ><SemanticScholarIcon
-                size="32"
+                :size="iconSize"
                 class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
@@ -86,7 +86,7 @@
               href="https://orcid.org/0000-0002-0421-6170"
               target="_blank"
               ><OrcidIcon
-                size="32"
+                :size="iconSize"
                 class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
@@ -95,7 +95,7 @@
               href="https://www.soundcloud.com/riccardo-miccini"
               target="_blank"
               ><SoundCloudIcon
-                size="32"
+                :size="iconSize"
                 class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
@@ -104,7 +104,7 @@
               href="https://www.goodreads.com/user/show/84689053-riccardo-miccini"
               target="_blank"
               ><GoodreadsIcon
-                size="32"
+                :size="iconSize"
                 class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
@@ -113,7 +113,7 @@
               href="https://www.instagram.com/miccio_or_smth/"
               target="_blank"
               ><InstagramIcon
-                size="32"
+                :size="iconSize"
                 class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li>
@@ -122,7 +122,7 @@
               href="https://www.youtube.com/channel/UCTbIQ6GMxm9l6daN6rIp79g" 
               target="_blank"
               ><YouTubeIcon 
-                size="32" 
+                :size="iconSize" 
                 class="fill-current text-light transition-all transform hover:scale-125"
             /></a>
           </li> -->
@@ -130,7 +130,7 @@
       </div>
     </div>
     <p class="text-center text-light text-sm tracking-widest pb-2 px-8">
-      Riccardo Miccini &copy; 2024 | 
+      Riccardo Miccini &copy; 2025 | 
       <a class="hover:underline" href="https://github.com/miccio-dk/miccio-dk.github.io" target="_blank"
         >Made</a
       >
@@ -159,7 +159,7 @@ import {
   GoodreadsIcon,
   InstagramIcon,
   // YouTubeIcon,
-} from "vue-simple-icons";
+} from "vue3-simple-icons";
 
 export default {
   components: {
@@ -173,6 +173,12 @@ export default {
     GoodreadsIcon,
     InstagramIcon,
     // YouTubeIcon,
+  },
+  props: {
+    iconSize: {
+      type: [String, Number],
+      default: 32
+    }
   },
 };
 </script>

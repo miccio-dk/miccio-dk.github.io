@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="font-mono">
-    <AnimatedBackground class="z-0 fixed" :nParticles="32" :bpm="60" />
+    <!-- <AnimatedBackground class="z-0 fixed" :nParticles="32" :bpm="60" /> -->
     <Navbar :currentHash="currentHash" />
     <About class="section relative" id="about" />
     <Publications
@@ -9,18 +9,18 @@
       :publications="publications"
     />
     <Experience class="section relative" id="exp" :experiences="experiences" />
-    <Projects class="section relative" id="projects" :projects="projects" />
+    <!-- <Projects class="section relative" id="projects" :projects="projects" /> -->
     <Contact class="section relative" id="contact" />
   </div>
 </template>
 
 <script>
-import AnimatedBackground from "./components/AnimatedBackground.vue";
+// import AnimatedBackground from "./components/AnimatedBackground.vue";
 import Navbar from "./components/Navbar.vue";
 import About from "./components/About.vue";
 import Publications from "./components/Publications.vue";
 import Experience from "./components/Experience.vue";
-import Projects from "./components/Projects.vue";
+// import Projects from "./components/Projects.vue";
 import Contact from "./components/Contact.vue";
 
 import projects from "./data/projects.json";
@@ -29,12 +29,12 @@ import experiences from "./data/experiences.json";
 
 export default {
   components: {
-    AnimatedBackground,
+    // AnimatedBackground,
     Navbar,
     About,
     Publications,
     Experience,
-    Projects,
+    // Projects,
     Contact,
   },
   data() {

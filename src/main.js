@@ -1,4 +1,4 @@
-import Vue from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
 import "@/assets/css/tailwind.css";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -25,9 +25,6 @@ library.add(
   faToggleOff
 );
 
-Vue.component("FontAwesomeIcon", FontAwesomeIcon);
-Vue.config.productionTip = false;
-
-new Vue({
-  render: (h) => h(App),
-}).$mount("#app");
+const app = createApp(App);
+app.component("FontAwesomeIcon", FontAwesomeIcon);
+app.mount("#app");
