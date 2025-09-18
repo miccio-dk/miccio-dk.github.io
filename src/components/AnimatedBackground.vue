@@ -58,9 +58,6 @@ export default {
   },
   data() {
     return {
-      timeouts: {},
-      particles: [],
-      gradients: [],
       gidx: 0,
       beat: 0,
       fadeMax: 0,
@@ -72,7 +69,10 @@ export default {
   },
   mounted() {
     // Initialize all variables (not reactive)
-    this.chordSynth = null,
+    this.timeouts = {};
+    this.particles = [];
+    this.gradients = [];
+    this.chordSynth = null;
     this.leadSynth = null;
     this.leadFx = null;
     this.chordFx = null;
@@ -81,13 +81,11 @@ export default {
     this.$watch('animationState', (newState) => {
       if (newState) {
         try {
-          console.log('Starting sound with user gesture');
           this.setupSound();
         } catch (error) {
           console.warn('Audio context could not be started:', error);
         }
       }
-      console.log('Setting up animation', newState);
       this.setupAnimation(newState);
     }, { immediate: true });
   },
@@ -163,8 +161,8 @@ export default {
       // sk.rect(0, sk.height / 2 + 20, this.fiParticles * scaling, 10);
       // sk.rect(0, sk.height / 2 + 40, this.foParticles * scaling, 10);
     },
-    windowresized(sketch) {
-      sketch.resizeCanvas(sketch.windowWidth, sketch.windowHeight);
+    windowresized(sk) {
+      sk.resizeCanvas(sk.windowWidth, sk.windowHeight);
     },
     setupAnimation(animationOn) {
       if (animationOn) {
@@ -268,14 +266,10 @@ export default {
           modulationIndex: 10,
           volume: -35,
         });
-
         // setup timing
-        console.log('Setting up timing');
         Tone.Transport.bpm.value = this.bpm;
-        this.tMin = Tone.Time("4n").toSeconds() * 1000;
-        console.log(this.tMin, this.bpm);
-
-        console.log('Setting up throttled particle function');
+        this.tMin = Tone.Time("16n").toSeconds() * 1000;
+        // setup throttled particle function
         this.playParticleThrottled = _throttle(
           (particle) => this.playParticle(particle),
           this.tMin,
@@ -342,15 +336,19 @@ export default {
         Math.pow(velocity[0], 2),
         Math.pow(velocity[1], 2)
       );
-      var octave_idx = Math.floor(
-        (1 - radius / this.maxRadius) * octaves.length
-      );
+      var octave_idx = Math.floor((1 - radius / this.maxRadius) * octaves.length);
+      var octave_idx = Math.max(octave_idx, 0);
       var pitch_idx = Math.floor((velocity_mag / 0.0001) * pitches.length);
       var octave = octaves[octave_idx];
       var pitch = pitches[pitch_idx % pitches.length];
       var note = pitch + octave;
       var note_velocity = color[3] * 3;
+      try {
       this.leadSynth.triggerAttackRelease(note, "4n", "+0", note_velocity);
+      } catch (error) {
+        console.warn('Error playing particle:', error);
+        console.log(`octave_idx: ${octave_idx}, pitch_idx: ${pitch_idx}, octave: ${octave}, pitch: ${pitch}, note: ${note}, note_velocity: ${note_velocity}`);
+      }
     },
     drawGradient(sk, x, y, w, h, c1, c2, axis) {
       sk.noFill();

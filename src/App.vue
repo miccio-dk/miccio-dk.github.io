@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="font-mono">
-    <AnimatedBackground class="z-0 fixed" :nParticles="32" :bpm="60" />
+    <AnimatedBackground class="z-0 fixed" :nParticles="50" :bpm="86" />
+    <!-- <AnimatedBackgroundMinimal class="z-0 fixed" :fps="24" /> -->
     <Navbar :currentHash="currentHash" />
     <About class="section relative" id="about" />
     <Publications
@@ -17,6 +18,7 @@
 <script>
 import { ref, provide } from "vue";
 import AnimatedBackground from "./components/AnimatedBackground.vue";
+// import AnimatedBackgroundMinimal from "./components/AnimatedBackgroundMinimal.vue";
 import Navbar from "./components/Navbar.vue";
 import About from "./components/About.vue";
 import Publications from "./components/Publications.vue";
@@ -31,6 +33,7 @@ import experiences from "./data/experiences.json";
 export default {
   components: {
     AnimatedBackground,
+    // AnimatedBackgroundMinimal,
     Navbar,
     About,
     Publications,

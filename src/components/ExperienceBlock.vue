@@ -1,11 +1,11 @@
 <template>
-  <div class="rounded-md border-2 border-dark px-2 py-1" @click="$emit('click')">
+  <div class="rounded-md border-2 border-dark px-2 py-1">
     <p>
-      <span class="font-bold">{{ exp.from }} - {{ exp.to }} </span>
-      <span class="ml-2">{{ exp.role }}</span>
+      <p class="font-bold">{{ exp.from }} - {{ exp.to }} </p>
+      <p class="">{{ exp.role }}</p>
     </p>
     <div :class="open ? 'block' : 'hidden'">
-      <p class="text-sm">
+      <p class="text-sm mt-1">
         <span>{{ exp.company }}</span> &middot; 
         <span class="italic">{{ exp.location }}</span>
       </p>

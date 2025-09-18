@@ -1,0 +1,3 @@
+- fix github CI
+- integrate strudel: https://codeberg.org/uzu/strudel/src/branch/main/packages/web#strudel-web
+- integrate hydra: https://hydra.ojack.xyz/docs/docs/learning/guides/how-to/hydra-in-a-webpage/

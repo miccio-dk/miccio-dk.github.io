@@ -57,7 +57,7 @@ export default {
   data() {
     return {
       selectClass: ["bg-dark", "text-light", "border-dark"],
-      currentExpIndex: false,
+      currentExpIndex: null,
     };
   },
   computed: {
