@@ -75,7 +75,7 @@
       </div>
     </div>
     <p class="text-center text-light text-sm tracking-widest">
-      Riccardo Miccini &copy; 2025 |
+      {{ fullName }} &copy; 2025 |
       <a class="hover:underline" href="https://github.com/miccio-dk/miccio-dk.github.io" target="_blank">Made</a>
       with
       <a class="hover:underline" href="https://vuejs.org/" target="_blank">Vue.js</a>
@@ -118,6 +118,7 @@ export default {
       type: [String, Number],
       default: 32,
     },
+    fullName: String,
   },
 }
 </script>

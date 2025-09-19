@@ -40,24 +40,24 @@ export default {
   },
   methods: {
     initP5() {
-      const sketch = p => {
+      const sketch = sk => {
         // Bind methods to p5 instance
-        p.setup = () => {
-          this.setup(p)
+        sk.setup = () => {
+          this.setup(sk)
         }
 
-        p.draw = () => {
-          this.draw(p)
+        sk.draw = () => {
+          this.draw(sk)
         }
 
         if (this.windowResized) {
-          p.windowResized = () => {
-            this.windowResized(p)
+          sk.windowResized = () => {
+            this.windowResized(sk)
           }
         }
 
         // Set frame rate
-        p.frameRate(this.fps)
+        sk.frameRate(this.fps)
       }
 
       this.p5Instance = new p5(sketch, this.$refs.canvasContainer)

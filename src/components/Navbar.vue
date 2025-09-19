@@ -1,8 +1,8 @@
 <template>
   <header class="flex sticky top-0 bg-dark w-full pl-8 sm:pl-16 xl:pl-24 shadow-lg text-light z-10 items-center">
     <span class="hidden md:inline-block flex-none text-xl lg:text-2xl">
-      <h5 v-if="scrolledAway" class="mr-2 hidden lg:inline-block">Riccardo Miccini:</h5>
-      <h5 v-if="scrolledAway" class="mr-2 inline-block lg:hidden">R.M.:</h5>
+      <h5 v-if="scrolledAway" class="mr-2 hidden lg:inline-block">{{ fullName }}:</h5>
+      <h5 v-if="scrolledAway" class="mr-2 inline-block lg:hidden">{{ initials }}:</h5>
       <span class="inline-block">{{ links[currentHash] }}</span>
     </span>
 
@@ -10,8 +10,8 @@
       <ul
         class="flex items-center justify-center flex-wrap md:flex-nowrap md:justify-end uppercase space-x-0 xl:space-x-2 my-2 sm:my-4"
       >
-        <li v-for="(name, hash) in links" :key="hash" :class="getBtnClass(hash)">
-          <a :href="hash">{{ name }}</a>
+        <li v-for="(sectionName, hash) in links" :key="hash" :class="getBtnClass(hash)">
+          <a :href="hash">{{ sectionName }}</a>
         </li>
       </ul>
     </nav>
@@ -28,6 +28,7 @@ import { inject } from 'vue'
 export default {
   name: 'Navbar',
   props: {
+    fullName: String,
     currentHash: String,
   },
   setup() {
@@ -53,6 +54,12 @@ export default {
     }
   },
   computed: {
+    initials() {
+      return this.fullName
+        .split(' ')
+        .map(word => word[0] + '.')
+        .join('')
+    },
     scrolledAway() {
       return this.currentHash !== '#about'
     },

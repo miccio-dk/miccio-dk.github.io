@@ -1,0 +1,13 @@
+{
+  "name": "Riccardo Miccini",
+  "paragraphs": [
+    "I'm an Industrial PhD Student at the Technical University of Denmark and GN Audio/Jabra, researching model compression and dynamic neural networks for audio applications. During my M.Sc. in Sound and Music Computing at Aalborg University, my research focused on HRTF individualization using deep learning.",
+    "Throughout my education and career, I aquired a versatile skillset ranging from embedded and web development to signal processing, data analysis, and machine learning.",
+    "I'm happy to contribute to artistic and creative projects with my technical skills. <a class=\"hover:underline\" href=\"#contact\">Get in touch</a> and let's take it from there."
+  ],
+  "callToAction": {
+    "initial": "Sounds and colors",
+    "active": "Now go and chase the particles",
+    "inactive": "Start all over again"
+  }
+}
