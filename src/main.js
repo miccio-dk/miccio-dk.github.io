@@ -1,8 +1,8 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import "@/assets/css/tailwind.css";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { createApp } from 'vue'
+import App from './App.vue'
+import '@/assets/css/tailwind.css'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faLink,
   faCode,
@@ -12,19 +12,10 @@ import {
   faPhotoVideo,
   faToggleOn,
   faToggleOff,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons'
 
-library.add(
-  faLink,
-  faCode,
-  faQuoteRight,
-  faFileAlt,
-  faDownload,
-  faPhotoVideo,
-  faToggleOn,
-  faToggleOff
-);
+library.add(faLink, faCode, faQuoteRight, faFileAlt, faDownload, faPhotoVideo, faToggleOn, faToggleOff)
 
-const app = createApp(App);
-app.component("FontAwesomeIcon", FontAwesomeIcon);
-app.mount("#app");
+const app = createApp(App)
+app.component('FontAwesomeIcon', FontAwesomeIcon)
+app.mount('#app')

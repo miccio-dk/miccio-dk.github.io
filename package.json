@@ -7,17 +7,17 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "deploy": "node scripts/gh-pages-deploy.js"
+    "deploy": "node scripts/gh-pages-deploy.js",
+    "lint": "eslint . --ext .js,.vue",
+    "lint:fix": "eslint . --ext .js,.vue --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write ."
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.0",
     "@fortawesome/free-solid-svg-icons": "^6.5.0",
     "@fortawesome/vue-fontawesome": "^3.0.0",
     "@vitejs/plugin-vue": "^6.0.1",
-    "eslint": "^9.35.0",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-vue": "^10.4.0",
     "lodash": "^4.17.21",
     "marked": "^12.0.0",
     "p5": "^1.7.0",
@@ -27,12 +27,21 @@
     "vue3-simple-icons": "^13.2.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.35.0",
     "@tailwindcss/postcss": "^4.1.13",
     "@vue/eslint-config-prettier": "^8.0.0",
-    "postcss": "^8.4.0",
-    "prettier": "^3.2.0",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-vue": "^10.4.0",
+    "globals": "^16.4.0",
+    "postcss": "^8.5.6",
+    "postcss-extend": "^1.0.5",
+    "prettier": "3.6.2",
     "sass": "^1.70.0",
     "tailwindcss": "^4.1.13",
-    "vite": "^7.1.6"
+    "vite": "^7.1.6",
+    "vite-plugin-eslint": "^1.8.1"
   }
 }

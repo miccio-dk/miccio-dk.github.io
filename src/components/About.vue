@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-8 sm:p-16 xl:p-24 text-dark">
+  <div class="section-container">
     <div
       class="flex flex-col lg:flex-row items-center lg:items-start space-y-8 xl:space-x-16 lg:space-x-8 lg:space-y-0"
     >
@@ -9,73 +9,67 @@
         alt="Riccardo Miccini"
       />
 
-      <div class="w-full flex-auto text-left space-y-2">
+      <div class="w-full flex-auto text-left space-y-4">
         <h5 class="text-3xl sm:text-5xl">Riccardo Miccini</h5>
-        <p>
-          I'm an Industrial PhD Student at the Technical University of Denmark and GN Audio/Jabra,
-          researching model compression and dynamic neural networks for audio applications. 
-          During my M.Sc. in Sound and Music Computing at Aalborg University, my research focused
-          on HRTF individualization using deep learning.
-        </p>
-        <p>
-          Throughout my education and career, I aquired a versatile skillset
-          ranging from embedded and web development to signal processing, data
-          analysis, and machine learning.
-        </p>
-        <p>
-          I'm happy to contribute to artistic and creative projects with
-          my technical skills.
-          <a class="underline" href="#contact">Get in touch</a> and let's take
-          it from there.
-        </p>
-        <p>
-          <button
-            class="inline-block rounded-md py-1 px-2 border-2 border-dark bg-light text-dark hover:bg-dark hover:text-light"
-            @click="toggleAnimation"
-          >
-            {{ callToAction }}
-          </button>
-        </p>
+        <div class="space-y-2">
+          <p>
+            I'm an Industrial PhD Student at the Technical University of Denmark and GN Audio/Jabra, researching model
+            compression and dynamic neural networks for audio applications. During my M.Sc. in Sound and Music Computing
+            at Aalborg University, my research focused on HRTF individualization using deep learning.
+          </p>
+          <p>
+            Throughout my education and career, I aquired a versatile skillset ranging from embedded and web development
+            to signal processing, data analysis, and machine learning.
+          </p>
+          <p>
+            I'm happy to contribute to artistic and creative projects with my technical skills.
+            <a class="underline" href="#contact">Get in touch</a>
+            and let's take it from there.
+          </p>
+        </div>
+        <button class="btn-light" @click="toggleAnimation">{{ callToAction }}</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { inject } from "vue";
+import { inject } from 'vue'
 
 export default {
-  name: "About",
+  name: 'About',
   setup() {
-    const animationState = inject('animationState');
-    const toggleAnimationFn = inject('toggleAnimation');
-    
+    const animationState = inject('animationState')
+    const toggleAnimationFn = inject('toggleAnimation')
+
     return {
       animationState,
       toggleAnimationFn,
-    };
+    }
   },
   data() {
     return {
       callToActionPerformed: false,
-    };
+    }
   },
   computed: {
     callToAction() {
       if (!this.callToActionPerformed) {
-        return "Sounds and colors";
+        return 'Sounds and colors'
       }
-      return this.animationState ? "Now go and chase the particles" : "Start all over again";
+      return this.animationState ? 'Now go and chase the particles' : 'Start all over again'
     },
   },
   methods: {
     toggleAnimation() {
-      this.toggleAnimationFn(!this.animationState);
+      this.toggleAnimationFn(!this.animationState)
 
-      this.callToActionPerformed = true;
+      this.callToActionPerformed = true
     },
   },
-};
+}
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@reference "../assets/css/tailwind.css";
+</style>

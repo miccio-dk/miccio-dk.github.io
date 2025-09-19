@@ -1,7 +1,5 @@
 <template>
-  <header
-    class="flex sticky top-0 bg-dark w-full pl-8 sm:pl-16 xl:pl-24 shadow-lg text-light z-10 items-center"
-  >
+  <header class="flex sticky top-0 bg-dark w-full pl-8 sm:pl-16 xl:pl-24 shadow-lg text-light z-10 items-center">
     <span class="hidden md:inline-block flex-none text-xl lg:text-2xl">
       <h5 v-if="scrolledAway" class="mr-2 hidden lg:inline-block">Riccardo Miccini:</h5>
       <h5 v-if="scrolledAway" class="mr-2 inline-block lg:hidden">R.M.:</h5>
@@ -12,79 +10,67 @@
       <ul
         class="flex items-center justify-center flex-wrap md:flex-nowrap md:justify-end uppercase space-x-0 xl:space-x-2 my-2 sm:my-4"
       >
-        <li
-          v-for="(name, hash) in links"
-          :key="hash"
-          class="hover:underline py-1 px-2 rounded-md"
-          :class="currentHash === hash ? currentClass : othersClass"
-        >
+        <li v-for="(name, hash) in links" :key="hash" :class="getBtnClass(hash)">
           <a :href="hash">{{ name }}</a>
         </li>
       </ul>
     </nav>
     <div class="flex-none w-8 sm:w-16 xl:w-24 text-light items-center text-center">
-      <FontAwesomeIcon
-        class="cursor-pointer"
-        v-if="animationOn"
-        @click="toggleAnimation"
-        icon="toggle-on"
-        size="lg"
-      />
-      <FontAwesomeIcon
-        class="cursor-pointer"
-        v-else
-        @click="toggleAnimation"
-        icon="toggle-off"
-        size="lg"
-      />
+      <FontAwesomeIcon class="cursor-pointer" v-if="animationOn" @click="toggleAnimation" icon="toggle-on" size="lg" />
+      <FontAwesomeIcon class="cursor-pointer" v-else @click="toggleAnimation" icon="toggle-off" size="lg" />
     </div>
   </header>
 </template>
 
 <script>
-import { inject } from "vue";
+import { inject } from 'vue'
 
 export default {
-  name: "Navbar",
+  name: 'Navbar',
   props: {
     currentHash: String,
   },
   setup() {
-    const animationState = inject('animationState');
-    const toggleAnimationFn = inject('toggleAnimation');
-    
+    const animationState = inject('animationState')
+    const toggleAnimationFn = inject('toggleAnimation')
+
     return {
       animationState,
       toggleAnimationFn,
-    };
+    }
   },
   data() {
     return {
-      currentClass: ["bg-light", "text-dark", "hover:text-dark"],
-      othersClass: ["hover:text-light"],
+      currentClass: ['bg-light', 'text-dark', 'hover:text-dark'],
+      othersClass: ['hover:text-light'],
       links: {
-        "#about": "About",
-        "#pubs": "Publications",
-        "#exp": "Experience",
-        "#projects": "Projects",
-        "#contact": "Contact",
+        '#about': 'About',
+        '#pubs': 'Publications',
+        '#exp': 'Experience',
+        '#projects': 'Projects',
+        '#contact': 'Contact',
       },
-    };
+    }
   },
   computed: {
     scrolledAway() {
-      return this.currentHash !== "#about";
+      return this.currentHash !== '#about'
     },
     animationOn() {
-      return this.animationState;
+      return this.animationState
     },
   },
   methods: {
+    getBtnClass(hash) {
+      return this.currentHash === hash ? 'btn-light' : 'btn-dark'
+    },
     toggleAnimation() {
-      this.toggleAnimationFn(!this.animationState);
+      this.toggleAnimationFn(!this.animationState)
     },
   },
-};
+}
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@reference "../assets/css/tailwind.css";
+</style>

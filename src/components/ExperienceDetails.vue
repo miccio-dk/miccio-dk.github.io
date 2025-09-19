@@ -1,19 +1,16 @@
 <template>
   <div v-if="exp" class="flex flex-col h-full">
     <p>
-      <span class="font-bold">{{ exp.role }}</span> @
+      <span class="font-bold">{{ exp.role }}</span>
+      @
       <span>{{ exp.company }}</span>
     </p>
     <p>
       <span class="italic">{{ exp.location }}</span>
     </p>
-    <div class="markdown flex-auto" v-html="mdToHtml(exp.descr)"></div>
+    <div class="markdown flex-auto" v-html="mdToHtml(exp.descr)" />
     <ul class="flex flex-wrap mt-4 text-light text-base">
-      <li
-        class="inline-block rounded-md m-1 px-2 py-1 border-2 border-dark text-dark bg-light"
-        v-for="(skill, i) in exp.skills"
-        :key="i"
-      >
+      <li class="tag-static m-1" v-for="(skill, i) in exp.skills" :key="i">
         {{ skill }}
       </li>
     </ul>
@@ -24,24 +21,24 @@
 </template>
 
 <script>
-import { marked } from "marked";
+import { marked } from 'marked'
 
 export default {
-  name: "ExperienceDetails",
+  name: 'ExperienceDetails',
   props: {
     exp: Object,
   },
   data() {
     return {
-      selectClass: ["bg-dark", "text-light", "border-dark"],
-    };
+      selectClass: ['bg-dark', 'text-light', 'border-dark'],
+    }
   },
   methods: {
     mdToHtml(mdData) {
-      return marked(mdData, {});
+      return marked(mdData, {})
     },
   },
-};
+}
 </script>
 
 <style lang="scss">

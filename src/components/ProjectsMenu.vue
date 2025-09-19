@@ -1,84 +1,74 @@
 <template>
-  <div class="flex">
-    <ul class="flex-auto flex flex-wrap justify-center mb-6 text-light">
-      <li
-        class="inline-block rounded-md m-1 px-2 py-1 cursor-pointer border-2 border-dark select-none hover:underline"
-        :class="[isSelected(tag) ? selectClass : unselectClass]"
-        v-for="(tag, i) in tagList"
-        :key="i"
-        @click="handleInput(tag)"
-      >
+  <div class="flex mb-6">
+    <ul class="flex-auto flex flex-wrap justify-center text-light">
+      <li :class="getBtnClass(isSelected(tag))" v-for="(tag, i) in tagList" :key="i" @click="handleInput(tag)">
         {{ tag }}
       </li>
     </ul>
-    <ul
-      class="shrink flex flex-wrap flex-start content-start justify-end items-start mb-6 text-light"
-    >
-      <li
-        class="inline-block rounded-md m-1 ml-4 px-2 py-1 cursor-pointer border-2 select-none hover:underline"
-        :class="[isAllSelected ? selectClass : unselectClass]"
-        @click="selectAll"
-      >
-        all
-      </li>
-      <li
-        class="inline-block rounded-md m-1 px-2 py-1 cursor-pointer border-2 select-none hover:underline"
-        :class="[isNoneSelected ? selectClass : unselectClass]"
-        @click="selectNone"
-      >
-        none
-      </li>
+    <ul class="shrink flex flex-wrap flex-start content-start justify-end items-start text-light">
+      <li class="ml-4" :class="getBtnClass(isAllSelected)" @click="selectAll">all</li>
+      <li :class="getBtnClass(isNoneSelected)" @click="selectNone">none</li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ProjectsMenu",
+  name: 'ProjectsMenu',
   props: {
     modelValue: Array,
     tagList: Array,
   },
   data() {
     return {
-      selectClass: ["bg-dark", "text-light"],
-      unselectClass: ["bg-light", "text-dark"],
       content: this.modelValue,
       firstClick: true,
-    };
+    }
   },
   computed: {
     isAllSelected() {
-      return this.content.length === this.tagList.length;
+      return this.content.length === this.tagList.length
     },
     isNoneSelected() {
-      return this.content.length === 0;
+      return this.content.length === 0
     },
   },
   methods: {
+    getBtnClass(isSelected) {
+      return isSelected ? 'btn-dark' : 'btn-light'
+    },
     isSelected(tag) {
-      return this.content.includes(tag);
+      return this.content.includes(tag)
     },
     handleInput(tag) {
       if (this.firstClick) {
-        this.content = [this.tag];
-        this.firstClick = false;
+        this.content = [this.tag]
+        this.firstClick = false
       }
-      if (this.content.includes(tag))
-        this.content = this.content.filter((t) => t !== tag);
-      else this.content.push(tag);
-      this.$emit("update:modelValue", this.content);
+      if (this.content.includes(tag)) this.content = this.content.filter(t => t !== tag)
+      else this.content.push(tag)
+      this.$emit('update:modelValue', this.content)
     },
     selectAll() {
-      this.content = this.tagList;
-      this.$emit("update:modelValue", this.content);
+      this.content = this.tagList
+      this.$emit('update:modelValue', this.content)
     },
     selectNone() {
-      this.content = [];
-      this.$emit("update:modelValue", this.content);
+      this.content = []
+      this.$emit('update:modelValue', this.content)
     },
   },
-};
+}
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@reference "../assets/css/tailwind.css";
+
+.btn-light {
+  @apply m-1;
+}
+
+.btn-dark {
+  @apply m-1;
+}
+</style>

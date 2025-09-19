@@ -3,50 +3,49 @@
     class="flex flex-col items-start bg-dark p-4 shadow-md rounded-md transform transition-all hover:scale-105"
     @click="$emit('click', $event)"
   >
-    <h5 class="flex-none text-xl font-medium text-light">{{ data.title }}</h5>
-    <p class="flex-auto text-sm font-thin italic mb-2 text-light">
+    <h5 class="flex-none text-xl font-medium text-light">
+      {{ data.title }}
+    </h5>
+    <p class="flex-auto text-sm font-thin italic mt-1 mb-6 text-light">
       {{ data.period }}
     </p>
-    <ul
-      v-if="mediaNotEmpty"
-      class="flex-none space-x-3 bg-light py-1 px-2 rounded-md"
-    >
-      <li class="inline" v-for="(v, k) in data.media" :key="k">
-        <a class="" :href="v" target="_blank">
-          <FontAwesomeIcon class="text-dark" :icon="pickIcon(k)" />
-        </a>
-      </li>
-    </ul>
+    <div v-if="mediaNotEmpty" class="icons-container">
+      <a :href="v" target="_blank" v-for="(v, k) in data.media" :key="k" @click.stop>
+        <FontAwesomeIcon class="text-dark" :icon="pickIcon(k)" />
+      </a>
+    </div>
   </div>
 </template>
 
 <script>
-import _isEmpty from "lodash/isEmpty";
+import _isEmpty from 'lodash/isEmpty'
 
 export default {
-  name: "ProjectCard",
+  name: 'ProjectCard',
   props: {
     data: Object,
   },
   computed: {
     mediaNotEmpty: function () {
-      return !_isEmpty(this.data.media);
+      return !_isEmpty(this.data.media)
     },
   },
   methods: {
     pickIcon(key) {
       return (
         {
-          url: "link",
-          code: "code",
-          doc: "file-alt",
-          dl: "download",
-          video: "photo-video",
-        }[key] || "quote-right"
-      );
+          url: 'link',
+          code: 'code',
+          doc: 'file-alt',
+          dl: 'download',
+          video: 'photo-video',
+        }[key] || 'quote-right'
+      )
     },
   },
-};
+}
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@reference "../assets/css/tailwind.css";
+</style>
