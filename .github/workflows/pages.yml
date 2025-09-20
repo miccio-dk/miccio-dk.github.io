@@ -2,9 +2,9 @@ name: CI + Pages
 
 on:
   push:
-    branches: [main, master, revamp, features/code-improvements]
+    branches: [main, master, revamp, feature/code-improvements]
   pull_request:
-    branches: [main, master, revamp, features/code-improvements]
+    branches: [main, master, revamp, feature/code-improvements]
 
 permissions:
   contents: read
