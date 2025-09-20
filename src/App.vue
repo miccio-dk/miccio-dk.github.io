@@ -1,15 +1,111 @@
+<script setup>
+import { ref, onMounted, computed, defineAsyncComponent } from 'vue'
+
+// Import non-variant components statically
+import Navbar from './components/Navbar.vue'
+import Publications from './components/Publications.vue'
+import Experience from './components/Experience.vue'
+import Projects from './components/Projects.vue'
+import Contact from './components/Contact.vue'
+
+// Import data
+import projectsData from './data/projects.json'
+import publicationsData from './data/publications.json'
+import experiencesData from './data/experiences.json'
+import bioData from './data/bio.json'
+
+// Initialize animation store.
+// This needs to be done here in the root component.
+import { useAnimationStore } from './stores/animation'
+useAnimationStore()
+
+// Component State
+const publications = publicationsData
+const experiences = experiencesData
+const projects = projectsData
+const bio = bioData
+const sectionObserver = ref(null)
+const currentHash = ref('#about')
+const aboutType = ref('regular') // Options: 'p5', 'hydra', 'regular'
+const animationType = ref('particles') // Options: 'particles', 'hydra', 'minimal'
+
+// --- Dynamic Component Loading ---
+
+const AnimatedBackground = computed(() => {
+  switch (animationType.value) {
+    case 'particles':
+      return defineAsyncComponent(() => import('./components/AnimatedBackgroundParticles.vue'))
+    case 'hydra':
+      return defineAsyncComponent(() => import('./components/AnimatedBackgroundHydra.vue'))
+    default:
+      return defineAsyncComponent(() => import('./components/AnimatedBackgroundMinimal.vue'))
+  }
+})
+
+const AboutSection = computed(() => {
+  switch (aboutType.value) {
+    case 'p5':
+      return defineAsyncComponent(() => import('./components/AboutP5.vue'))
+    case 'hydra':
+      return defineAsyncComponent(() => import('./components/AboutHydra.vue'))
+    default:
+      return defineAsyncComponent(() => import('./components/About.vue'))
+  }
+})
+
+// Lifecycle hooks
+onMounted(() => {
+  observeSections()
+})
+
+// Methods
+function changeHashWithoutScrolling(hash) {
+  const id = hash.replace(/^.*#/, '')
+  const elem = document.getElementById(id)
+  if (!elem) return
+  elem.id = `${id}-tmp`
+  window.location.hash = hash
+  elem.id = id
+}
+
+function observeSections() {
+  if (sectionObserver.value) {
+    sectionObserver.value.disconnect()
+  }
+  const options = {
+    rootMargin: '-39% 0px -60%',
+    threshold: 0,
+  }
+  sectionObserver.value = new IntersectionObserver(sectionObserverHandler, options)
+  const sections = document.querySelectorAll('.section')
+  sections.forEach(section => {
+    sectionObserver.value.observe(section)
+  })
+}
+
+function sectionObserverHandler(entries) {
+  for (const entry of entries) {
+    if (entry.isIntersecting) {
+      const sectionId = entry.target.id
+      const hash = `#${sectionId}`
+      changeHashWithoutScrolling(hash)
+      currentHash.value = hash
+    }
+  }
+}
+</script>
+
 <template>
   <div id="app" class="font-mono">
     <!-- Animated background -->
-    <AnimatedBackgroundParticles v-if="animationType === 'particles'" :n-particles="64" :bpm="86" />
-    <AnimatedBackgroundHydra v-else-if="animationType === 'hydra'" />
-    <AnimatedBackgroundMinimal v-else :fps="24" />
+    <component :is="AnimatedBackground" :n-particles="64" :bpm="86" :fps="24" />
+
     <!-- Navbar -->
     <Navbar :current-hash="currentHash" :full-name="bio.name" />
+
     <!-- About -->
-    <AboutP5 v-if="aboutType === 'p5'" class="section" id="about" :bio="bio" />
-    <AboutHydra v-else-if="aboutType === 'hydra'" class="section" id="about" :bio="bio" />
-    <About v-else class="section" id="about" :bio="bio" />
+    <component :is="AboutSection" class="section" id="about" :bio="bio" />
+
     <!-- Other sections -->
     <Publications class="section" id="pubs" :publications="publications" />
     <Experience class="section" id="exp" :experiences="experiences" />
@@ -17,106 +113,3 @@
     <Contact class="section" id="contact" :full-name="bio.name" :icon-size="32" />
   </div>
 </template>
-
-<script>
-import { ref, provide } from 'vue'
-import AnimatedBackgroundParticles from './components/AnimatedBackgroundParticles.vue'
-import AnimatedBackgroundMinimal from './components/AnimatedBackgroundMinimal.vue'
-import AnimatedBackgroundHydra from './components/AnimatedBackgroundHydra.vue'
-import Navbar from './components/Navbar.vue'
-import About from './components/About.vue'
-import AboutP5 from './components/AboutP5.vue'
-import AboutHydra from './components/AboutHydra.vue'
-import Publications from './components/Publications.vue'
-import Experience from './components/Experience.vue'
-import Projects from './components/Projects.vue'
-import Contact from './components/Contact.vue'
-
-import projects from './data/projects.json'
-import publications from './data/publications.json'
-import experiences from './data/experiences.json'
-import bio from './data/bio.json'
-
-export default {
-  components: {
-    AnimatedBackgroundParticles,
-    AnimatedBackgroundMinimal,
-    AnimatedBackgroundHydra,
-    Navbar,
-    About,
-    AboutP5,
-    AboutHydra,
-    Publications,
-    Experience,
-    Projects,
-    Contact,
-  },
-  setup() {
-    // Animation state management
-    const animationState = ref(false)
-    const toggleAnimation = state => {
-      animationState.value = state
-    }
-
-    // Provide animation state to child components
-    provide('animationState', animationState)
-    provide('toggleAnimation', toggleAnimation)
-
-    return {
-      animationState,
-      toggleAnimation,
-    }
-  },
-  data() {
-    return {
-      sectionObserver: null,
-      publications: publications,
-      experiences: experiences,
-      projects: projects,
-      bio: bio,
-      currentHash: '#about',
-      aboutType: 'hydra', // Options: 'p5', 'hydra', 'regular'
-      animationType: 'hydra', // Options: 'particles', 'hydra', 'minimal'
-    }
-  },
-  mounted() {
-    this.observeSections()
-  },
-  methods: {
-    changeHashWithoutScrolling(hash) {
-      const id = hash.replace(/^.*#/, '')
-      const elem = document.getElementById(id)
-      elem.id = `${id}-tmp`
-      window.location.hash = hash
-      elem.id = id
-    },
-    observeSections() {
-      // remove existing observer
-      if (this.sectionObserver) {
-        this.sectionObserver.disconnect()
-      }
-      // create new observer
-      const options = {
-        rootMargin: '-39% 0px -60%',
-        threshold: 0,
-      }
-      this.sectionObserver = new IntersectionObserver(this.sectionObserverHandler, options)
-      // Observe each section
-      const sections = document.querySelectorAll('.section')
-      sections.forEach(section => {
-        this.sectionObserver.observe(section)
-      })
-    },
-    sectionObserverHandler(entries) {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          const sectionId = entry.target.id
-          const hash = `#${sectionId}`
-          this.changeHashWithoutScrolling(hash)
-          this.currentHash = hash
-        }
-      }
-    },
-  },
-}
-</script>

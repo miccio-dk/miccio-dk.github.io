@@ -1,3 +1,9 @@
+<script setup>
+defineOptions({
+  name: 'Modal',
+})
+</script>
+
 <template>
   <div class="text-dark">
     <div class="fixed z-20 inset-0 bg-dark opacity-50" />
@@ -13,11 +19,5 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'Modal',
-}
-</script>
 
 <style scoped lang="scss"></style>

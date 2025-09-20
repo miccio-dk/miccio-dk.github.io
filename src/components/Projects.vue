@@ -10,50 +10,43 @@
           to see related projects.
         </p>
       </div>
-      <ProjectCard v-for="(proj, i) in filteredProjects" :key="i" :data="proj" @click="selectedProj = proj" />
+      <ProjectCard v-for="(proj, i) in filteredProjects" :key="i" :data="proj" @click="showProj(proj)" />
     </div>
-    <ProjectModal v-if="selectedProj" :data="selectedProj" @close="selectedProj = null" />
+    <ProjectModal v-if="selectedProj" :data="selectedProj" @close="closeProj" />
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed } from 'vue'
 import ProjectsMenu from './ProjectsMenu.vue'
 import ProjectCard from './ProjectCard.vue'
 import ProjectModal from './ProjectModal.vue'
+import { useModal } from '../composables/useModal'
 import _orderBy from 'lodash/orderBy'
 import _union from 'lodash/union'
 
-export default {
-  components: {
-    ProjectsMenu,
-    ProjectCard,
-    ProjectModal,
-  },
-  props: {
-    projects: Array,
-  },
-  data() {
-    return {
-      currentTags: [],
-      selectedProj: null,
-    }
-  },
-  computed: {
-    filteredProjects() {
-      var filteredProjects = this.projects.filter(proj => {
-        return this.currentTags.some(tag => proj.tags.includes(tag))
-      })
-      var sortedProjects = _orderBy(filteredProjects, proj => new Date(proj.period), 'desc')
-      return sortedProjects
-    },
-    tagList() {
-      return _union(...this.projects.map(proj => proj.tags)).sort()
-    },
-  },
-  created() {
-    this.currentTags = this.tagList
-  },
-}
+const props = defineProps({
+  projects: Array,
+})
+
+const { selectedItem: selectedProj, showItem: showProj, closeItem: closeProj } = useModal()
+
+const currentTags = ref([])
+
+const tagList = computed(() => {
+  return _union(...props.projects.map(proj => proj.tags)).sort()
+})
+
+const filteredProjects = computed(() => {
+  const filteredProjects = props.projects.filter(proj => {
+    return currentTags.value.some(tag => proj.tags.includes(tag))
+  })
+  const sortedProjects = _orderBy(filteredProjects, proj => new Date(proj.period), 'desc')
+  return sortedProjects
+})
+
+// created() hook equivalent
+currentTags.value = tagList.value
 </script>
 
 <style scoped lang="scss">

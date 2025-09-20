@@ -9,7 +9,7 @@
     <p class="flex-auto text-sm font-thin italic mt-1 mb-6 text-light">
       {{ data.period }}
     </p>
-    <div v-if="mediaNotEmpty" class="icons-container">
+    <div v-if="mediaNotEmpty" class="icons-group">
       <a :href="v" target="_blank" v-for="(v, k) in data.media" :key="k" @click.stop>
         <FontAwesomeIcon class="text-dark" :icon="pickIcon(k)" />
       </a>

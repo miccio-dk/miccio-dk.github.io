@@ -28,36 +28,33 @@
   </Modal>
 </template>
 
-<script>
+<script setup>
 import Modal from './Modal.vue'
 import _isEmpty from 'lodash/isEmpty'
+import { computed } from 'vue'
 
-export default {
+defineOptions({
   name: 'ProjectModal',
-  components: {
-    Modal,
-  },
-  props: {
-    data: Object,
-  },
-  computed: {
-    mediaNotEmpty: function () {
-      return !_isEmpty(this.data.media)
-    },
-  },
-  methods: {
-    pickLabel(key) {
-      return (
-        {
-          url: 'Link',
-          code: 'Source code',
-          doc: 'Document',
-          dl: 'Download',
-          video: 'Media',
-        }[key] || 'Misc.'
-      )
-    },
-  },
+})
+
+const props = defineProps({
+  data: Object,
+})
+
+const mediaNotEmpty = computed(() => {
+  return !_isEmpty(props.data.media)
+})
+
+function pickLabel(key) {
+  return (
+    {
+      url: 'Link',
+      code: 'Source code',
+      doc: 'Document',
+      dl: 'Download',
+      video: 'Media',
+    }[key] || 'Misc.'
+  )
 }
 </script>
 

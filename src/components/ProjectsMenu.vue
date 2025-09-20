@@ -12,62 +12,69 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ProjectsMenu',
-  props: {
-    modelValue: Array,
-    tagList: Array,
+<script setup>
+import { ref, computed, watch } from 'vue'
+
+const props = defineProps({
+  modelValue: Array,
+  tagList: Array,
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+const content = ref(props.modelValue)
+const firstClick = ref(true)
+
+watch(
+  () => props.modelValue,
+  newValue => {
+    content.value = newValue
   },
-  data() {
-    return {
-      content: this.modelValue,
-      firstClick: true,
-    }
-  },
-  computed: {
-    isAllSelected() {
-      return this.content.length === this.tagList.length
-    },
-    isNoneSelected() {
-      return this.content.length === 0
-    },
-  },
-  methods: {
-    getBtnClass(isSelected) {
-      return isSelected ? 'btn-dark' : 'btn-light'
-    },
-    isSelected(tag) {
-      return this.content.includes(tag)
-    },
-    handleInput(tag) {
-      if (this.firstClick) {
-        this.content = [this.tag]
-        this.firstClick = false
-      }
-      if (this.content.includes(tag)) this.content = this.content.filter(t => t !== tag)
-      else this.content.push(tag)
-      this.$emit('update:modelValue', this.content)
-    },
-    selectAll() {
-      this.content = this.tagList
-      this.$emit('update:modelValue', this.content)
-    },
-    selectNone() {
-      this.content = []
-      this.$emit('update:modelValue', this.content)
-    },
-  },
+)
+
+const isAllSelected = computed(() => {
+  return content.value.length === props.tagList.length
+})
+
+const isNoneSelected = computed(() => {
+  return content.value.length === 0
+})
+
+function getBtnClass(isSelected) {
+  return isSelected ? 'btn-dark' : 'btn-light'
+}
+
+function isSelected(tag) {
+  return content.value.includes(tag)
+}
+
+function handleInput(tag) {
+  if (firstClick.value) {
+    content.value = [tag]
+    firstClick.value = false
+  } else if (content.value.includes(tag)) {
+    content.value = content.value.filter(t => t !== tag)
+  } else {
+    content.value.push(tag)
+  }
+  emit('update:modelValue', content.value)
+}
+
+function selectAll() {
+  content.value = props.tagList
+  emit('update:modelValue', content.value)
+}
+
+function selectNone() {
+  content.value = []
+  emit('update:modelValue', content.value)
 }
 </script>
 
 <style scoped lang="scss">
 @reference "../assets/css/tailwind.css";
 
-.btn-light {
-  @apply m-1;
-}
-
+.btn-light,
 .btn-dark {
   @apply m-1;
 }

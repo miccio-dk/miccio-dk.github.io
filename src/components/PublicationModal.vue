@@ -12,18 +12,16 @@
   </Modal>
 </template>
 
-<script>
+<script setup>
 import Modal from './Modal.vue'
 
-export default {
+defineOptions({
   name: 'PublicationModal',
-  components: {
-    Modal,
-  },
-  props: {
-    data: Object,
-  },
-}
+})
+
+defineProps({
+  data: Object,
+})
 </script>
 
 <style scoped lang="scss"></style>

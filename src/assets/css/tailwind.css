@@ -51,18 +51,18 @@
   }
 
   .tag-static {
-    @apply inline-block rounded-md py-1 px-2 border-2 border-dark bg-light text-dark;
+    @apply inline-block rounded-md py-1 px-2 border-2 border-dark bg-light text-dark select-none;
   }
 
   .btn-light {
-    @apply inline-block rounded-md py-1 px-2 border-2 border-dark bg-light text-dark focus:bg-dark focus:text-light hover:underline cursor-pointer;
+    @apply inline-block rounded-md py-1 px-2 border-2 border-dark bg-light text-dark select-none focus:bg-dark focus:text-light hover:underline cursor-pointer;
   }
 
   .btn-dark {
-    @apply inline-block rounded-md py-1 px-2 border-2 border-dark bg-dark text-light focus:bg-light focus:text-dark hover:underline cursor-pointer;
+    @apply inline-block rounded-md py-1 px-2 border-2 border-dark bg-dark text-light select-none focus:bg-light focus:text-dark hover:underline cursor-pointer;
   }
 
-  .icons-container {
+  .icons-group {
     @apply space-x-3 bg-light border-2 py-1 px-2 rounded-md text-sm;
   }
 }

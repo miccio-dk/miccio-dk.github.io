@@ -1,0 +1,47 @@
+# Codebase Improvements & Upgrades
+
+Here is a list of suggested improvements and upgrades for the codebase, categorized from most trivial to most involved.
+
+### Trivial Improvements (Quick Wins)
+
+- [ ] **Adopt `<script setup>` Syntax:** Migrate components to the recommended Vue 3 `<script setup>` syntax. The following components still need to be migrated:
+  - [x] `App.vue`
+  - [x] `AboutHydra.vue`
+  - [ ] `AboutP5.vue`
+  - [x] `AnimatedBackgroundHydra.vue`
+  - [x] `AnimatedBackgroundMinimal.vue`
+  - [x] `AnimatedBackgroundParticles.vue`
+  - [ ] `Contact.vue`
+  - [ ] `Experience.vue`
+  - [ ] `ExperienceBlock.vue`
+  - [ ] `ExperienceDetails.vue`
+  - [ ] `ExperienceTimeline.vue`
+  - [ ] `HydraCanvas.vue`
+  - [x] `Navbar.vue`
+  - [ ] `P5Canvas.vue`
+  - [ ] `ProjectCard.vue`
+  - [ ] `PublicationBlock.vue`
+- [x] **Refactor CSS in `ProjectsMenu.vue`:** Remove redundant CSS by creating a single base class for buttons.
+- [x] **Cleanup Commented Code:** Remove any dead or commented-out debugging code.
+- [x] **Standardize Asset Importing:** Ensure all static assets are imported into scripts to get their bundled URL, rather than being referenced by direct source paths.
+- [x] **Regular Dependency Audits:** Periodically run `npm outdated` and update dependencies to get the latest features, performance improvements, and security patches.
+
+### Dependency Audit Results (2025-09-20)
+
+- Major version updates are available for `p5`, `marked`, `tone`, `@vue/eslint-config-prettier`, and `vue3-simple-icons`. These should be handled carefully as they may contain breaking changes.
+- Minor version updates are available for `@fortawesome/fontawesome-svg-core`, `@fortawesome/free-solid-svg-icons`, `@eslint/js`, `eslint`, and `sass`. These should be safe to update.
+- Note: do not update `vue3-simple-icons` because it will remove some necessary icons.
+
+### Moderate Improvements (Enhancing Structure)
+
+- [x] **Extract Utility Functions:** Move pure utility functions (e.g., `drawGradient` from `AnimatedBackgroundParticles.vue`) into dedicated utility files.
+- [x] **Refactor `About` Components for Reusability:** Create a single `AboutBase.vue` component with slots to reduce code duplication between the three existing `About` components.
+- [x] **Create `useModal` Composable:** Abstract the duplicated modal state logic from `Projects.vue` and `Publications.vue` into a reusable `useModal.js` composable.
+- [x] **Introduce Pinia for State Management:** Replace the current `provide`/`inject` implementation with Pinia for a more robust and scalable state management solution.
+
+### Involved Improvements (Major Upgrades)
+
+- [ ] **Refactor `AnimatedBackgroundParticles.vue` with Composables:** Break down the component's logic into smaller, reusable composables (e.g., `useParticleSynth.js` for audio, `useP5Sketch.js` for canvas logic).
+- [ ] **Performance Optimization with Dynamic Imports:** Use dynamic `import()` for large libraries like `tone`, `p5`, and `hydra-synth` to reduce the initial bundle size.
+- [x] **Code-Split Component Variants:** Use `defineAsyncComponent` to dynamically load component variants (like the different `About` and `AnimatedBackground` sections) to reduce the initial bundle size.
+- [ ] **Introduce a Testing Strategy:** Set up a testing framework like Vitest and begin writing unit and component tests.

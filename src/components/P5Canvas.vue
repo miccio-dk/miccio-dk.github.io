@@ -8,6 +8,10 @@ import p5 from 'p5'
 export default {
   name: 'P5Canvas',
   props: {
+    canvasClass: {
+      type: String,
+      default: '',
+    },
     setup: {
       type: Function,
       required: true,
@@ -44,6 +48,9 @@ export default {
         // Bind methods
         sk.setup = () => {
           this.setup(sk)
+          if (this.canvasClass) {
+            sk.canvas.classList.add(this.canvasClass)
+          }
         }
         sk.draw = () => {
           this.draw(sk)

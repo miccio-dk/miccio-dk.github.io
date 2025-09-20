@@ -18,7 +18,7 @@
         </span>
       </template>
     </p>
-    <div class="icons-container">
+    <div class="icons-group">
       <a @click="$emit('show-publ')" href="javascript:;">
         <FontAwesomeIcon class="text-dark" icon="quote-right" />
       </a>
