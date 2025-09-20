@@ -26,25 +26,16 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { marked } from 'marked'
 
-export default {
-  name: 'ExperienceBlock',
-  props: {
-    exp: Object,
-    open: Boolean,
-  },
-  data() {
-    return {
-      openClass: ['bg-dark', 'text-light', 'border-dark'],
-    }
-  },
-  methods: {
-    mdToHtml(mdData) {
-      return marked(mdData, {})
-    },
-  },
+defineProps({
+  exp: Object,
+  open: Boolean,
+})
+
+function mdToHtml(mdData) {
+  return marked(mdData, {})
 }
 </script>
 

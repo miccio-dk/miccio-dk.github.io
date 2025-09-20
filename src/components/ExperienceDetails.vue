@@ -20,24 +20,15 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { marked } from 'marked'
 
-export default {
-  name: 'ExperienceDetails',
-  props: {
-    exp: Object,
-  },
-  data() {
-    return {
-      selectClass: ['bg-dark', 'text-light', 'border-dark'],
-    }
-  },
-  methods: {
-    mdToHtml(mdData) {
-      return marked(mdData, {})
-    },
-  },
+defineProps({
+  exp: Object,
+})
+
+function mdToHtml(mdData) {
+  return marked(mdData, {})
 }
 </script>
 

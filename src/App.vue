@@ -26,8 +26,8 @@ const projects = projectsData
 const bio = bioData
 const sectionObserver = ref(null)
 const currentHash = ref('#about')
-const aboutType = ref('regular') // Options: 'p5', 'hydra', 'regular'
-const animationType = ref('particles') // Options: 'particles', 'hydra', 'minimal'
+const aboutType = ref('hydra') // Options: 'p5', 'hydra', 'regular'
+const animationType = ref('hydra') // Options: 'particles', 'hydra', 'minimal'
 
 // --- Dynamic Component Loading ---
 

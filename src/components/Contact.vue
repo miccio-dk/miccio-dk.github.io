@@ -86,7 +86,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import {
   LinkedInIcon,
   GitHubIcon,
@@ -100,27 +100,13 @@ import {
   // YouTubeIcon,
 } from 'vue3-simple-icons'
 
-export default {
-  components: {
-    LinkedInIcon,
-    GitHubIcon,
-    ResearchGateIcon,
-    GoogleScholarIcon,
-    SemanticScholarIcon,
-    OrcidIcon,
-    SoundCloudIcon,
-    GoodreadsIcon,
-    InstagramIcon,
-    // YouTubeIcon,
+defineProps({
+  iconSize: {
+    type: [String, Number],
+    default: 32,
   },
-  props: {
-    iconSize: {
-      type: [String, Number],
-      default: 32,
-    },
-    fullName: String,
-  },
-}
+  fullName: String,
+})
 </script>
 
 <style scoped lang="scss">

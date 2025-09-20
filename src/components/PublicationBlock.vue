@@ -32,28 +32,27 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'PublicationBlock',
-  props: {
-    data: Object,
-  },
-  computed: {
-    quotedTitle() {
-      return this.data.title ? '"' + this.data.title + '"' : ''
-    },
-    doiUrl() {
-      return 'https://doi.org/' + this.data.doi
-    },
-    splitAuthors() {
-      return this.data.authors.split(',').map(author => author.trim().replace(' ', '&nbsp;'))
-    },
-  },
-  methods: {
-    isMe(author) {
-      return author.toLowerCase().includes('miccini')
-    },
-  },
+<script setup>
+import { computed } from 'vue'
+
+const props = defineProps({
+  data: Object,
+})
+
+const quotedTitle = computed(() => {
+  return props.data.title ? '"' + props.data.title + '"' : ''
+})
+
+const doiUrl = computed(() => {
+  return 'https://doi.org/' + props.data.doi
+})
+
+const splitAuthors = computed(() => {
+  return props.data.authors.split(',').map(author => author.trim().replace(' ', '&nbsp;'))
+})
+
+function isMe(author) {
+  return author.toLowerCase().includes('miccini')
 }
 </script>
 

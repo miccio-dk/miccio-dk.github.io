@@ -4,23 +4,7 @@ Here is a list of suggested improvements and upgrades for the codebase, categori
 
 ### Trivial Improvements (Quick Wins)
 
-- [ ] **Adopt `<script setup>` Syntax:** Migrate components to the recommended Vue 3 `<script setup>` syntax. The following components still need to be migrated:
-  - [x] `App.vue`
-  - [x] `AboutHydra.vue`
-  - [ ] `AboutP5.vue`
-  - [x] `AnimatedBackgroundHydra.vue`
-  - [x] `AnimatedBackgroundMinimal.vue`
-  - [x] `AnimatedBackgroundParticles.vue`
-  - [ ] `Contact.vue`
-  - [ ] `Experience.vue`
-  - [ ] `ExperienceBlock.vue`
-  - [ ] `ExperienceDetails.vue`
-  - [ ] `ExperienceTimeline.vue`
-  - [ ] `HydraCanvas.vue`
-  - [x] `Navbar.vue`
-  - [ ] `P5Canvas.vue`
-  - [ ] `ProjectCard.vue`
-  - [ ] `PublicationBlock.vue`
+- [x] **Adopt `<script setup>` Syntax:** Migrate components to the recommended Vue 3 `<script setup>` syntax. All components have been migrated.
 - [x] **Refactor CSS in `ProjectsMenu.vue`:** Remove redundant CSS by creating a single base class for buttons.
 - [x] **Cleanup Commented Code:** Remove any dead or commented-out debugging code.
 - [x] **Standardize Asset Importing:** Ensure all static assets are imported into scripts to get their bundled URL, rather than being referenced by direct source paths.
@@ -41,7 +25,7 @@ Here is a list of suggested improvements and upgrades for the codebase, categori
 
 ### Involved Improvements (Major Upgrades)
 
-- [ ] **Refactor `AnimatedBackgroundParticles.vue` with Composables:** Break down the component's logic into smaller, reusable composables (e.g., `useParticleSynth.js` for audio, `useP5Sketch.js` for canvas logic).
-- [ ] **Performance Optimization with Dynamic Imports:** Use dynamic `import()` for large libraries like `tone`, `p5`, and `hydra-synth` to reduce the initial bundle size.
+- [x] **Refactor `AnimatedBackgroundParticles.vue` with Composables:** Break down the component's logic into smaller, reusable composables (e.g., `useParticleSynth.js` for audio, `useP5Sketch.js` for canvas logic).
+- [x] **Performance Optimization with Dynamic Imports:** Use dynamic `import()` for large libraries like `tone`, `p5`, and `hydra-synth` to reduce the initial bundle size.
 - [x] **Code-Split Component Variants:** Use `defineAsyncComponent` to dynamically load component variants (like the different `About` and `AnimatedBackground` sections) to reduce the initial bundle size.
 - [ ] **Introduce a Testing Strategy:** Set up a testing framework like Vitest and begin writing unit and component tests.

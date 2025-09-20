@@ -51,6 +51,7 @@ function animationScript(h) {
     // remap photo colors
     .modulate(h.src(h.o3).add(h.gradient(), -1), 1)
     .out(h.o0)
+  // h.render()
 }
 </script>
 

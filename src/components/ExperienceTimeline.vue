@@ -1,120 +1,117 @@
+<script setup>
+import Two from 'two.js'
+import { markRaw, onMounted, watch } from 'vue'
+
+const props = defineProps({
+  exp: Object,
+  width: {
+    type: Number,
+    default: 16,
+  },
+  height: {
+    type: Number,
+    default: 600,
+  },
+  from: {
+    type: Number,
+    default: 2013,
+  },
+  to: {
+    type: Number,
+    default: 2025,
+  },
+  margin: {
+    type: Number,
+    default: 20,
+  },
+  thickness: {
+    type: Number,
+    default: 2,
+  },
+  easing: {
+    type: Number,
+    default: 0.25,
+  },
+})
+
+let two = null
+let line = null
+let begin = null
+let end = null
+let range = null
+let tick_dist = null
+
+onMounted(() => {
+  range = props.to - props.from + 1
+  tick_dist = (props.height - props.margin * 2) / (range - 1)
+  // create two.js instance
+  var elem = document.getElementById('timeline')
+  two = markRaw(
+    new Two({
+      width: props.width,
+      height: props.height,
+      autostart: true,
+    }).appendTo(elem),
+  )
+  drawTimeline()
+})
+
+watch(
+  () => props.exp,
+  newExp => {
+    if (newExp) {
+      begin.y = dateToPixels(newExp.from, true)
+      end.y = dateToPixels(newExp.to)
+    } else {
+      begin.y = 0
+      end.y = 0
+    }
+  },
+)
+
+function drawTimeline() {
+  // draw line
+  var tline = two.makeLine(props.width / 2, 0, props.width / 2, props.height)
+  tline.stroke = '#000000'
+  tline.linewidth = props.thickness
+  tline.dashes[0] = tick_dist / 36
+  tline.dashes[1] = tick_dist / 36
+  // draw ticks
+  for (let i = 0; i < range; i++) {
+    var tick_y = props.margin + i * tick_dist
+    var tick = two.makeRectangle(props.width / 2, tick_y, props.thickness * 4, tick_dist / 36)
+    tick.fill = '#000000'
+    tick.noStroke()
+  }
+  // instantiate highlight
+  line = two.makeLine(props.width / 2, 0, props.width / 2, 0)
+  line.stroke = '#000000'
+  line.linewidth = props.thickness * 2
+  begin = line.vertices[0].clone()
+  end = line.vertices[1].clone()
+  // highlight event binding
+  two.bind('update', () => {
+    var begin_old = line.vertices[0].y
+    var end_old = line.vertices[1].y
+    line.vertices[0].y += (begin.y - begin_old) * props.easing
+    line.vertices[1].y += (end.y - end_old) * props.easing
+  })
+}
+
+function dateToPixels(date_str, is_from = false) {
+  var [month, year] = date_str.split('/').map(c => parseInt(c))
+  if (is_from) {
+    month -= 1
+  }
+  var date_float = year + month / 12
+  var date_px = props.margin + (date_float - props.from) * tick_dist
+  return props.height - date_px
+}
+</script>
+
 <template>
   <div id="timeline" />
 </template>
-
-<script>
-import Two from 'two.js'
-import { markRaw } from 'vue'
-
-export default {
-  name: 'ExperienceTimeline',
-  props: {
-    exp: Object,
-    width: {
-      type: Number,
-      default: 16,
-    },
-    height: {
-      type: Number,
-      default: 600,
-    },
-    from: {
-      type: Number,
-      default: 2013,
-    },
-    to: {
-      type: Number,
-      default: 2025,
-    },
-    margin: {
-      type: Number,
-      default: 20,
-    },
-    thickness: {
-      type: Number,
-      default: 2,
-    },
-    easing: {
-      type: Number,
-      default: 0.25,
-    },
-  },
-  data() {
-    return {
-      two: null,
-      line: null,
-      begin: null,
-      end: null,
-      range: null,
-      tick_dist: null,
-    }
-  },
-  mounted: function () {
-    this.range = this.to - this.from + 1
-    this.tick_dist = (this.height - this.margin * 2) / (this.range - 1)
-    // create two.js instance
-    var elem = document.getElementById('timeline')
-    this.two = markRaw(
-      new Two({
-        width: this.width,
-        height: this.height,
-        autostart: true,
-      }).appendTo(elem),
-    )
-    this.drawTimeline()
-  },
-  watch: {
-    exp() {
-      if (this.exp) {
-        this.begin.y = this.dateToPixels(this.exp.from, true)
-        this.end.y = this.dateToPixels(this.exp.to)
-      } else {
-        this.begin.y = 0
-        this.end.y = 0
-      }
-    },
-  },
-  methods: {
-    drawTimeline() {
-      // draw line
-      var tline = this.two.makeLine(this.width / 2, 0, this.width / 2, this.height)
-      tline.stroke = '#000000'
-      tline.linewidth = this.thickness
-      tline.dashes[0] = this.tick_dist / 36
-      tline.dashes[1] = this.tick_dist / 36
-      // draw ticks
-      for (let i = 0; i < this.range; i++) {
-        var tick_y = this.margin + i * this.tick_dist
-        var tick = this.two.makeRectangle(this.width / 2, tick_y, this.thickness * 4, this.tick_dist / 36)
-        tick.fill = '#000000'
-        tick.noStroke()
-      }
-      // instantiate highlight
-      this.line = this.two.makeLine(this.width / 2, 0, this.width / 2, 0)
-      this.line.stroke = '#000000'
-      this.line.linewidth = this.thickness * 2
-      this.begin = this.line.vertices[0].clone()
-      this.end = this.line.vertices[1].clone()
-      // highlight event binding
-      this.two.bind('update', () => {
-        var begin_old = this.line.vertices[0].y
-        var end_old = this.line.vertices[1].y
-        this.line.vertices[0].y += (this.begin.y - begin_old) * this.easing
-        this.line.vertices[1].y += (this.end.y - end_old) * this.easing
-      })
-    },
-    dateToPixels(date_str, is_from = false) {
-      var [month, year] = date_str.split('/').map(c => parseInt(c))
-      if (is_from) {
-        month -= 1
-      }
-      var date_float = year + month / 12
-      var date_px = this.margin + (date_float - this.from) * this.tick_dist
-      return this.height - date_px
-    },
-  },
-}
-</script>
 
 <style lang="scss">
 @reference "../assets/css/tailwind.css";

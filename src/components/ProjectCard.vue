@@ -1,3 +1,28 @@
+<script setup>
+import { computed } from 'vue'
+import _isEmpty from 'lodash/isEmpty'
+
+const props = defineProps({
+  data: Object,
+})
+
+const mediaNotEmpty = computed(() => {
+  return !_isEmpty(props.data.media)
+})
+
+function pickIcon(key) {
+  return (
+    {
+      url: 'link',
+      code: 'code',
+      doc: 'file-alt',
+      dl: 'download',
+      video: 'photo-video',
+    }[key] || 'quote-right'
+  )
+}
+</script>
+
 <template>
   <div
     class="flex flex-col items-start bg-dark p-4 shadow-md rounded-md transform transition-all hover:scale-105"
@@ -16,35 +41,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import _isEmpty from 'lodash/isEmpty'
-
-export default {
-  name: 'ProjectCard',
-  props: {
-    data: Object,
-  },
-  computed: {
-    mediaNotEmpty: function () {
-      return !_isEmpty(this.data.media)
-    },
-  },
-  methods: {
-    pickIcon(key) {
-      return (
-        {
-          url: 'link',
-          code: 'code',
-          doc: 'file-alt',
-          dl: 'download',
-          video: 'photo-video',
-        }[key] || 'quote-right'
-      )
-    },
-  },
-}
-</script>
 
 <style scoped lang="scss">
 @reference "../assets/css/tailwind.css";
