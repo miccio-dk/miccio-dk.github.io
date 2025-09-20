@@ -4,6 +4,7 @@
     <AnimatedBackground v-else class="z-0 fixed" :n-particles="64" :bpm="86" />
     <Navbar :current-hash="currentHash" :full-name="bio.name" />
     <AboutP5 v-if="aboutType === 'p5'" class="section" id="about" :bio="bio" />
+    <AboutHydra v-else-if="aboutType === 'hydra'" class="section" id="about" :bio="bio" />
     <About v-else class="section" id="about" :bio="bio" />
     <Publications class="section" id="pubs" :publications="publications" />
     <Experience class="section" id="exp" :experiences="experiences" />
@@ -19,6 +20,7 @@ import AnimatedBackgroundMinimal from './components/AnimatedBackgroundMinimal.vu
 import Navbar from './components/Navbar.vue'
 import About from './components/About.vue'
 import AboutP5 from './components/AboutP5.vue'
+import AboutHydra from './components/AboutHydra.vue'
 import Publications from './components/Publications.vue'
 import Experience from './components/Experience.vue'
 import Projects from './components/Projects.vue'
@@ -36,6 +38,7 @@ export default {
     Navbar,
     About,
     AboutP5,
+    AboutHydra,
     Publications,
     Experience,
     Projects,
@@ -65,7 +68,7 @@ export default {
       projects: projects,
       bio: bio,
       currentHash: '#about',
-      aboutType: 'p5',
+      aboutType: 'hydra', // Options: 'p5', 'hydra', 'regular'
       animationType: 'regular',
     }
   },

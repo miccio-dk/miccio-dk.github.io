@@ -1,6 +1,9 @@
 ---
-description: Example rule
-alwaysApply: false
+alwaysApply: true
 ---
-- this is an example rule
-- feel free to ignore it
+- this project uses Vue 3, Vite, and Tailwind CSS
+- if you stumble upon old Vue 2 code or design patterns, please update them to Vue 3
+- make sure to use all the latest features and best practices for all the frameworks
+- before running any npm commands, make sure to source nvm in the terminal
+- ensure consistency with existing codebase
+- run `npm run lint:fix` after making changes to the code
