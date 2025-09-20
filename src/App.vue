@@ -26,8 +26,14 @@ const projects = projectsData
 const bio = bioData
 const sectionObserver = ref(null)
 const currentHash = ref('#about')
-const aboutType = ref('hydra') // Options: 'p5', 'hydra', 'regular'
-const animationType = ref('hydra') // Options: 'particles', 'hydra', 'minimal'
+
+// Define the available variants for random selection
+const aboutVariants = ['hydra', 'regular', 'regular']
+const backgroundVariants = ['particles', 'hydra', 'minimal']
+
+// Refs to store the randomly selected component types
+const aboutType = ref('regular')
+const animationType = ref('minimal')
 
 // --- Dynamic Component Loading ---
 
@@ -55,6 +61,10 @@ const AboutSection = computed(() => {
 
 // Lifecycle hooks
 onMounted(() => {
+  // Randomly select a variant on component mount
+  aboutType.value = aboutVariants[Math.floor(Math.random() * aboutVariants.length)]
+  animationType.value = backgroundVariants[Math.floor(Math.random() * backgroundVariants.length)]
+
   observeSections()
 })
 

@@ -34,9 +34,16 @@ Here is a list of suggested improvements and upgrades for the codebase, categori
 
 This section contains findings from a detailed component-by-component review, focusing on smaller inconsistencies, redundancies, and opportunities for improvement.
 
-- [x] **Data-Driven Social Links:** Refactor `Contact.vue` to source its social media links from a data array in the script rather than having them hardcoded in the template. This will make the component cleaner and easier to maintain.
-- [x] **Create `MarkdownRenderer` Component:** The `mdToHtml` function and associated styles were duplicated in `ExperienceBlock.vue` and `ExperienceDetails.vue`. This logic has been extracted into a reusable `MarkdownRenderer.vue` component.
-- [x] **Centralize Media Mappings:** The `pickIcon` and `pickLabel` functions in `ProjectCard.vue` and `ProjectModal.vue` have been replaced by a centralized mapping utility in `src/utils/mediaMappings.js`.
-- [x] **Externalize Author Highlighting:** The author highlighting in `PublicationBlock.vue` no longer uses a hardcoded magic string. The name is now passed as a prop from the parent, sourced from `bio.json`. This also fixed a text wrapping issue.
-- [x] **Modernize Variable Declarations:** All instances of `var` in the project's scripts have been replaced with `let` or `const` to adhere to modern ES6 standards.
+
+- [ ] **Projects section upgrade:**
+    - projects stored as files in `data/projects/`
+    - each file contains the project title, period, location, description (markdown), media links, tags, etc in a simple structured format
+    - imported into a json object
+    - generate a couple couple of examples files from `projects.json` to show how it works
+    - rest of rendering logic stays the same
+    - we might add pictures too eventually
+- [ ] **Integrate strudel (audio):** 
+    - new animated background with hydra and strudel
+    - add strudel to the project as in https://codeberg.org/uzu/strudel/src/branch/main/packages/web#strudel-web (we don't want the live editor, just the sound generation)
+    - use composables
 - [ ] **Add `lastName` to `bio.json`:** The `bio.json` file should have a dedicated `lastName` field to avoid brittle logic like `name.split(' ')[1]` when sourcing the name for author highlighting.

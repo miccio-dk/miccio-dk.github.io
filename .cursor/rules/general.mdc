@@ -7,3 +7,4 @@ alwaysApply: true
 - before running any npm commands, make sure to source nvm in the terminal
 - ensure consistency with existing codebase
 - run `npm run lint:fix` after making changes to the code
+- when in doubt, ask check the codebase documentation in `docs/codebase-description.md`

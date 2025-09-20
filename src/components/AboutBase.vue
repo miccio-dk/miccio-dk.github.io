@@ -25,8 +25,8 @@ function toggleAnimation() {
 
 <template>
   <div class="section-container">
-    <div class="flex flex-col lg:flex-row items-stretch gap-8 xl:gap-16">
-      <div class="w-full flex-3 flex justify-center items-center">
+    <div class="flex flex-col lg:flex-row items-center lg:items-stretch gap-8 xl:gap-16">
+      <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-full flex-3 flex justify-center items-center">
         <slot />
       </div>
       <div class="w-full flex-5 text-left space-y-4 flex flex-col justify-between">
