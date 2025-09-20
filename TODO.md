@@ -8,7 +8,7 @@
 ## background visuals
 
 - integrate strudel: https://codeberg.org/uzu/strudel/src/branch/main/packages/web#strudel-web
-- integrate hydra: https://hydra.ojack.xyz/docs/docs/learning/guides/how-to/hydra-in-a-webpage/
+x integrate hydra: https://hydra.ojack.xyz/docs/docs/learning/guides/how-to/hydra-in-a-webpage/
 
 ## content
 
@@ -19,5 +19,5 @@
 ## features
 
 - add category to experience (education, employment, internship, etc) and show as icon
-- show abstract of each publication modal
-- show bibtex of each publication modal: https://www.doi2bib.org/about
+- show abstract on each publication modal
+- show bibtex on each publication modal: https://www.doi2bib.org/about
