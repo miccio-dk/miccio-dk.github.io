@@ -1,11 +1,16 @@
 <template>
   <div id="app" class="font-mono">
-    <AnimatedBackgroundMinimal v-if="animationType === 'minimal'" class="z-0 fixed" :fps="24" />
-    <AnimatedBackground v-else class="z-0 fixed" :n-particles="64" :bpm="86" />
+    <!-- Animated background -->
+    <AnimatedBackgroundParticles v-if="animationType === 'particles'" :n-particles="64" :bpm="86" />
+    <AnimatedBackgroundHydra v-else-if="animationType === 'hydra'" />
+    <AnimatedBackgroundMinimal v-else :fps="24" />
+    <!-- Navbar -->
     <Navbar :current-hash="currentHash" :full-name="bio.name" />
+    <!-- About -->
     <AboutP5 v-if="aboutType === 'p5'" class="section" id="about" :bio="bio" />
     <AboutHydra v-else-if="aboutType === 'hydra'" class="section" id="about" :bio="bio" />
     <About v-else class="section" id="about" :bio="bio" />
+    <!-- Other sections -->
     <Publications class="section" id="pubs" :publications="publications" />
     <Experience class="section" id="exp" :experiences="experiences" />
     <Projects class="section" id="projects" :projects="projects" />
@@ -15,8 +20,9 @@
 
 <script>
 import { ref, provide } from 'vue'
-import AnimatedBackground from './components/AnimatedBackground.vue'
+import AnimatedBackgroundParticles from './components/AnimatedBackgroundParticles.vue'
 import AnimatedBackgroundMinimal from './components/AnimatedBackgroundMinimal.vue'
+import AnimatedBackgroundHydra from './components/AnimatedBackgroundHydra.vue'
 import Navbar from './components/Navbar.vue'
 import About from './components/About.vue'
 import AboutP5 from './components/AboutP5.vue'
@@ -33,8 +39,9 @@ import bio from './data/bio.json'
 
 export default {
   components: {
-    AnimatedBackground,
+    AnimatedBackgroundParticles,
     AnimatedBackgroundMinimal,
+    AnimatedBackgroundHydra,
     Navbar,
     About,
     AboutP5,
@@ -69,7 +76,7 @@ export default {
       bio: bio,
       currentHash: '#about',
       aboutType: 'hydra', // Options: 'p5', 'hydra', 'regular'
-      animationType: 'regular',
+      animationType: 'hydra', // Options: 'particles', 'hydra', 'minimal'
     }
   },
   mounted() {

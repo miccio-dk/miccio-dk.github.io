@@ -1,5 +1,7 @@
 <template>
-  <P5Canvas :setup="setup" :draw="draw" :window-resized="windowResized" :fps="fps" />
+  <div class="fixed h-full w-full z-0">
+    <P5Canvas :setup="setup" :draw="draw" :window-resized="windowResized" :fps="fps" />
+  </div>
 </template>
 
 <script>
@@ -59,4 +61,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped></style>

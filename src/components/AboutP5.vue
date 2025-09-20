@@ -2,7 +2,7 @@
   <div class="section-container">
     <div class="flex flex-col lg:flex-row items-stretch gap-8 xl:gap-16">
       <div class="block w-full flex-1 shadow-md rounded-md aspect-3/2">
-        <P5Canvas :setup="setupP5" :draw="drawP5" :window-resized="windowResizedP5" :fps="5" />
+        <P5Canvas :setup="setupP5" :draw="drawP5" :window-resized="windowResized" :fps="5" />
         <!-- <p>P5Canvas</p> -->
       </div>
 
@@ -99,7 +99,7 @@ export default {
       let right = sk.createVector(this.canvasWidth, this.canvasHeight / 2)
       this.drawArrow(sk, left, right, 12, 0)
     },
-    windowResizedP5(sk) {
+    windowResized(sk) {
       const container = sk.canvas.parentElement
       this.canvasWidth = container.clientWidth
       this.canvasHeight = container.clientHeight

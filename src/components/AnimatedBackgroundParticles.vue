@@ -1,5 +1,7 @@
 <template>
-  <P5Canvas :setup="setup" :draw="draw" :window-resized="windowresized" :fps="fps" />
+  <div class="fixed h-full w-full z-0">
+    <P5Canvas :setup="setup" :draw="draw" :window-resized="windowResized" :fps="fps" />
+  </div>
 </template>
 
 <script>
@@ -12,7 +14,7 @@ import _throttle from 'lodash/throttle'
 import _isEmpty from 'lodash/isEmpty'
 
 export default {
-  name: 'AnimatedBackground',
+  name: 'AnimatedBackgroundParticles',
   components: {
     P5Canvas,
   },
@@ -156,7 +158,7 @@ export default {
       // sk.rect(0, sk.height / 2 + 20, this.fiParticles * scaling, 10);
       // sk.rect(0, sk.height / 2 + 40, this.foParticles * scaling, 10);
     },
-    windowresized(sk) {
+    windowResized(sk) {
       sk.resizeCanvas(sk.windowWidth, sk.windowHeight)
     },
     enableAnimation() {
@@ -226,7 +228,7 @@ export default {
             release: '2n',
             releaseCurve: 'exponential',
           },
-          volume: -35,
+          volume: -30,
         })
         this.chordFx = new Tone.AutoFilter('4n', 1500, 0.4).toDestination().start()
         this.chordSynth = new Tone.PolySynth(Tone.FMSynth).connect(this.chordFx)
@@ -243,7 +245,7 @@ export default {
             releaseCurve: 'linear',
           },
           modulationIndex: 10,
-          volume: -35,
+          volume: -25,
         })
         // setup timing
         Tone.getTransport().bpm.value = this.bpm
@@ -346,4 +348,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped></style>
