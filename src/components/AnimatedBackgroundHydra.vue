@@ -29,7 +29,7 @@ function animationScript(h) {
       .color(2.5, 0.9, 2.4)
       .out(h.o0)
   } else {
-    var lfo = () => (Math.sin(h.time / 4) * 0.5 + 1) * Math.PI
+    const lfo = () => (Math.sin(h.time / 4) * 0.5 + 1) * Math.PI
     h.osc(Math.PI, 0.05, lfo).pixelate(8, 1).out(h.o0)
   }
 }

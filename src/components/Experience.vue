@@ -63,15 +63,3 @@ function toggleCurrent(i) {
   setCurrent(isCurrent(i) ? null : i)
 }
 </script>
-
-<style lang="scss">
-@reference "../assets/css/tailwind.css";
-
-.markdown p {
-  @apply mt-4;
-}
-
-.markdown ul {
-  @apply list-disc pl-8;
-}
-</style>

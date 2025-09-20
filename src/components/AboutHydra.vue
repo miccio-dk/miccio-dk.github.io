@@ -33,9 +33,9 @@ function onHydraReady(h) {
 function animationScript(h) {
   h.s0.initImage(photoUrl, { min: 'linear', mag: 'linear' })
   // current time (to reset LFOs)
-  var t0 = h.time
+  const t0 = h.time
   // oscillator for intensity
-  var lfo = () => (Math.sin((h.time - t0) / 4) * 0.3 + Math.sin((h.time - t0) / 8.1) * 0.15) * store.animationOn
+  const lfo = () => (Math.sin((h.time - t0) / 4) * 0.3 + Math.sin((h.time - t0) / 8.1) * 0.15) * store.animationOn
   // modulator textures
   h.noise(4, 0.1).luma().pixelate(12, 8).out(h.o1)
   h.voronoi(4, 0.1, 0).luma().out(h.o2)

@@ -45,7 +45,7 @@ onMounted(() => {
   range = props.to - props.from + 1
   tick_dist = (props.height - props.margin * 2) / (range - 1)
   // create two.js instance
-  var elem = document.getElementById('timeline')
+  const elem = document.getElementById('timeline')
   two = markRaw(
     new Two({
       width: props.width,
@@ -71,15 +71,15 @@ watch(
 
 function drawTimeline() {
   // draw line
-  var tline = two.makeLine(props.width / 2, 0, props.width / 2, props.height)
+  const tline = two.makeLine(props.width / 2, 0, props.width / 2, props.height)
   tline.stroke = '#000000'
   tline.linewidth = props.thickness
   tline.dashes[0] = tick_dist / 36
   tline.dashes[1] = tick_dist / 36
   // draw ticks
   for (let i = 0; i < range; i++) {
-    var tick_y = props.margin + i * tick_dist
-    var tick = two.makeRectangle(props.width / 2, tick_y, props.thickness * 4, tick_dist / 36)
+    const tick_y = props.margin + i * tick_dist
+    const tick = two.makeRectangle(props.width / 2, tick_y, props.thickness * 4, tick_dist / 36)
     tick.fill = '#000000'
     tick.noStroke()
   }
@@ -91,20 +91,20 @@ function drawTimeline() {
   end = line.vertices[1].clone()
   // highlight event binding
   two.bind('update', () => {
-    var begin_old = line.vertices[0].y
-    var end_old = line.vertices[1].y
+    let begin_old = line.vertices[0].y
+    let end_old = line.vertices[1].y
     line.vertices[0].y += (begin.y - begin_old) * props.easing
     line.vertices[1].y += (end.y - end_old) * props.easing
   })
 }
 
 function dateToPixels(date_str, is_from = false) {
-  var [month, year] = date_str.split('/').map(c => parseInt(c))
+  let [month, year] = date_str.split('/').map(c => parseInt(c))
   if (is_from) {
     month -= 1
   }
-  var date_float = year + month / 12
-  var date_px = props.margin + (date_float - props.from) * tick_dist
+  const date_float = year + month / 12
+  const date_px = props.margin + (date_float - props.from) * tick_dist
   return props.height - date_px
 }
 </script>
@@ -112,15 +112,3 @@ function dateToPixels(date_str, is_from = false) {
 <template>
   <div id="timeline" />
 </template>
-
-<style lang="scss">
-@reference "../assets/css/tailwind.css";
-
-.markdown p {
-  @apply mt-4;
-}
-
-.markdown ul {
-  @apply list-disc pl-8;
-}
-</style>

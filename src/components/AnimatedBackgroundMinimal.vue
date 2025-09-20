@@ -33,10 +33,10 @@ function draw(sk) {
   }
   // create 2 colors from noise
   let ncol = (s, offs = 0) => 50 + sk.noise((sk.frameCount / props.fps) * s, offs) * 200
-  var c1 = [ncol(0.1, 0), ncol(0.1, 10), ncol(0.1, 20)]
-  var c2 = [ncol(0.11), ncol(0.12), ncol(0.13)]
-  var c1curr = sk.color(...c1)
-  var c2curr = sk.color(...c2)
+  const c1 = [ncol(0.1, 0), ncol(0.1, 10), ncol(0.1, 20)]
+  const c2 = [ncol(0.11), ncol(0.12), ncol(0.13)]
+  const c1curr = sk.color(...c1)
+  const c2curr = sk.color(...c2)
   drawGradient(sk, 0, 0, sk.width, sk.height, c1curr, c2curr, 'y')
 }
 

@@ -1,10 +1,8 @@
 <template>
   <div class="w-full flex-col flex items-start">
     <p class="text-dark">
-      <template v-for="author in splitAuthors" :key="author">
-        <span :class="{ 'font-bold': isMe(author) }" v-html="author"></span>
-        <span>,&ThickSpace;</span>
-      </template>
+      <span v-html="formattedAuthors"></span>
+      <span>,&ThickSpace;</span>
       <span class="">{{ quotedTitle }}</span>
       <span v-if="data.publisher">,&ThickSpace;</span>
       <span class="italic">{{ data.publisher }}</span>
@@ -19,14 +17,11 @@
       </template>
     </p>
     <div class="icons-group">
-      <a @click="$emit('show-publ')" href="javascript:;">
+      <a @click="$emit('show-publ')" href="javascript:;" title="Show details">
         <FontAwesomeIcon class="text-dark" icon="quote-right" />
       </a>
-      <a v-if="data.url" :href="data.url" target="_blank">
-        <FontAwesomeIcon class="text-dark" icon="link" />
-      </a>
-      <a v-if="data.code" :href="data.code" target="_blank">
-        <FontAwesomeIcon class="text-dark" icon="code" />
+      <a v-for="(v, k) in mediaLinks" :key="k" :href="v" target="_blank" :title="getMediaLabel(k)">
+        <FontAwesomeIcon class="text-dark" :icon="getMediaIcon(k)" />
       </a>
     </div>
   </div>
@@ -34,9 +29,12 @@
 
 <script setup>
 import { computed } from 'vue'
+import { mediaMappings } from '@/utils/mediaMappings'
 
 const props = defineProps({
   data: Object,
+  authorToHighlight: String,
+  authorFirstInitial: String,
 })
 
 const quotedTitle = computed(() => {
@@ -47,12 +45,29 @@ const doiUrl = computed(() => {
   return 'https://doi.org/' + props.data.doi
 })
 
-const splitAuthors = computed(() => {
-  return props.data.authors.split(',').map(author => author.trim().replace(' ', '&nbsp;'))
+const formattedAuthors = computed(() => {
+  if (!props.data.authors) return ''
+  const authors = props.data.authors
+  const lastName = props.authorToHighlight
+  const initial = props.authorFirstInitial
+  const namePattern = `${initial}\\.\\s*${lastName}`
+  const regex = new RegExp(namePattern, 'gi')
+  return authors.replace(regex, `<span class="font-bold">${initial}. ${lastName}</span>`)
 })
 
-function isMe(author) {
-  return author.toLowerCase().includes('miccini')
+const mediaLinks = computed(() => {
+  const links = {}
+  if (props.data.url) links.url = props.data.url
+  if (props.data.code) links.code = props.data.code
+  return links
+})
+
+function getMediaIcon(key) {
+  return mediaMappings[key]?.icon || mediaMappings.default.icon
+}
+
+function getMediaLabel(key) {
+  return mediaMappings[key]?.label || mediaMappings.default.label
 }
 </script>
 

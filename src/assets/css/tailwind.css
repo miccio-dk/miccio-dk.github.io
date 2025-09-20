@@ -43,7 +43,7 @@
 */
 @layer components {
   .section-container {
-    @apply w-full p-8 sm:p-16 xl:p-24 text-dark relative;
+    @apply w-full p-8 sm:p-16 lg:p-24 xl:px-40 text-dark relative;
   }
 
   .section-title {

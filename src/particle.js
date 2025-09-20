@@ -22,20 +22,20 @@ export default class Particle {
   }
 
   mouseDist(sk) {
-    var a = this.x * sk.width - sk.mouseX
-    var b = this.y * sk.height - sk.mouseY
+    const a = this.x * sk.width - sk.mouseX
+    const b = this.y * sk.height - sk.mouseY
     return Math.sqrt(a * a + b * b)
   }
 
   isSelected(sk) {
-    var dist = this.mouseDist(sk)
+    const dist = this.mouseDist(sk)
     return dist < this.radius + 2 * this.ringDist
   }
 
   render(sk, opacity) {
-    var ringWeightDecay = 0.8
-    var ringAlphaDecay = 0.6
-    var weight = this.ringWeightBase
+    let ringWeightDecay = 0.8
+    let ringAlphaDecay = 0.6
+    let weight = this.ringWeightBase
     // skip rendering if opacity is too low
     if (opacity <= 0.000001) {
       return
@@ -47,23 +47,23 @@ export default class Particle {
       ringWeightDecay = 0.64
       ringAlphaDecay = 0.45
     }
-    var { x, y, radius, color } = this
-    var cc = sk.color(...color)
+    const { x, y, radius, color } = this
+    const cc = sk.color(...color)
     cc.setAlpha(sk.alpha(cc) * opacity)
     sk.fill(cc)
     sk.noStroke()
     sk.ellipse(x * sk.width, y * sk.height, radius * 2, radius * 2)
     sk.noFill()
-    var alpha = sk.alpha(cc) * 1.5
+    let alpha = sk.alpha(cc) * 1.5
     // draw rings
     for (let j = 0; j < this.nRings; j++) {
-      radius += this.ringDist
+      let newRadius = radius + (j + 1) * this.ringDist
       weight *= ringWeightDecay
       alpha *= ringAlphaDecay
       cc.setAlpha(alpha)
       sk.stroke(cc)
       sk.strokeWeight(weight)
-      sk.ellipse(x * sk.width, y * sk.height, radius * 2, radius * 2)
+      sk.ellipse(x * sk.width, y * sk.height, newRadius * 2, newRadius * 2)
     }
     // debugging: show distance to mouse
     // sk.fill(0, 0, 0, 0.5);

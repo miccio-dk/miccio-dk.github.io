@@ -38,10 +38,12 @@ function toggleAnimation() {
 </script>
 
 <template>
-  <header class="flex sticky top-0 bg-dark w-full pl-8 sm:pl-16 xl:pl-24 shadow-lg text-light z-10 items-center">
-    <span class="hidden md:inline-block flex-none text-xl lg:text-2xl">
-      <h5 v-if="scrolledAway" class="mr-2 hidden lg:inline-block">{{ fullName }}:</h5>
-      <h5 v-if="scrolledAway" class="mr-2 inline-block lg:hidden">{{ initials }}:</h5>
+  <header
+    class="flex sticky top-0 bg-dark w-full pl-8 sm:pl-16 lg:pl-24 xl:pl-40 shadow-lg text-light z-10 items-center"
+  >
+    <span class="hidden md:inline-block flex-none text-xl md:text-2xl">
+      <h5 v-if="scrolledAway" class="mr-2 hidden xl:inline-block">{{ fullName }}:</h5>
+      <h5 v-if="scrolledAway" class="mr-2 hidden lg:inline-block xl:hidden">{{ initials }}:</h5>
       <span class="inline-block">{{ links[currentHash] }}</span>
     </span>
 
@@ -52,7 +54,7 @@ function toggleAnimation() {
         </li>
       </ul>
     </nav>
-    <div class="flex-none w-8 sm:w-16 xl:w-24 text-light items-center text-center">
+    <div class="flex-none w-8 sm:w-16 lg:w-24 xl:w-40 text-light items-center text-center">
       <FontAwesomeIcon
         class="switch-icon"
         v-if="store.animationOn"

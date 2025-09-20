@@ -1,0 +1,47 @@
+[
+  {
+    "name": "LinkedIn",
+    "url": "https://www.linkedin.com/in/rimiccini/",
+    "icon": "LinkedInIcon"
+  },
+  {
+    "name": "GitHub",
+    "url": "https://www.github.com/miccio-dk/",
+    "icon": "GitHubIcon"
+  },
+  {
+    "name": "ResearchGate",
+    "url": "https://www.researchgate.net/profile/Riccardo-Miccini",
+    "icon": "ResearchGateIcon"
+  },
+  {
+    "name": "GoogleScholar",
+    "url": "https://scholar.google.com/citations?user=0l0b5ngAAAAJ",
+    "icon": "GoogleScholarIcon"
+  },
+  {
+    "name": "SemanticScholar",
+    "url": "https://www.semanticscholar.org/author/Riccardo-Miccini/2284685694",
+    "icon": "SemanticScholarIcon"
+  },
+  {
+    "name": "Orcid",
+    "url": "https://orcid.org/0000-0002-0421-6170",
+    "icon": "OrcidIcon"
+  },
+  {
+    "name": "SoundCloud",
+    "url": "https://www.soundcloud.com/riccardo-miccini",
+    "icon": "SoundCloudIcon"
+  },
+  {
+    "name": "Goodreads",
+    "url": "https://www.goodreads.com/user/show/84689053-riccardo-miccini",
+    "icon": "GoodreadsIcon"
+  },
+  {
+    "name": "Instagram",
+    "url": "https://www.instagram.com/miccio_or_smth/",
+    "icon": "InstagramIcon"
+  }
+]

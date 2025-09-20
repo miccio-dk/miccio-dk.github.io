@@ -10,9 +10,10 @@
     <p class="flex-auto text-lg mt-8">
       {{ data.descr }}
     </p>
-    <ul v-if="mediaNotEmpty" class="flex-none mt-8 list-disc pl-8 hidden md:block">
-      <li class="text-dark" v-for="(v, k) in data.media" :key="k">
-        <span class="ml-2 font-bold">{{ pickLabel(k) }}:&nbsp;</span>
+    <ul v-if="mediaNotEmpty" class="flex-none mt-8 space-y-2 hidden md:block">
+      <li class="text-dark flex items-center" v-for="(v, k) in data.media" :key="k">
+        <FontAwesomeIcon class="fa-fw mr-2" size="s" :icon="getMediaIcon(k)" />
+        <span class="font-bold">{{ getMediaLabel(k) }}:&nbsp;</span>
         <a class="hover:underline" :href="v" target="_blank">{{ v }}</a>
       </li>
     </ul>
@@ -22,7 +23,7 @@
         v-for="(v, k) in data.media"
         :key="k"
       >
-        <a class="" :href="v" target="_blank">{{ pickLabel(k) }}</a>
+        <a class="" :href="v" target="_blank">{{ getMediaLabel(k) }}</a>
       </li>
     </ul>
   </Modal>
@@ -32,6 +33,8 @@
 import Modal from './Modal.vue'
 import _isEmpty from 'lodash/isEmpty'
 import { computed } from 'vue'
+import { mediaMappings } from '@/utils/mediaMappings'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 defineOptions({
   name: 'ProjectModal',
@@ -45,16 +48,12 @@ const mediaNotEmpty = computed(() => {
   return !_isEmpty(props.data.media)
 })
 
-function pickLabel(key) {
-  return (
-    {
-      url: 'Link',
-      code: 'Source code',
-      doc: 'Document',
-      dl: 'Download',
-      video: 'Media',
-    }[key] || 'Misc.'
-  )
+function getMediaLabel(key) {
+  return mediaMappings[key]?.label || mediaMappings.default.label
+}
+
+function getMediaIcon(key) {
+  return mediaMappings[key]?.icon || mediaMappings.default.icon
 }
 </script>
 

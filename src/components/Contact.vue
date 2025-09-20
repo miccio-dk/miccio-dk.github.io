@@ -14,63 +14,14 @@
         <textarea class="text-field" name="message" placeholder="Type your message..." cols="30" rows="5" />
         <button class="btn-light px-8 float-right" type="submit">Send</button>
       </form>
-      <div class="w-full text-center space-y-4 flex-auto md:p-4">
+      <div class="w-full text-center flex-auto md:p-4">
         <h5 class="text-3xl text-light hidden md:block">Find me online</h5>
-        <ul class="flex flex-wrap justify-center gap-4 px-4">
-          <li class="w-8 h-8">
-            <a href="https://www.linkedin.com/in/rimiccini/" target="_blank">
-              <LinkedInIcon :size="iconSize" class="social-icon" />
+        <ul class="flex flex-wrap justify-center gap-4 p-4">
+          <li v-for="social in socialsWithIcons" :key="social.name" class="w-8 h-8">
+            <a :href="social.url" target="_blank">
+              <component :is="social.icon" :size="iconSize" class="social-icon" />
             </a>
           </li>
-          <li class="w-8 h-8">
-            <a href="https://www.github.com/miccio-dk/" target="_blank">
-              <GitHubIcon :size="iconSize" class="social-icon" />
-            </a>
-          </li>
-          <li class="w-8 h-8">
-            <a href="https://www.researchgate.net/profile/Riccardo-Miccini" target="_blank">
-              <ResearchGateIcon :size="iconSize" class="social-icon" />
-            </a>
-          </li>
-          <li class="w-8 h-8">
-            <a href="https://scholar.google.com/citations?user=0l0b5ngAAAAJ" target="_blank">
-              <GoogleScholarIcon :size="iconSize" class="social-icon" />
-            </a>
-          </li>
-          <li class="w-8 h-8">
-            <a href="https://www.semanticscholar.org/author/Riccardo-Miccini/2284685694" target="_blank">
-              <SemanticScholarIcon :size="iconSize" class="social-icon" />
-            </a>
-          </li>
-          <li class="w-8 h-8">
-            <a href="https://orcid.org/0000-0002-0421-6170" target="_blank">
-              <OrcidIcon :size="iconSize" class="social-icon" />
-            </a>
-          </li>
-          <li class="w-8 h-8">
-            <a href="https://www.soundcloud.com/riccardo-miccini" target="_blank">
-              <SoundCloudIcon :size="iconSize" class="social-icon" />
-            </a>
-          </li>
-          <li class="w-8 h-8">
-            <a href="https://www.goodreads.com/user/show/84689053-riccardo-miccini" target="_blank">
-              <GoodreadsIcon :size="iconSize" class="social-icon" />
-            </a>
-          </li>
-          <li class="w-8 h-8">
-            <a href="https://www.instagram.com/miccio_or_smth/" target="_blank">
-              <InstagramIcon :size="iconSize" class="social-icon" />
-            </a>
-          </li>
-          <!-- <li class="w-8 h-8">
-            <a 
-              href="https://www.youtube.com/channel/UCTbIQ6GMxm9l6daN6rIp79g" 
-              target="_blank"
-              ><YouTubeIcon 
-                :size="iconSize" 
-                class="social-icon"
-            /></a>
-          </li> -->
         </ul>
       </div>
     </div>
@@ -99,6 +50,24 @@ import {
   InstagramIcon,
   // YouTubeIcon,
 } from 'vue3-simple-icons'
+import socials from '@/data/socials.json'
+
+const socialIcons = {
+  LinkedInIcon,
+  GitHubIcon,
+  ResearchGateIcon,
+  GoogleScholarIcon,
+  SemanticScholarIcon,
+  OrcidIcon,
+  SoundCloudIcon,
+  GoodreadsIcon,
+  InstagramIcon,
+}
+
+const socialsWithIcons = socials.map(social => ({
+  ...social,
+  icon: socialIcons[social.icon],
+}))
 
 defineProps({
   iconSize: {
