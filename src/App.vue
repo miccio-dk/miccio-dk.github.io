@@ -32,10 +32,10 @@ const currentHash = ref('#about')
 const aboutSectionRef = ref(null)
 
 // Define the available variants for random selection
-// const aboutVariants = ['hydra', 'regular', 'regular']
-// const backgroundVariants = ['particles', 'hydra', 'minimal']
+// const aboutVariants = ['regular', 'regular', 'hydra']
+// const backgroundVariants = ['minimal', 'particles', 'hydra', 'hydra-strudel']
 const aboutVariants = ['regular']
-const backgroundVariants = ['hydra-strudel']
+const backgroundVariants = ['particles']
 
 // Refs to store the randomly selected component types
 const aboutType = ref('regular')
