@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import eslintPlugin from 'vite-plugin-eslint'
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
 import { resolve } from 'path'
 
 export default defineConfig({
-  plugins: [vue(), eslintPlugin()],
+  plugins: [vue(), eslintPlugin(), nodePolyfills()],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),

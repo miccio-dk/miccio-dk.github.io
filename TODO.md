@@ -18,6 +18,5 @@ x integrate hydra: https://hydra.ojack.xyz/docs/docs/learning/guides/how-to/hydr
 
 ## features
 
-- add category to experience (education, employment, internship, etc) and show as icon
 - show abstract on each publication modal
 - show bibtex on each publication modal: https://www.doi2bib.org/about
