@@ -35,15 +35,21 @@ Here is a list of suggested improvements and upgrades for the codebase, categori
 This section contains findings from a detailed component-by-component review, focusing on smaller inconsistencies, redundancies, and opportunities for improvement.
 
 
-- [ ] **Projects section upgrade:**
-    - projects stored as files in `data/projects/`
-    - each file contains the project title, period, location, description (markdown), media links, tags, etc in a simple structured format
-    - imported into a json object
-    - generate a couple couple of examples files from `projects.json` to show how it works
-    - rest of rendering logic stays the same
-    - we might add pictures too eventually
+- [x] **Projects section upgrade:**
+    - [x] projects stored as files in `data/projects/`
+    - [x] each file contains the project title, period, location, description (markdown), media links, tags, etc in a simple structured format
+    - [x] imported into a json object
+    - [x] generate a couple couple of examples files from `projects.json` to show how it works
+    - [x] rest of rendering logic stays the same
+    - [ ] we might add pictures too eventually
 - [ ] **Integrate strudel (audio):** 
     - new animated background with hydra and strudel
     - add strudel to the project as in https://codeberg.org/uzu/strudel/src/branch/main/packages/web#strudel-web (we don't want the live editor, just the sound generation)
     - use composables
+    - add hydra-strudel animated background to `App.vue`
 - [ ] **Add `lastName` to `bio.json`:** The `bio.json` file should have a dedicated `lastName` field to avoid brittle logic like `name.split(' ')[1]` when sourcing the name for author highlighting.
+- [ ] **Add category to experience:** 
+    - categories: education, employment, internship, etc
+    - shows as icon next to [exp.from-exp.to exp.role] text
+    - use fontawesome icons
+    - apply to `ExperienceBlock.vue` and `ExperienceDetails.vue`

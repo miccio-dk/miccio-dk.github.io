@@ -9,10 +9,13 @@ import Projects from './components/Projects.vue'
 import Contact from './components/Contact.vue'
 
 // Import data
-import projectsData from './data/projects.json'
 import publicationsData from './data/publications.json'
 import experiencesData from './data/experiences.json'
 import bioData from './data/bio.json'
+import { useProjects } from './composables/useProjects'
+
+// --- Project Data Loading ---
+const { projects: projectsData } = useProjects()
 
 // Initialize animation store.
 // This needs to be done here in the root component.
