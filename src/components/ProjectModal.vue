@@ -12,17 +12,14 @@
     </p>
     <ul v-if="mediaNotEmpty" class="flex-none mt-8 space-y-2 hidden md:block">
       <li class="text-dark flex items-center" v-for="(v, k) in data.media" :key="k">
-        <FontAwesomeIcon class="fa-fw mr-2" size="s" :icon="getMediaIcon(k)" />
+        <FontAwesomeIcon class="fa-fw mr-2" size="sm" :icon="getMediaIcon(k)" />
         <span class="font-bold">{{ getMediaLabel(k) }}:&nbsp;</span>
         <a class="hover:underline" :href="v" target="_blank">{{ v }}</a>
       </li>
     </ul>
-    <ul v-if="mediaNotEmpty" class="flex-none flex-wrap mt-8 space-x-3 flex md:hidden">
-      <li
-        class="inline-block rounded-md m-1 px-2 py-1 border-2 border-dark text-dark bg-light hover:underline"
-        v-for="(v, k) in data.media"
-        :key="k"
-      >
+    <ul v-if="mediaNotEmpty" class="flex-none flex-wrap mt-8 gap-2 flex md:hidden">
+      <li class="btn-light" v-for="(v, k) in data.media" :key="k">
+        <FontAwesomeIcon class="fa-fw mr-2" size="sm" :icon="getMediaIcon(k)" />
         <a class="" :href="v" target="_blank">{{ getMediaLabel(k) }}</a>
       </li>
     </ul>

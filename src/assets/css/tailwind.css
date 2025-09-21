@@ -62,7 +62,35 @@
     @apply inline-block rounded-md py-1 px-2 border-2 border-dark bg-dark text-light select-none focus:bg-light focus:text-dark hover:underline cursor-pointer;
   }
 
+  .text-field {
+    @apply block w-full rounded-md border-2 border-dark px-2 py-1 hover:underline shadow-inner focus:border-b-4;
+  }
+
   .icons-group {
     @apply space-x-3 bg-light border-2 py-1 px-2 rounded-md text-sm;
+  }
+
+  .card {
+    @apply bg-light p-4 shadow-md rounded-md border-2 border-dark text-dark;
+  }
+
+  .card-big {
+    @apply bg-light p-8 shadow-md rounded-lg border-2 border-dark text-dark;
+  }
+
+  .card-small {
+    @apply bg-light p-2 shadow-md rounded-md border-2 border-dark text-dark;
+  }
+
+  .card-dark {
+    @apply bg-dark p-4 shadow-md rounded-md border-2 border-dark text-light;
+  }
+
+  .zoom-105 {
+    @apply transition-all transform hover:scale-105;
+  }
+
+  .zoom-125 {
+    @apply transition-all transform hover:scale-125;
   }
 }

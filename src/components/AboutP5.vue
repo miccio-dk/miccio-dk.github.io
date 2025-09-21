@@ -64,8 +64,8 @@ function windowResized(sk) {
 
 <template>
   <AboutBase :bio="bio">
-    <div class="block w-full flex-auto shadow-md rounded-md aspect-3/2">
-      <P5Canvas :setup="setupP5" :draw="drawP5" :window-resized="windowResized" :fps="5" canvas-class="rounded-md" />
+    <div class="block w-full flex-auto shadow-md rounded-lg aspect-3/2">
+      <P5Canvas :setup="setupP5" :draw="drawP5" :window-resized="windowResized" :fps="5" canvas-class="rounded-lg" />
     </div>
   </AboutBase>
 </template>

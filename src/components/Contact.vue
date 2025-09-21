@@ -1,25 +1,19 @@
 <template>
   <div class="section-container bg-dark pt-8 sm:pt-16 xl:pt-24 pb-2">
     <h1 class="section-title text-light">Contact me</h1>
-    <div
-      class="flex flex-col lg:flex-row space-y-4 lg:space-x-12 md:space-y-0 items-center my-8 sm:my-8 xl:my-12 xl:mb-32"
-    >
-      <form
-        class="block w-full flex-auto space-y-4 bg-light p-8 rounded-md border-2 border-light"
-        action="https://formspree.io/f/xwkavzle"
-        method="POST"
-      >
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-4 xl:gap-12 items-center my-8 xl:my-12 xl:mb-32">
+      <form class="w-full flex-1 space-y-4 card-big" action="https://formspree.io/f/xwkavzle" method="POST">
         <input class="text-field" type="email" name="_replyto" placeholder="Your email" required />
         <input class="text-field" type="text" name="_subject" placeholder="Subject" required />
         <textarea class="text-field" name="message" placeholder="Type your message..." cols="30" rows="5" />
         <button class="btn-light px-8 float-right" type="submit">Send</button>
       </form>
-      <div class="w-full text-center flex-auto md:p-4">
+      <div class="w-full text-center flex-1">
         <h5 class="text-3xl text-light hidden md:block">Find me online</h5>
-        <ul class="flex flex-wrap justify-center gap-4 p-4">
+        <ul class="flex flex-wrap justify-center gap-4 lg:gap-6 p-4">
           <li v-for="social in socialsWithIcons" :key="social.name" class="w-8 h-8">
             <a :href="social.url" target="_blank">
-              <component :is="social.icon" :size="iconSize" class="social-icon" />
+              <component :is="social.icon" :size="iconSize" class="social-icon zoom-125" />
             </a>
           </li>
         </ul>
@@ -32,6 +26,10 @@
       <a class="hover:underline" href="https://vuejs.org/" target="_blank">Vue.js</a>
       and
       <a class="hover:underline" href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>
+      and animated with
+      <a class="hover:underline" href="https://p5js.org/" target="_blank">p5.js</a>
+      and
+      <a class="hover:underline" href="https://hydra.ojack.xyz/" target="_blank">Hydra-synth</a>
       | CC BY-SA 4.0
     </p>
   </div>
@@ -82,10 +80,6 @@ defineProps({
 @reference "../assets/css/tailwind.css";
 
 .social-icon {
-  @apply fill-current text-light transition-all transform hover:scale-125;
-}
-
-.text-field {
-  @apply block w-full rounded-md border-2 border-dark px-2 py-1 hover:underline shadow-inner focus:border-b-4;
+  @apply fill-current text-light;
 }
 </style>

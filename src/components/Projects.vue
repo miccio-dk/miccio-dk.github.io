@@ -3,7 +3,7 @@
     <h1 class="section-title">Projects</h1>
     <ProjectsMenu :tag-list="tagList" v-model="currentTags" />
     <div class="grid grid-flow-row lg:auto-rows-fr gap-4 xl:gap-6 grid-cols-w16">
-      <div class="flex items-center bg-light p-4 shadow-md rounded-md border-2 border-dark">
+      <div class="flex items-center card">
         <p>
           Select one or more
           <span class="btn-light">tags</span>

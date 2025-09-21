@@ -48,8 +48,8 @@ This section contains findings from a detailed component-by-component review, fo
     - use composables
     - add hydra-strudel animated background to `App.vue`
 - [ ] **Add `lastName` to `bio.json`:** The `bio.json` file should have a dedicated `lastName` field to avoid brittle logic like `name.split(' ')[1]` when sourcing the name for author highlighting.
-- [ ] **Add category to experience:** 
-    - categories: education, employment, internship, etc
-    - shows as icon next to [exp.from-exp.to exp.role] text
-    - use fontawesome icons
-    - apply to `ExperienceBlock.vue` and `ExperienceDetails.vue`
+- [x] **Add category to experiences:**
+  - [x] categories: education, employment, internship, etc
+  - [x] shows as icon next to [exp.from-exp.to exp.role] text
+  - [x] use fontawesome icons
+  - [x] apply to `ExperienceBlock.vue` and `ExperienceDetails.vue`

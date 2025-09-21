@@ -13,9 +13,24 @@ import {
   faPhotoVideo,
   faToggleOn,
   faToggleOff,
+  faBriefcase,
+  faGraduationCap,
+  faUserGraduate,
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faLink, faCode, faQuoteRight, faFileAlt, faDownload, faPhotoVideo, faToggleOn, faToggleOff)
+library.add(
+  faLink,
+  faCode,
+  faQuoteRight,
+  faFileAlt,
+  faDownload,
+  faPhotoVideo,
+  faToggleOn,
+  faToggleOff,
+  faBriefcase,
+  faGraduationCap,
+  faUserGraduate,
+)
 
 const app = createApp(App)
 

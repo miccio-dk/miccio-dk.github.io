@@ -22,14 +22,11 @@ function getMediaLabel(key) {
 </script>
 
 <template>
-  <div
-    class="flex flex-col items-start bg-dark p-4 shadow-md rounded-md transform transition-all hover:scale-105"
-    @click="$emit('click', $event)"
-  >
-    <h5 class="flex-none text-xl font-medium text-light">
+  <div class="flex flex-col items-start card-dark zoom-105" @click="$emit('click', $event)">
+    <h5 class="flex-none text-xl font-medium">
       {{ data.title }}
     </h5>
-    <p class="flex-auto text-sm font-thin italic mt-1 mb-6 text-light">
+    <p class="flex-auto text-sm font-thin italic mt-1 mb-6">
       {{ data.period }}
     </p>
     <div v-if="mediaNotEmpty" class="icons-group">

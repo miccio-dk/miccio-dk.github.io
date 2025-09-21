@@ -6,7 +6,7 @@ export const mediaMappings = {
     icon: faLink,
   },
   code: {
-    label: 'Source code',
+    label: 'Code',
     icon: faCode,
   },
   doc: {

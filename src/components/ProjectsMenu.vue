@@ -1,11 +1,11 @@
 <template>
   <div class="flex mb-6">
-    <ul class="flex-auto flex flex-wrap justify-center text-light">
+    <ul class="flex-auto flex flex-wrap justify-center">
       <li :class="getBtnClass(isSelected(tag))" v-for="(tag, i) in tagList" :key="i" @click="handleInput(tag)">
         {{ tag }}
       </li>
     </ul>
-    <ul class="shrink flex flex-wrap flex-start content-start justify-end items-start text-light">
+    <ul class="shrink flex flex-wrap flex-start content-start justify-end items-start">
       <li class="ml-4" :class="getBtnClass(isAllSelected)" @click="selectAll">all</li>
       <li :class="getBtnClass(isNoneSelected)" @click="selectNone">none</li>
     </ul>

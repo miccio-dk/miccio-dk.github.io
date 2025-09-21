@@ -48,7 +48,7 @@ function toggleAnimation() {
     </span>
 
     <nav class="grow py-2 sm:py-4">
-      <ul class="flex items-center justify-center flex-wrap md:flex-nowrap md:justify-end uppercase gap-x-0 gap-2">
+      <ul class="flex items-center justify-center flex-wrap md:flex-nowrap md:justify-end uppercase gap-0">
         <li v-for="(sectionName, hash) in links" :key="hash" :class="getBtnClass(hash)" class="xl:px-4">
           <a :href="hash">{{ sectionName }}</a>
         </li>
