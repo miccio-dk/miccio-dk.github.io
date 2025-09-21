@@ -33,6 +33,8 @@ const currentHash = ref('#about')
 // Define the available variants for random selection
 const aboutVariants = ['hydra', 'regular', 'regular']
 const backgroundVariants = ['particles', 'hydra', 'minimal']
+// const aboutVariants = ['regular']
+// const backgroundVariants = ['hydra-strudel']
 
 // Refs to store the randomly selected component types
 const aboutType = ref('regular')
@@ -46,6 +48,8 @@ const AnimatedBackground = computed(() => {
       return defineAsyncComponent(() => import('./components/AnimatedBackgroundParticles.vue'))
     case 'hydra':
       return defineAsyncComponent(() => import('./components/AnimatedBackgroundHydra.vue'))
+    case 'hydra-strudel':
+      return defineAsyncComponent(() => import('./components/AnimatedBackgroundHydraStrudel.vue'))
     default:
       return defineAsyncComponent(() => import('./components/AnimatedBackgroundMinimal.vue'))
   }

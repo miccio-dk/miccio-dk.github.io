@@ -42,11 +42,11 @@ This section contains findings from a detailed component-by-component review, fo
     - [x] generate a couple couple of examples files from `projects.json` to show how it works
     - [x] rest of rendering logic stays the same
     - [ ] we might add pictures too eventually
-- [ ] **Integrate strudel (audio):** 
-    - new animated background with hydra and strudel
-    - add strudel to the project as in https://codeberg.org/uzu/strudel/src/branch/main/packages/web#strudel-web (we don't want the live editor, just the sound generation)
-    - use composables
-    - add hydra-strudel animated background to `App.vue`
+- [x] **Integrate strudel (audio):**
+  - [x] new animated background with hydra and strudel
+  - [x] add strudel to the project as in https://codeberg.org/uzu/strudel/src/branch/main/packages/web#strudel-web (we don't want the live editor, just the sound generation)
+  - [x] add hydra-strudel animated background to `App.vue`
+  - [ ] troubleshoot strudel+hydra interaction (background goes black when strudel is loaded)
 - [ ] **Add `lastName` to `bio.json`:** The `bio.json` file should have a dedicated `lastName` field to avoid brittle logic like `name.split(' ')[1]` when sourcing the name for author highlighting.
 - [x] **Add category to experiences:**
   - [x] categories: education, employment, internship, etc
