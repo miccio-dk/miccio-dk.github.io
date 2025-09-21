@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed, defineAsyncComponent } from 'vue'
+import { ref, onMounted, computed, defineAsyncComponent, watch } from 'vue'
 
 // Import non-variant components statically
 import Navbar from './components/Navbar.vue'
@@ -29,6 +29,7 @@ const projects = projectsData
 const bio = bioData
 const sectionObserver = ref(null)
 const currentHash = ref('#about')
+const aboutSectionRef = ref(null)
 
 // Define the available variants for random selection
 const aboutVariants = ['hydra', 'regular', 'regular']
@@ -66,13 +67,18 @@ const AboutSection = computed(() => {
   }
 })
 
+// Watch for the async component to be mounted and then observe sections
+watch(aboutSectionRef, newVal => {
+  if (newVal) {
+    observeSections()
+  }
+})
+
 // Lifecycle hooks
 onMounted(() => {
   // Randomly select a variant on component mount
   aboutType.value = aboutVariants[Math.floor(Math.random() * aboutVariants.length)]
   animationType.value = backgroundVariants[Math.floor(Math.random() * backgroundVariants.length)]
-
-  observeSections()
 })
 
 // Methods
@@ -121,7 +127,7 @@ function sectionObserverHandler(entries) {
     <Navbar :current-hash="currentHash" :full-name="bio.name" />
 
     <!-- About -->
-    <component :is="AboutSection" class="section" id="about" :bio="bio" />
+    <component :is="AboutSection" ref="aboutSectionRef" class="section" id="about" :bio="bio" />
 
     <!-- Other sections -->
     <Publications class="section" id="pubs" :publications="publications" />
