@@ -6,5 +6,7 @@ alwaysApply: true
 - make sure to use all the latest features and best practices for all the frameworks
 - before running any npm commands, make sure to source nvm in the terminal
 - ensure consistency with existing codebase
+- comment your code when relevant (be concise and start with lowercase)
 - run `npm run lint:fix` after making changes to the code
+- when implementing a new feature, fixing a bug, or when asked by the user, add debugging statements
 - when in doubt, ask check the codebase documentation in `docs/codebase-description.md`

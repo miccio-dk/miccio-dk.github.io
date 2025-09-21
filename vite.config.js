@@ -9,6 +9,7 @@ export default defineConfig({
   plugins: [vue(), eslintPlugin(), nodePolyfills()],
   resolve: {
     alias: {
+      // legacy alias for src
       '@': resolve(__dirname, 'src'),
     },
   },

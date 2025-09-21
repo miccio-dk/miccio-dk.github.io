@@ -1,38 +1,35 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import HydraCanvas from './HydraCanvas.vue'
-import StrudelPlayer from './StrudelPlayer.vue'
 import { useAnimationStore } from '@/stores/animation'
+import { useStrudel } from '@/composables/useStrudel'
 
 const store = useAnimationStore()
 const hydra = ref(null)
-const strudel = ref(null)
+
+const { strudel, isReady, init } = useStrudel()
+
+onMounted(() => {
+  init({ loadDefaultSamples: true })
+})
 
 watch(
-  () => store.animationOn,
+  () => store.animationState,
   () => {
-    if (hydra.value) {
+    if (hydra.value && strudel.value) {
       animationScript(hydra.value)
-    }
-    if (strudel.value) {
       strudelScript(strudel.value)
     }
   },
 )
 
-function onStrudelReady(st) {
-  // store strudel instance for later use
-  strudel.value = st
-  strudelScript(st)
-}
-
 function strudelScript(st) {
-  if (store.animationOn) {
-    console.log('evaluating strudel')
-    st.evaluate('note("c a f e").jux(rev)')
+  if (store.animationState) {
+    let pattern1 = st.core.note('d f a a# a d3').fast(2).s('supersaw').spread('.8')
+    pattern1 = pattern1.stack(st.core.note('d a').slow(2).s('piano'))
+    st.play(pattern1)
   } else {
-    console.log('hushing strudel')
-    st.evaluate('hush()')
+    st.hush()
   }
 }
 
@@ -44,7 +41,7 @@ function onHydraReady(h) {
 
 function animationScript(h) {
   let g = 0.2
-  if (store.animationOn) {
+  if (store.animationState) {
     h.noise(2).out(h.o1)
     g = 2
   } else {
@@ -58,8 +55,7 @@ function animationScript(h) {
 
 <template>
   <div class="fixed h-full w-full z-0">
-    <HydraCanvas ref="hydraCanvas" @hydra-ready="onHydraReady" />
-    <StrudelPlayer @strudel-ready="onStrudelReady" />
+    <HydraCanvas v-if="isReady" ref="hydraCanvas" @hydra-ready="onHydraReady" />
   </div>
 </template>
 

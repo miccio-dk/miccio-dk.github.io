@@ -56,12 +56,8 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  if (ro) {
-    ro.disconnect()
-  }
-  if (hydra) {
-    hydra.destroy()
-  }
+  ro?.disconnect()
+  hydra?.destroy()
 })
 </script>
 
