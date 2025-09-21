@@ -25,16 +25,16 @@ function toggleAnimation() {
 
 <template>
   <div class="section-container">
-    <div class="flex flex-col lg:flex-row items-center lg:items-stretch gap-8 xl:gap-16">
-      <div class="w-3/4 sm:w-2/3 md:w-1/2 lg:w-full flex-3 flex justify-center items-center">
+    <div class="flex flex-col items-center gap-8 lg:flex-row lg:items-stretch xl:gap-16">
+      <div class="flex w-3/4 flex-3 items-center justify-center sm:w-2/3 md:w-1/2 lg:w-full">
         <slot />
       </div>
-      <div class="w-full flex-5 text-left space-y-4 flex flex-col justify-between">
+      <div class="flex w-full flex-5 flex-col justify-between space-y-4 text-left">
         <h5 class="text-3xl sm:text-5xl">{{ props.bio.name }}</h5>
         <div class="space-y-2">
           <p class="leading-6" v-for="(paragraph, index) in props.bio.paragraphs" :key="index" v-html="paragraph" />
         </div>
-        <button class="self-start btn-light md:px-4" @click="toggleAnimation">{{ callToAction }}</button>
+        <button class="btn-light self-start md:px-4" @click="toggleAnimation">{{ callToAction }}</button>
       </div>
     </div>
   </div>

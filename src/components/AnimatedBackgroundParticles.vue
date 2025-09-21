@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed h-full w-full z-0">
+  <div class="fixed z-0 h-full w-full">
     <P5Canvas :setup="sketch.setup" :draw="sketch.draw" :window-resized="sketch.windowResized" :fps="props.fps" />
   </div>
 </template>

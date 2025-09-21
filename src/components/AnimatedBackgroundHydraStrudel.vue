@@ -54,7 +54,7 @@ function animationScript(h) {
 </script>
 
 <template>
-  <div class="fixed h-full w-full z-0">
+  <div class="fixed z-0 h-full w-full">
     <HydraCanvas v-if="isReady" ref="hydraCanvas" @hydra-ready="onHydraReady" />
   </div>
 </template>

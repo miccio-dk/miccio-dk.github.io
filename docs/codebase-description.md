@@ -20,7 +20,7 @@ The project is a single-page application (SPA) built on the following stack:
 
 ## Key Dependencies
 
-- **Animation & Graphics:** `p5.js`, `hydra-synth`, `two.js`, `Tone.js`
+- **Animation & Graphics:** `p5.js`, `hydra-synth`, `@strudel/*`, `two.js`, `Tone.js`
 - **UI & Icons:** `vue3-simple-icons`, `@fortawesome/vue-fontawesome` (registered globally in `main.js`).
 - **Utilities:** `lodash`, `marked` (for markdown parsing), `gray-matter` (for parsing project files frontmatter).
 
@@ -56,6 +56,7 @@ The project is a single-page application (SPA) built on the following stack:
 - **`useModal.js`**: Manages modal visibility.
 - **`useParticleSketch.js`**: The p5.js rendering engine for `AnimatedBackgroundParticles`.
 - **`useParticleSynth.js`**: The Tone.js audio engine for `AnimatedBackgroundParticles`.
+- **`useStrudel.js`**: Manages the lifecycle of a scoped Strudel instance for live-coding music. It initializes Strudel via a utility module (`src/utils/strudelScoped.js`) similar to `@strudel/web` but without the global namespace pollution.
 
 ### `src/data/`
 - **`projects/`**: Contains individual project data as markdown files with YAML frontmatter.

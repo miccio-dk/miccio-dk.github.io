@@ -1,7 +1,7 @@
 <template>
   <div class="card-small bg-opacity-50">
     <div class="flex items-center">
-      <FontAwesomeIcon v-if="categoryIcon" :icon="categoryIcon" size="lg" class="mr-4 fa-fw" />
+      <FontAwesomeIcon v-if="categoryIcon" :icon="categoryIcon" size="lg" class="fa-fw mr-4" />
       <div>
         <p class="font-bold">{{ exp.from }} - {{ exp.to }}</p>
         <p class="">
@@ -10,13 +10,13 @@
       </div>
     </div>
     <div :class="open ? 'block' : 'hidden'">
-      <p class="text-sm mt-1">
+      <p class="mt-1 text-sm">
         <span>{{ exp.company }}</span>
         &middot;
         <span class="italic">{{ exp.location }}</span>
       </p>
       <MarkdownRenderer class="flex-auto" :markdown="exp.descr" />
-      <ul class="flex flex-wrap mt-4 text-light text-sm gap-2">
+      <ul class="mt-4 flex flex-wrap gap-2 text-sm text-light">
         <li class="tag-static" v-for="(skill, i) in exp.skills" :key="i">
           {{ skill }}
         </li>

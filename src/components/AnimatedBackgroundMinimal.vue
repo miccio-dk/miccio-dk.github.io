@@ -46,7 +46,7 @@ function windowResized(sk) {
 </script>
 
 <template>
-  <div class="fixed h-full w-full z-0">
+  <div class="fixed z-0 h-full w-full">
     <P5Canvas :setup="setup" :draw="draw" :window-resized="windowResized" :fps="props.fps" />
   </div>
 </template>

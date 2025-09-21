@@ -1,9 +1,9 @@
 <template>
   <div class="section-container">
     <h1 class="section-title">Experience</h1>
-    <div class="hidden md:flex flex-row gap-4 lg-gap-8 xl:gap-16">
-      <ul class="py-4 space-y-4">
-        <li v-for="(exp, i) in sortedExperiences" :key="i" class="group text-xl center" @mouseover="setCurrent(i)">
+    <div class="lg-gap-8 hidden flex-row gap-4 md:flex xl:gap-16">
+      <ul class="space-y-4 py-4">
+        <li v-for="(exp, i) in sortedExperiences" :key="i" class="group center text-xl" @mouseover="setCurrent(i)">
           <span class="date-selector" :class="[isCurrent(i) ? selectClass : '']">{{ exp.from }} - {{ exp.to }}</span>
         </li>
       </ul>
@@ -75,6 +75,6 @@ function toggleCurrent(i) {
 @reference "../assets/css/tailwind.css";
 
 .date-selector {
-  @apply py-2 px-4 group-hover:bg-dark group-hover:text-light rounded-md;
+  @apply rounded-md px-4 py-2 group-hover:bg-dark group-hover:text-light;
 }
 </style>

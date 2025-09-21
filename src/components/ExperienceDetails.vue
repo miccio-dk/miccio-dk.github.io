@@ -1,7 +1,7 @@
 <template>
-  <div v-if="exp" class="flex flex-col h-full">
+  <div v-if="exp" class="flex h-full flex-col">
     <div class="flex items-center">
-      <FontAwesomeIcon v-if="categoryIcon" :icon="categoryIcon" size="lg" class="mr-4 fa-fw" />
+      <FontAwesomeIcon v-if="categoryIcon" :icon="categoryIcon" size="lg" class="fa-fw mr-4" />
       <div>
         <p class="inline xl:block">
           <span class="font-bold">{{ exp.role }}</span>
@@ -15,7 +15,7 @@
       </div>
     </div>
     <MarkdownRenderer class="flex-auto" :markdown="exp.descr" />
-    <ul class="flex flex-wrap mt-4 text-light text-base">
+    <ul class="mt-4 flex flex-wrap text-base text-light">
       <li class="tag-static m-1" v-for="(skill, i) in exp.skills" :key="i">
         {{ skill }}
       </li>

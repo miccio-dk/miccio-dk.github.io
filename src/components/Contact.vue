@@ -1,17 +1,17 @@
 <template>
-  <div class="section-container bg-dark pt-8 sm:pt-16 xl:pt-24 pb-2">
+  <div class="section-container bg-dark pt-8 pb-2 sm:pt-16 xl:pt-24">
     <h1 class="section-title text-light">Contact me</h1>
-    <div class="flex flex-col lg:flex-row gap-8 lg:gap-4 xl:gap-12 items-center my-8 xl:my-12 xl:mb-32">
-      <form class="w-full flex-1 space-y-4 card-big" action="https://formspree.io/f/xwkavzle" method="POST">
+    <div class="my-8 flex flex-col items-center gap-8 lg:flex-row lg:gap-4 xl:my-12 xl:mb-32 xl:gap-12">
+      <form class="card-big w-full flex-1 space-y-4" action="https://formspree.io/f/xwkavzle" method="POST">
         <input class="text-field" type="email" name="_replyto" placeholder="Your email" required />
         <input class="text-field" type="text" name="_subject" placeholder="Subject" required />
         <textarea class="text-field" name="message" placeholder="Type your message..." cols="30" rows="5" />
-        <button class="btn-light px-8 float-right" type="submit">Send</button>
+        <button class="btn-light float-right px-8" type="submit">Send</button>
       </form>
-      <div class="w-full text-center flex-1">
-        <h5 class="text-3xl text-light hidden md:block">Find me online</h5>
-        <ul class="flex flex-wrap justify-center gap-4 lg:gap-6 p-4">
-          <li v-for="social in socialsWithIcons" :key="social.name" class="w-8 h-8">
+      <div class="w-full flex-1 text-center">
+        <h5 class="hidden text-3xl text-light md:block">Find me online</h5>
+        <ul class="flex flex-wrap justify-center gap-4 p-4 lg:gap-6">
+          <li v-for="social in socialsWithIcons" :key="social.name" class="h-8 w-8">
             <a :href="social.url" target="_blank">
               <component :is="social.icon" :size="iconSize" class="social-icon zoom-125" />
             </a>
@@ -19,7 +19,7 @@
         </ul>
       </div>
     </div>
-    <p class="text-center text-light text-sm tracking-widest">
+    <p class="text-center text-sm tracking-widest text-light">
       {{ fullName }} &copy; 2025 |
       <a class="hover:underline" href="https://github.com/miccio-dk/miccio-dk.github.io" target="_blank">Made</a>
       with

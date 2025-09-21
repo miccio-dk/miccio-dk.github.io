@@ -1,7 +1,7 @@
 <template>
   <AboutBase :bio="bio">
     <img
-      class="block w-full flex-auto md:w-1/2 lg:w-1/3 shadow-md rounded-lg"
+      class="block w-full flex-auto rounded-lg shadow-md md:w-1/2 lg:w-1/3"
       src="@/assets/photo.jpg"
       :alt="bio.name"
     />

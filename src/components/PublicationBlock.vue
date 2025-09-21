@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex-col flex items-start">
+  <div class="flex w-full flex-col items-start">
     <p class="text-dark">
       <span v-html="formattedAuthors"></span>
       <span>,&ThickSpace;</span>

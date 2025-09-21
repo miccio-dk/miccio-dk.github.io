@@ -2,8 +2,8 @@
   <div class="section-container">
     <h1 class="section-title">Projects</h1>
     <ProjectsMenu :tag-list="tagList" v-model="currentTags" />
-    <div class="grid grid-flow-row lg:auto-rows-fr gap-4 xl:gap-6 grid-cols-w16">
-      <div class="flex items-center card">
+    <div class="grid grid-flow-row grid-cols-w16 gap-4 lg:auto-rows-fr xl:gap-6">
+      <div class="card flex items-center">
         <p>
           Select one or more
           <span class="btn-light">tags</span>

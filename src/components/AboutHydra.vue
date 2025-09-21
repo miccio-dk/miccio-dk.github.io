@@ -57,7 +57,7 @@ function animationScript(h) {
 
 <template>
   <AboutBase :bio="bio">
-    <div class="block w-full flex-auto shadow-md rounded-lg aspect-3/2">
+    <div class="block aspect-3/2 w-full flex-auto rounded-lg shadow-md">
       <HydraCanvas canvas-class="w-full h-full block rounded-lg" @hydra-ready="onHydraReady" />
     </div>
   </AboutBase>

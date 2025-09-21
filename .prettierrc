@@ -8,5 +8,7 @@
   "arrowParens": "avoid",
   "endOfLine": "lf",
   "vueIndentScriptAndStyle": false,
-  "htmlWhitespaceSensitivity": "ignore"
+  "htmlWhitespaceSensitivity": "ignore",
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./src/assets/css/tailwind.css"
 }
