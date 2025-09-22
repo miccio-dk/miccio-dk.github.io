@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, markRaw } from 'vue'
 import Hydra from 'hydra-synth'
+import debounce from 'lodash/debounce'
 
 const props = defineProps({
   canvasClass: {
@@ -37,10 +38,12 @@ function resizeCanvasToContainer(canvas) {
   }
 }
 
+const debouncedResize = debounce(resizeCanvasToContainer, 500)
+
 onMounted(() => {
   // setup canvas
   resizeCanvasToContainer(hydraCanvas.value)
-  ro = markRaw(new ResizeObserver(() => resizeCanvasToContainer(hydraCanvas.value)))
+  ro = markRaw(new ResizeObserver(() => debouncedResize(hydraCanvas.value)))
   ro.observe(hydraCanvas.value)
   // initialize Hydra
   if (hydraCanvas.value) {

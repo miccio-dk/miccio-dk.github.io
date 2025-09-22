@@ -28,7 +28,7 @@
 
 <script setup>
 import Modal from './Modal.vue'
-import _isEmpty from 'lodash/isEmpty'
+import isEmpty from 'lodash/isEmpty'
 import { computed } from 'vue'
 import { mediaMappings } from '@/utils/mediaMappings'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -42,7 +42,7 @@ const props = defineProps({
 })
 
 const mediaNotEmpty = computed(() => {
-  return !_isEmpty(props.data.media)
+  return !isEmpty(props.data.media)
 })
 
 function getMediaLabel(key) {

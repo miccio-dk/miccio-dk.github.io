@@ -1,6 +1,6 @@
 import { ref } from 'vue'
-import _sample from 'lodash/sample'
-import _throttle from 'lodash/throttle'
+import sample from 'lodash/sample'
+import throttle from 'lodash/throttle'
 
 /**
  * Composable for managing Tone.js audio synthesis for the particle background.
@@ -47,7 +47,7 @@ export function useParticleSynth(props) {
     const chord1 = ['E3', 'G3', 'B3', 'D4']
     const chord2 = ['C3', 'E3', 'G3', 'B3']
     const chord3 = ['D3', 'G3', 'B3', 'D4']
-    const chord = _sample([chord1, chord2, chord3])
+    const chord = sample([chord1, chord2, chord3])
     chordSynth.triggerAttackRelease(chord, '1:2:0')
   }
 
@@ -81,7 +81,7 @@ export function useParticleSynth(props) {
       })
       Tone.getTransport().bpm.value = props.bpm.value
       tMin = Tone.Time('16n').toSeconds() * 1000
-      playParticleThrottled = _throttle(particle => playParticle(particle), tMin, { trailing: false })
+      playParticleThrottled = throttle(particle => playParticle(particle), tMin, { trailing: false })
       isInitialized.value = true
     } catch (error) {
       console.warn('Error initializing Tone.js:', error)

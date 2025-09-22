@@ -25,8 +25,7 @@ watch(
 
 function strudelScript(st) {
   if (store.animationState) {
-    let pattern1 = st.core.note('d f a a# a d3').fast(2).s('supersaw').spread('.8')
-    pattern1 = pattern1.stack(st.core.note('d a').slow(2).s('piano'))
+    let pattern1 = st.core.chord('<Em7 C^7 Am9 F^7>').mode('above:e3').voicing().gain('.4')
     st.play(pattern1)
   } else {
     st.hush()
@@ -40,7 +39,7 @@ function onHydraReady(h) {
 }
 
 function animationScript(h) {
-  let g = 0.2
+  let g = 0.5
   if (store.animationState) {
     h.noise(2).out(h.o1)
     g = 2
@@ -48,7 +47,7 @@ function animationScript(h) {
     h.noise(2).luma(0.5, 0.5).out(h.o1)
   }
 
-  const lfo = () => (Math.sin(h.time / 4) * 0.5 + 1) * Math.PI
+  const lfo = () => (Math.sin(h.time / 2) * 0.5 + 1) * Math.PI
   h.osc(Math.PI, 0.05, lfo).modulate(h.src(h.o1), g).out(h.o0)
 }
 </script>

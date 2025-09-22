@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import _isEmpty from 'lodash/isEmpty'
+import isEmpty from 'lodash/isEmpty'
 import { drawGradient, sigmoid } from '@/utils/canvas'
 import Particle from '@/particle'
 
@@ -111,7 +111,7 @@ export function useParticleSketch(props, synth, animationOn) {
   }
 
   const enableAnimation = () => {
-    if (!_isEmpty(timeouts)) return
+    if (!isEmpty(timeouts)) return
     const interval = beat * 8
     timeouts.fadeGradient = setTimeout(function cb() {
       fadeGradient()

@@ -34,7 +34,7 @@ import { ref, computed } from 'vue'
 import ExperienceDetails from './ExperienceDetails.vue'
 import ExperienceBlock from './ExperienceBlock.vue'
 import ExperienceTimeline from './ExperienceTimeline.vue'
-import _orderBy from 'lodash/orderBy'
+import orderBy from 'lodash/orderBy'
 
 const props = defineProps({
   experiences: Array,
@@ -51,7 +51,7 @@ const selectClass = ['bg-dark', 'text-light', 'border-dark']
 const currentExpIndex = ref(null)
 
 const sortedExperiences = computed(() => {
-  return _orderBy(props.experiences, exp => new Date('01/' + exp.from), 'desc')
+  return orderBy(props.experiences, exp => new Date('01/' + exp.from), 'desc')
 })
 
 const currentExp = computed(() => {
